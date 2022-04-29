@@ -1,4 +1,6 @@
 using intern_track_back.Data;
+using intern_track_back.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddIdentityCore<ApplicationUser>();
+var identityBuilder = new IdentityBuilder(builder.Services.AddIdentityCore<ApplicationUser>().UserType, builder.Services);
+
+identityBuilder.AddEntityFrameworkStores<ApplicationDbContext>();
+identityBuilder.AddSignInManager<SignInManager<ApplicationUser>>();
 
 //Backend old school legacy
 //builder.Services.AddMvc();
@@ -28,6 +36,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 
