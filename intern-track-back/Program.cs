@@ -10,12 +10,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddIdentityCore<ApplicationUser>();
-var identityBuilder = new IdentityBuilder(builder.Services.AddIdentityCore<ApplicationUser>().UserType, builder.Services);
-
-identityBuilder.AddEntityFrameworkStores<ApplicationDbContext>();
-identityBuilder.AddSignInManager<SignInManager<ApplicationUser>>();
-
 //Backend old school legacy
 //builder.Services.AddMvc();
 
