@@ -39,13 +39,14 @@ namespace intern_track_back.Controllers
             this.ViewData["ReturnUrl"] = returnUrl;
             return this.View();
         }*/
-
+        
         // POST: /Account/Login
         [HttpPost]
         [Route("login")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, String returnUrl = null)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
+            var returnUrl = Url.Content("~/");
             this.ViewData["ReturnUrl"] = returnUrl;
             if (this.ModelState.IsValid)
             {
@@ -55,7 +56,7 @@ namespace intern_track_back.Controllers
                 if (result.Succeeded)
                 {
                     this.logger.LogInformation(1, "User logged in.");
-                    return this.RedirectToLocal(returnUrl);
+                    return this.LocalRedirect(returnUrl);
                 }
 
                 if (result.IsLockedOut)
@@ -72,7 +73,7 @@ namespace intern_track_back.Controllers
             return this.View(model);
         }
 
-        /*// GET: /Account/Register
+        /* GET: /Account/Register
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register(String returnUrl = null)
@@ -84,9 +85,11 @@ namespace intern_track_back.Controllers
         // POST: /Account/Register
         [HttpPost]
         [Route("register")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, String returnUrl = null)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
+            var returnUrl = Url.Content("~/");
+
             this.ViewData["ReturnUrl"] = returnUrl;
             if (this.ModelState.IsValid)
             {
@@ -96,7 +99,7 @@ namespace intern_track_back.Controllers
                 {
                     await this.signInManager.SignInAsync(user, isPersistent: false);
                     this.logger.LogInformation(3, "User created a new account with password.");
-                    return this.RedirectToLocal(returnUrl);
+                    return LocalRedirect(returnUrl);
                 }
 
                 this.AddErrors(result);
@@ -108,7 +111,7 @@ namespace intern_track_back.Controllers
 
         // POST: /Account/Logout
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await this.signInManager.SignOutAsync();
