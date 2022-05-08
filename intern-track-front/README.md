@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Intern-track Client App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Frameworks / Libraries
+
+- React: https://ru.reactjs.org/
+- Redux: https://redux.js.org/
+- Redux Toolkit: https://redux-toolkit.js.org/
+- MUI: https://mui.com/
 
 ## Available Scripts
 
