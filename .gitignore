@@ -3,8 +3,6 @@
 # dotnet core
 bin/
 obj/
-project.lock.json
-NuGetScratch/
 
 api/wwwroot/**
 !api/wwwroot/scratch.html
