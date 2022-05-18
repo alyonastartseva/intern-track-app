@@ -9,7 +9,7 @@ namespace intern_track_back.Models
         /// <summary>
         /// Описание вакансии
         /// </summary>
-        public string Description { get; set; }
+        public string? Description { get; set; }
         
         /// <summary>
         /// Стэк
@@ -27,13 +27,9 @@ namespace intern_track_back.Models
         public ICollection<Contact> Contacts { get; set; }
         
         /// <summary>
-        /// Идентификатор компании, которой принадлежит данная вакансия
-        /// </summary>
-        public int CompanyId { get; set; }
-        
-        /// <summary>
         /// Компания, которой принадлежит данная вакансия
         /// </summary>
         public Company Company { get; set; }
+        public int CompanyId { get; set; }
     }
 }

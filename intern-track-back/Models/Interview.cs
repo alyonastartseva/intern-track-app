@@ -24,25 +24,17 @@ namespace intern_track_back.Models
         /// Место для собеседования
         /// </summary>
         public string Place { get; set; }
-        
-        /// <summary>
-        /// Идентификатор компании, проводящей собеседование
-        /// </summary>
-        public int CompanyId { get; set; }
-        
+
         /// <summary>
         /// Компания, проводящая собеседование
         /// </summary>
         public Company Company { get; set; }
-        
-        /// <summary>
-        /// Идентификатор студента, проходящего собеседование
-        /// </summary>
-        public int StudentId { get; set; }
+        public int CompanyId { get; set; }
         
         /// <summary>
         /// Студент, проходящий собеседование
         /// </summary>
         public Student Student { get; set; }
+        public int StudentId { get; set; }
     }
 }

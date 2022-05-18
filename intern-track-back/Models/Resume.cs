@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using intern_track_back.Enumerations;
 
 namespace intern_track_back.Models
@@ -7,9 +6,9 @@ namespace intern_track_back.Models
     public class Resume : BaseEntity
     {
         /// <summary>
-        /// Описание вакансии
+        /// О студенте
         /// </summary>
-        public string Description { get; set; }
+        public string About { get; set; }
         
         /// <summary>
         /// Стэк
@@ -25,15 +24,11 @@ namespace intern_track_back.Models
         /// Контакты для связи
         /// </summary>
         public ICollection<Contact> Contacts { get; set; }
-        
-        /// <summary>
-        /// Идентификатор студента, которой принадлежит данное резюме
-        /// </summary>
-        public int StudentId { get; set; }
-        
+       
         /// <summary>
         /// Студент, которой принадлежит данное резюме
         /// </summary>
         public Student Student { get; set; }
+        public int StudentId { get; set; }
     }
 }

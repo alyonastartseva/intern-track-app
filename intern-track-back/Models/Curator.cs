@@ -8,6 +8,6 @@ namespace intern_track_back.Models
         /// <summary>
         /// Подопечные у куратора
         /// </summary>
-        public ICollection<ApplicationUser> Mentee { get; set; }
+        public ICollection<User> Mentee { get; set; }
     }
 }

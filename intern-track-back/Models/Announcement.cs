@@ -14,10 +14,5 @@ namespace intern_track_back.Models
         /// Текст объявления
         /// </summary>
         public string Text { get; set; }
-        
-        /// <summary>
-        /// Получатели уведомлений
-        /// </summary>
-        public ICollection<ApplicationUser> Receivers { get; set; }
     }
 }

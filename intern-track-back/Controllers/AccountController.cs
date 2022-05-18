@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using intern_track_back.Models;
 using intern_track_back.Models.AccountViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace intern_track_back.Controllers
 {

@@ -6,9 +6,9 @@ namespace intern_track_back.Models
     public class Company : User
     {
         /// <summary>
-        /// Адрес компании (реальный? имейл? что имелось ввиду)
+        /// Географический адрес компании
         /// </summary>
-        public string Address { get; set; }
+        public string? Address { get; set; }
         
         /// <summary>
         /// Список вакансий

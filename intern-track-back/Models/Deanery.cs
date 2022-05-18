@@ -5,9 +5,9 @@ namespace intern_track_back.Models
     public class Deanery : User
     {
         /// <summary>
-        /// Адрес компании (реальный? имейл? что имелось ввиду)
+        /// Географический адрес деканата
         /// </summary>
-        public string Address { get; set; }
+        public string? Address { get; set; }
         
         /// <summary>
         /// Оценки, выставленные деканатом студентам
