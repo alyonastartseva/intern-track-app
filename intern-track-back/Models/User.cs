@@ -27,7 +27,7 @@ namespace intern_track_back.Models
         /// <summary>
         /// Контакты, способы связи с пользователем
         /// </summary>
-        public ICollection<string> Contacts { get; set; }
+        public ICollection<Contact> Contacts { get; set; }
 
         /// <summary>
         /// Объявления, отправленные пользователю

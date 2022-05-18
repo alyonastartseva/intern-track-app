@@ -12,7 +12,7 @@ namespace intern_track_back.Models
         /// <summary>
         /// Отправитель сообщения
         /// </summary>
-        public ApplicationUser Sender { get; set; }
+        public User Sender { get; set; }
         
         /// <summary>
         /// Идентификатор получателя
@@ -22,7 +22,7 @@ namespace intern_track_back.Models
         /// <summary>
         /// Получатель сообщения
         /// </summary>
-        public ApplicationUser Receiver { get; set; }
+        public User Receiver { get; set; }
         
         /// <summary>
         /// Текст сообщения

@@ -33,6 +33,19 @@ namespace intern_track_back.Data
                 .HasOne<User>()
                 .WithOne(el => el.ApplicationUser)
                 .HasForeignKey<ApplicationUser>(el => el.UserId);
+
+            builder.Entity<User>()
+                .HasMany(el => el.ReceivedMessages)
+                .WithOne(el => el.Receiver)
+                .HasForeignKey(el => el.ReceiverId);
+
+            builder.Entity<User>()
+                .HasMany(el => el.SentMessages)
+                .WithOne(el => el.Sender)
+                .HasForeignKey(el => el.SenderId);
+
+
+            base.OnModelCreating(builder);
         }
     }
 }

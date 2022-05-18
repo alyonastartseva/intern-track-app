@@ -19,12 +19,12 @@ namespace intern_track_back.Models
         /// <summary>
         /// Названия проектов
         /// </summary>
-        public ICollection<string> Projects { get; set; }
+        public ICollection<Project> Projects { get; set; }
         
         /// <summary>
         /// Контакты для связи
         /// </summary>
-        public ICollection<string> Contacts { get; set; }
+        public ICollection<Contact> Contacts { get; set; }
         
         /// <summary>
         /// Идентификатор студента, которой принадлежит данное резюме
