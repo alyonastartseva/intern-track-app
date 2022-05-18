@@ -23,7 +23,7 @@ namespace intern_track_back.Models
         /// <summary>
         /// Деканат, заполнивший оценку
         /// </summary>
-        public Deanery Deanery { get; set; }
-        public int DeaneryId { get; set; }
+        public Deanery? Deanery { get; set; }
+        public int? DeaneryId { get; set; }
     }
 }
