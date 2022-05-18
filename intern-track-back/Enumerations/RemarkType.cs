@@ -23,7 +23,7 @@ namespace intern_track_back.Enumerations
         /// Компания возможно возьмёт студента на стажировку
         /// </summary>
         [Display(Name = "Компания возможно возьмёт студента на стажировку")]
-        MayBeAccept = 3,
+        MaybeAccept = 3,
         
         /// <summary>
         /// Человек рассматривает нашу компанию, как запас

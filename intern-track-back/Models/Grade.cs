@@ -2,14 +2,8 @@
 
 namespace intern_track_back.Models
 {
-    public class Grade
+    public class Grade : BaseEntity
     {
-        public int Id { get; set; }
-        
-        public DateTime CreateDateTime { get; set; }
-        
-        public DateTime ModifyDateTime { get; set; }
-        
         /// <summary>
         /// Название предмета
         /// </summary>
@@ -19,5 +13,25 @@ namespace intern_track_back.Models
         /// Значение оуенки по предмету
         /// </summary>
         public int Value { get; set; }
+        
+        /// <summary>
+        /// Идентификатор студента, для которого выставлена оценка
+        /// </summary>
+        public int StudentId { get; set; }
+        
+        /// <summary>
+        /// Студент, для которого выставлена оценка
+        /// </summary>
+        public Student Student { get; set; }
+        
+        /// <summary>
+        /// Идентификатор деканата, заполнивший оценку
+        /// </summary>
+        public int DeaneryId { get; set; }
+        
+        /// <summary>
+        /// Деканат, заполнивший оценку
+        /// </summary>
+        public Deanery Deanery { get; set; }
     }
 }

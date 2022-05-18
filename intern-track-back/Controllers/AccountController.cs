@@ -57,6 +57,7 @@ namespace intern_track_back.Controllers
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
+                //Добавить сюда создание дубликата-пользователя (студента/компании/куратора - в зависимости от того, кто это будет)
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);

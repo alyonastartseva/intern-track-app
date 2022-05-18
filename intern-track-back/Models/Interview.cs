@@ -3,14 +3,8 @@ using intern_track_back.Enumerations;
 
 namespace intern_track_back.Models
 {
-    public class Interview
+    public class Interview : BaseEntity
     {
-        public int Id { get; set; }
-        
-        public DateTime CreateDateTime { get; set; }
-        
-        public DateTime ModifyDateTime { get; set; }
-        
         /// <summary>
         /// Дата и время, на которое назначено собеседование
         /// </summary>
@@ -30,5 +24,25 @@ namespace intern_track_back.Models
         /// Место для собеседования
         /// </summary>
         public string Place { get; set; }
+        
+        /// <summary>
+        /// Идентификатор компании, проводящей собеседование
+        /// </summary>
+        public int CompanyId { get; set; }
+        
+        /// <summary>
+        /// Компания, проводящая собеседование
+        /// </summary>
+        public Company Company { get; set; }
+        
+        /// <summary>
+        /// Идентификатор студента, проходящего собеседование
+        /// </summary>
+        public int StudentId { get; set; }
+        
+        /// <summary>
+        /// Студент, проходящий собеседование
+        /// </summary>
+        public Student Student { get; set; }
     }
 }

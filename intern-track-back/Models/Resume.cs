@@ -4,7 +4,7 @@ using intern_track_back.Enumerations;
 
 namespace intern_track_back.Models
 {
-    public class Vacancy : BaseEntity
+    public class Resume : BaseEntity
     {
         /// <summary>
         /// Описание вакансии
@@ -27,13 +27,13 @@ namespace intern_track_back.Models
         public ICollection<string> Contacts { get; set; }
         
         /// <summary>
-        /// Идентификатор компании, которой принадлежит данная вакансия
+        /// Идентификатор студента, которой принадлежит данное резюме
         /// </summary>
-        public int CompanyId { get; set; }
+        public int StudentId { get; set; }
         
         /// <summary>
-        /// Компания, которой принадлежит данная вакансия
+        /// Студент, которой принадлежит данное резюме
         /// </summary>
-        public Company Company { get; set; }
+        public Student Student { get; set; }
     }
 }

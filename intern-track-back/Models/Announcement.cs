@@ -3,14 +3,8 @@ using System.Collections.Generic;
 
 namespace intern_track_back.Models
 {
-    public class Announcement
+    public class Announcement : BaseEntity
     {
-        public int Id { get; set; }
-        
-        public DateTime CreateDateTime { get; set; }
-        
-        public DateTime ModifyDateTime { get; set; }
-        
         /// <summary>
         /// Заголовок объявления
         /// </summary>

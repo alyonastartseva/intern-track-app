@@ -2,18 +2,22 @@
 
 namespace intern_track_back.Models
 {
-    public class Message
+    public class Message : BaseEntity
     {
-        public int Id { get; set; }
-        
-        public DateTime CreateDateTime { get; set; }
-        
-        public DateTime ModifyDateTime { get; set; }
+        /// <summary>
+        /// Идентификатор отправителя
+        /// </summary>
+        public int SenderId { get; set; }
         
         /// <summary>
         /// Отправитель сообщения
         /// </summary>
         public ApplicationUser Sender { get; set; }
+        
+        /// <summary>
+        /// Идентификатор получателя
+        /// </summary>
+        public int ReceiverId { get; set; }
         
         /// <summary>
         /// Получатель сообщения
