@@ -10,6 +10,12 @@ api/wwwroot/**
 !api/wwwroot/scratch.html
 !api/wwwroot/favicon.ico
 
+# Ignore DB Snapshot
+.vscode/launch.json
+.vscode/tasks.json
+/intern-track-back/Migrations/ApplicationDbContextModelSnapshot.cs
+report.*.*.*.*.*.json
+
 # node
 node_modules/
 typings/
