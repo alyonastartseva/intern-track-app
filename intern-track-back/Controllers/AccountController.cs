@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using intern_track_back.Models;
 using intern_track_back.Models.AccountViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace intern_track_back.Controllers
 {
@@ -57,6 +60,7 @@ namespace intern_track_back.Controllers
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
+                //Добавить сюда создание дубликата-пользователя (студента/компании/куратора - в зависимости от того, кто это будет)
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);

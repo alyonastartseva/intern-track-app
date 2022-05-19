@@ -27,5 +27,12 @@ namespace intern_track_back.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        
+        /// <summary>
+        /// На основании этого параметры мы будем выбирать, кого создать: студента/компанию/куратора/админа. Вставить проверку, что админа может создать только админ!
+        /// </summary>
+        [Required]
+        [Display(Name = "Role")]
+        public string Role { get; set; }
     }
 }
