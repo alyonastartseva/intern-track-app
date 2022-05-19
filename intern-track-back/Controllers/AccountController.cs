@@ -10,8 +10,8 @@ using Microsoft.Extensions.Logging;
 
 namespace intern_track_back.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class AccountController : BaseApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;

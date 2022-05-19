@@ -25,6 +25,12 @@ builder.Services.AddSwaggerGen(); // Learn more about configuring Swagger/OpenAP
 builder.Services.AddScoped<UnitOfWork>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+#region Регистрация сервисов работы с сущностями
+
+builder.Services.AddScoped<AnnouncementCrudService>();
+
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
