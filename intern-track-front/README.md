@@ -6,6 +6,7 @@
 - Redux: https://redux.js.org/
 - Redux Toolkit: https://redux-toolkit.js.org/
 - MUI: https://mui.com/
+- Emotion: https://emotion.sh/
 
 ## Available Scripts
 
