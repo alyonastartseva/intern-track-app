@@ -1,9 +1,6 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 
 export const App = () => {
-    return (
-        <div>
-            <p>App component</p>
-        </div>
-    )
+  return <Button variant="text">Test button</Button>;
 };
