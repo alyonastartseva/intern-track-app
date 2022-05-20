@@ -1,0 +1,41 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+      "plugin:react/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "react-hooks"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error"
+      ],
+      "react/prop-types": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "semi": [
+        "error",
+        "always"
+      ]
+    },
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "project": "./jsconfig.json",
+      "requireConfigFile": "false",
+      "babelOptions": {
+        "presets": [
+          "@babel/preset-react"
+        ]
+      }
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+}
