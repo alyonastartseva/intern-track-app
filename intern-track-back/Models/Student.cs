@@ -7,6 +7,16 @@ namespace intern_track_back.Models
     public class Student : User
     {
         /// <summary>
+        /// Настоящее имя студента
+        /// </summary>
+        public string FirstName { get; set; }
+        
+        /// <summary>
+        /// Фамилия
+        /// </summary>
+        public string LastName { get; set; }
+        
+        /// <summary>
         /// Номер курса обучения
         /// </summary>
         public int Course { get; set; }

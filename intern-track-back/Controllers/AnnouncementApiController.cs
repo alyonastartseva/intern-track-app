@@ -11,8 +11,7 @@ namespace intern_track_back.Controllers
     [Route("api/[controller]")]
     public class AnnouncementApiController : BaseApiController
     {
-        
-        public AnnouncementApiController(IServiceProvider serviceProvider, AnnouncementCrudService announcementCrudService) : base(serviceProvider)
+        public AnnouncementApiController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 
