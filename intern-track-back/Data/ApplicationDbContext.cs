@@ -26,6 +26,8 @@ namespace intern_track_back.Data
         public DbSet<Note> Notes { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Resume> Resumes { get; set; }
+        public DbSet<StackForInterviewPlan> StackForInterviewPlans { get; set; }
+        public DbSet<StudentPlanForInterview> StudentPlanForInterviews { get; set; }
         public DbSet<UserChat> UserChats { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
 
@@ -122,9 +124,37 @@ namespace intern_track_back.Data
                 .OnDelete(DeleteBehavior.Restrict);
             
             builder.Entity<Student>()
-                .HasMany(c => c.Notes)
+                .HasMany(s => s.Notes)
                 .WithOne(n => n.Student)
                 .HasForeignKey(n => n.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            #endregion
+
+            #region Предотвращение петли через Company-StudentPlanForInterview-Student
+
+            builder.Entity<StudentPlanForInterview>()
+                .HasOne(p => p.Company)
+                .WithMany(c => c.StudentPlanForInterviews)
+                .HasForeignKey(n => n.CompanyId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.Entity<StudentPlanForInterview>()
+                .HasOne(p => p.Student)
+                .WithMany(s => s.StudentPlanForInterviews)
+                .HasForeignKey(p => p.StudentId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.Entity<Company>()
+                .HasMany(c => c.StudentPlanForInterviews)
+                .WithOne(p => p.Company)
+                .HasForeignKey(p => p.CompanyId)
+                .OnDelete(DeleteBehavior.Restrict);
+            
+            builder.Entity<Student>()
+                .HasMany(s => s.StudentPlanForInterviews)
+                .WithOne(p => p.Student)
+                .HasForeignKey(p => p.StudentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             #endregion

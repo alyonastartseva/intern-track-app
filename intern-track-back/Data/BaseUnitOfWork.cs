@@ -98,9 +98,15 @@ namespace intern_track_back.Data
         
         public GenericRepository<Resume> ResumeRepository =>
             GetRepository<GenericRepository<Resume>, Resume>();
+
+        public GenericRepository<StackForInterviewPlan> StackForInterviewPlans =>
+            GetRepository<GenericRepository<StackForInterviewPlan>, StackForInterviewPlan>();
         
         public GenericRepository<Student> StudentRepository =>
             GetRepository<GenericRepository<Student>, Student>();
+        
+        public GenericRepository<StudentPlanForInterview> StudentPlanForInterviews =>
+            GetRepository<GenericRepository<StudentPlanForInterview>, StudentPlanForInterview>();
         
         public GenericRepository<UserChat> UserChatRepository =>
             GetRepository<GenericRepository<UserChat>, UserChat>();

@@ -35,5 +35,10 @@ namespace intern_track_back.Models
         /// Оценки студента попредметам
         /// </summary>
         public ICollection<Grade> Grades { get; set; }
+        
+        /// <summary>
+        ///  Пожелания студента прособеседоваться в разных компаниях
+        /// </summary>
+        public ICollection<StudentPlanForInterview> StudentPlanForInterviews { get; set; }
     }
 }
