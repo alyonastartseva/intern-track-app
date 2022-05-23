@@ -32,7 +32,7 @@ namespace intern_track_back.Models
         /// <summary>
         /// Приоритет этой компании в глазах студента
         /// </summary>
-        public int Priority { get; set; }
+        public int? Priority { get; set; }
     }
     
 }
