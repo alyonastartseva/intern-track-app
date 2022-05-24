@@ -42,7 +42,7 @@ namespace intern_track_back.Models
         public ICollection<Resume> Resumes { get; set; }
         
         /// <summary>
-        /// Оценки студента попредметам
+        /// Оценки студента по предметам
         /// </summary>
         public ICollection<Grade> Grades { get; set; }
         

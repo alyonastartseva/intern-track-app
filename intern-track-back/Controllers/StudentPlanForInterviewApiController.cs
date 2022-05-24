@@ -1,4 +1,5 @@
 ﻿using System;
+using intern_track_back.Services;
 using intern_track_back.ViewModels.Api.StudentPlanForInterview.RequestModels;
 using intern_track_back.ViewModels.Api.StudentPlanForInterview.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
@@ -35,15 +36,23 @@ namespace intern_track_back.Controllers
         [Route("update")]
         public ActionResult<StudentPlanForInterviewRequestModel> Update(int id)
             => new StudentPlanForInterviewRequestModel().Init(id, UnitOfWork);
-        
-        /*[HttpPost]
+
+        [HttpPost]
         [Route("createUpdate")]
-        public ActionResult<StudentPlanForInterviewRequestModel> CreateUpdate(int id)
-            => new StudentPlanForInterviewRequestModel().Init(id, UnitOfWork);*/
+        public ActionResult<int> CreateUpdate(
+            [FromBody] StudentPlanForInterviewRequestModel model,
+            [FromServices] StudentPlanForInterviewCrudService studentPlanForInterviewService)
+        {
+            return studentPlanForInterviewService.CreateOrUpdate(model, Current);
+        }
         
-        /*[HttpPost]
+        [HttpPost]
         [Route("remove")]
-        public ActionResult<StudentPlanForInterviewRequestModel> Remove(int id)
-            => new StudentPlanForInterviewRequestModel().Init(id, UnitOfWork);*/
+        public IActionResult Remove(int id,
+            [FromServices] StudentPlanForInterviewCrudService studentPlanForInterviewService)
+        {
+            return studentPlanForInterviewService.Remove(id, Current);
+        }
+            
     }
 }

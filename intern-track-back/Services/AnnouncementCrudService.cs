@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using intern_track_back.Data;
 using intern_track_back.ViewModels.Api.Announcements.RequestModels;
 using Microsoft.AspNetCore.Mvc;

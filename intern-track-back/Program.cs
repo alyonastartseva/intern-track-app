@@ -28,6 +28,7 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 #region Регистрация сервисов работы с сущностями
 
 builder.Services.AddScoped<AnnouncementCrudService>();
+builder.Services.AddScoped<StudentPlanForInterviewCrudService>();
 
 #endregion
 

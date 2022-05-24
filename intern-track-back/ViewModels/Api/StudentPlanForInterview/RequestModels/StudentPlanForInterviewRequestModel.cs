@@ -10,6 +10,11 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterview.RequestModels
     public class StudentPlanForInterviewRequestModel
     {
         /// <summary>
+        /// Идентификатор сущности записи
+        /// </summary>
+        public int Id { get; set; }
+        
+        /// <summary>
         /// Компанию, в которую студент хочет попробовать пройти
         /// </summary>
         public int CompanyId { get; set; }
@@ -31,7 +36,7 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterview.RequestModels
 
         public ActionResult<StudentPlanForInterviewRequestModel> Init(int id, UnitOfWork unitOfWork)
         {
-            var studentPlanForInterview = unitOfWork.StudentPlanForInterviews
+            var studentPlanForInterview = unitOfWork.StudentPlanForInterviewRepository
                 .Where(p => p.Id == id)
                 .Include(p => p.StackTypes)
                 .FirstOrDefault();
@@ -41,6 +46,7 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterview.RequestModels
                 return new ActionResult<StudentPlanForInterviewRequestModel>(new NotFoundResult());
             }
 
+            Id = studentPlanForInterview.Id;
             CompanyId = studentPlanForInterview.CompanyId;
             PreferableTime = studentPlanForInterview.PreferableTime;
             Priority = studentPlanForInterview.Priority;
