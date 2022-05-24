@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using intern_track_back.Enumerations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using intern_track_back.Models;
-using intern_track_back.Models.AccountViewModels;
+using intern_track_back.Services;
+using intern_track_back.ViewModels.AccountViewModels;
 using Microsoft.Extensions.Logging;
 
 namespace intern_track_back.Controllers
@@ -57,16 +58,49 @@ namespace intern_track_back.Controllers
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
+        //todo добавить какой-то пароль на этот метод
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model, [FromServices] AccountService accountService)
+        {
+            if (!(model.Role.ToLower() == "company" ||
+                  model.Role.ToLower() == "curator" ||
+                  model.Role.ToLower() == "deanery" || 
+                  model.Role.ToLower() == "admin"))
+            {
+                ModelState.AddModelError(model.Role, "Роль должна быть одна из следующих: company, curator, deanery, admin");
+            }
+            
+            if (ModelState.IsValid)
+            {
+                var applicationUser = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var result = await _userManager.CreateAsync(applicationUser, model.Password);
+                
+                if (result.Succeeded)
+                {
+                    accountService.Register(model, applicationUser);
+                    
+                    await _signInManager.SignInAsync(applicationUser, isPersistent: false);
+                    _logger.LogInformation(3, "User created a new account with password.");
+                    return StatusCode(201, new { message = "Account created" });
+                }
+
+                AddErrors(result);
+            }
+
+            return StatusCode(409, new { message = "Conflict" });
+        }
+        
+        [HttpPost]
+        [Route("registerAsStudent")]
+        public async Task<IActionResult> RegisterAsStudent([FromBody] RegisterAsStudentViewModel model, [FromServices] AccountService accountService)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                //Добавить сюда создание дубликата-пользователя (студента/компании/куратора - в зависимости от того, кто это будет)
+                var applicationUser = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var result = await _userManager.CreateAsync(applicationUser, model.Password);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    accountService.RegisterAsStudent(model, applicationUser);   
+                    await _signInManager.SignInAsync(applicationUser, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return StatusCode(201, new { message = "Account created" });
                 }
