@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using intern_track_back.Services;
 using intern_track_back.ViewModels.Api.Announcements.RequestModels;
 using intern_track_back.ViewModels.Api.Announcements.ResponseModels;
@@ -11,8 +10,7 @@ namespace intern_track_back.Controllers
     [Route("api/[controller]")]
     public class AnnouncementApiController : BaseApiController
     {
-        
-        public AnnouncementApiController(IServiceProvider serviceProvider, AnnouncementCrudService announcementCrudService) : base(serviceProvider)
+        public AnnouncementApiController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 
@@ -53,7 +51,8 @@ namespace intern_track_back.Controllers
         /// </summary>
         [HttpPost]
         [Route("edit")]
-        public ActionResult<int> Edit([FromBody] AnnouncementRequestModel model, [FromServices] AnnouncementCrudService announcementService)
+        public ActionResult<int> Edit([FromBody] AnnouncementRequestModel model, 
+            [FromServices] AnnouncementCrudService announcementService)
         {
             return announcementService.CreateOrUpdate(model);
         }

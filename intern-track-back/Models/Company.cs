@@ -24,5 +24,10 @@ namespace intern_track_back.Models
         /// Собеседования, назначенные компанией
         /// </summary>
         public ICollection<Interview> Interviews { get; set; }
+        
+        /// <summary>
+        /// Таблица пожеланий студентов прособеседоваться
+        /// </summary>
+        public ICollection<StudentPlanForInterview> StudentPlanForInterviews { get; set; }
     }
 }

@@ -7,6 +7,16 @@ namespace intern_track_back.Models
     public class Student : User
     {
         /// <summary>
+        /// Настоящее имя студента
+        /// </summary>
+        public string FirstName { get; set; }
+        
+        /// <summary>
+        /// Фамилия
+        /// </summary>
+        public string LastName { get; set; }
+        
+        /// <summary>
         /// Номер курса обучения
         /// </summary>
         public int Course { get; set; }
@@ -32,8 +42,13 @@ namespace intern_track_back.Models
         public ICollection<Resume> Resumes { get; set; }
         
         /// <summary>
-        /// Оценки студента попредметам
+        /// Оценки студента по предметам
         /// </summary>
         public ICollection<Grade> Grades { get; set; }
+        
+        /// <summary>
+        ///  Пожелания студента прособеседоваться в разных компаниях
+        /// </summary>
+        public ICollection<StudentPlanForInterview> StudentPlanForInterviews { get; set; }
     }
 }
