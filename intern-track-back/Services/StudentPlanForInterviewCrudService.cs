@@ -28,7 +28,11 @@ namespace intern_track_back.Services
 
         private ActionResult<int> Create(StudentPlanForInterviewRequestModel model, User current)
         {
-            //todo добавить проверку на роль студента - только они могут записываться
+            if (current.Role != RoleType.Student)
+            {
+                return new ActionResult<int>(new ForbidResult());
+            }
+            
             var studentPlanForInterview = _unitOfWork.StudentPlanForInterviewRepository.CreateNew();
             
             studentPlanForInterview.PreferableTime = model.PreferableTime;
@@ -56,12 +60,11 @@ namespace intern_track_back.Services
             }
 
             //Изменить запись может только тот же студент или админ
-            //todo снять комментирование после создания регистрации с ролью
-            /*if (current.Role != RoleType.Admin &&
-                studentPlanForInterview.StudentId != Current.Id)
+            if (current.Role != RoleType.Admin &&
+                studentPlanForInterview.StudentId != current.Id)
             {
                 return new ActionResult<int>(new ForbidResult());
-            }*/
+            }
 
             studentPlanForInterview.PreferableTime = model.PreferableTime;
             studentPlanForInterview.Priority = model.Priority;
@@ -115,12 +118,11 @@ namespace intern_track_back.Services
                 return new NotFoundResult();
             }
             
-            //todo снять комментирование после создания регистрации с ролью
-            /*if (current.Role != RoleType.Admin &&
-                studentPlanForInterview.StudentId != Current.Id)
+            if (current.Role != RoleType.Admin &&
+                studentPlanForInterview.StudentId != current.Id)
             {
                 return new ForbidResult();
-            }*/
+            }
             
             _unitOfWork.StudentPlanForInterviewRepository.Remove(studentPlanForInterview);
             _unitOfWork.Save();
