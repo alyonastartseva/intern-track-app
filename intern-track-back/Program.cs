@@ -29,6 +29,8 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 builder.Services.AddScoped<AnnouncementCrudService>();
 
+builder.Services.AddScoped<AccountService>();
+
 #endregion
 
 var app = builder.Build();

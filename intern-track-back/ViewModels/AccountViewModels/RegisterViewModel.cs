@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace intern_track_back.Models.AccountViewModels
+namespace intern_track_back.ViewModels.AccountViewModels
 {
     public class RegisterViewModel
     {
@@ -34,5 +34,8 @@ namespace intern_track_back.Models.AccountViewModels
         [Required]
         [Display(Name = "Role")]
         public string Role { get; set; }
+        
+        [Display(Name = "Информация, которую пользователь хочет предоставить о себе")]
+        public string About { get; set; }
     }
 }
