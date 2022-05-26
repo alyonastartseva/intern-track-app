@@ -27,6 +27,12 @@ namespace intern_track_back.Models
         public StatusType Status { get; set; }
         
         /// <summary>
+        /// Вакансия, на которую был принят студент
+        /// </summary>
+        public Vacancy? Vacancy { get; set; }
+        public int?  VacancyId { get; set; }
+        
+        /// <summary>
         /// Список заметок от компаний относительно их желания принять студента
         /// </summary>
         public ICollection<Note> Notes { get; set; }

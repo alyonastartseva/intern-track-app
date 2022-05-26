@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using intern_track_back.Enumerations;
 
 namespace intern_track_back.Models
@@ -17,19 +16,19 @@ namespace intern_track_back.Models
         public StackType Stack { get; set; }
         
         /// <summary>
-        /// Названия проектов
+        /// Общее количество мест, которое выделила компания
         /// </summary>
-        public ICollection<Project> Projects { get; set; }
-        
-        /// <summary>
-        /// Контакты для связи
-        /// </summary>
-        public ICollection<Contact> Contacts { get; set; }
-        
+        public int TotalNumber { get; set; }
+
         /// <summary>
         /// Компания, которой принадлежит данная вакансия
         /// </summary>
         public Company Company { get; set; }
         public int CompanyId { get; set; }
+        
+        /// <summary>
+        /// Студенты, принятые в компанию на данную вакансию
+        /// </summary>
+        public ICollection<Student> Students { get; set; }
     }
 }
