@@ -18,11 +18,10 @@ namespace intern_track_back.Controllers
         /// <summary>
         /// Получить таблицу желающих прособеседоваться по id компании
         /// </summary>
-        /// <param name="companyId"></param>
-        /// <returns></returns>
+        /// <param name="companyId">Идентификатор компании</param>
         [HttpGet]
         [Route("StudentPlanForInterviewByCompanyId")]
-        public StudentPlanForInterviewListResponseModel GetById(int companyId) 
+        public StudentPlanForInterviewListResponseModel GetForCompany(int companyId) 
             => new StudentPlanForInterviewListResponseModel().Init(companyId, UnitOfWork);
         
         //todo: только студенты могут добавлять данные в таблицу
