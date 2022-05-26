@@ -40,6 +40,7 @@ namespace intern_track_back.Services
             vacancy.Company = _unitOfWork.CompanyRepository.First(c => c.Id == current.Id);
             
             _unitOfWork.Save();
+            
             return new ActionResult<int>(vacancy.Id);
         }
 
@@ -64,6 +65,7 @@ namespace intern_track_back.Services
             vacancy.TotalNumber = model.TotalNumber;
             
             _unitOfWork.Save();
+            
             return new ActionResult<int>(vacancy.Id);
         }
 

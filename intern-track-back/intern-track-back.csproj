@@ -18,9 +18,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\Api\Interviews\RequestModels" />
-    <Folder Include="ViewModels\Api\Interviews\ResponseModels" />
-  </ItemGroup>
-
 </Project>

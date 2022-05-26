@@ -27,7 +27,7 @@ namespace intern_track_back.Controllers
         /// </summary>
         /// <param name="companyId"></param>
         [HttpGet]
-        [Route("VacanciesByCompanyId")]
+        [Route("vacanciesByCompanyId")]
         public VacanciesResponseModel GetForCompany(int companyId)
             => new VacanciesResponseModel().InitForCompany(companyId, UnitOfWork);
         
