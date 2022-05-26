@@ -15,13 +15,21 @@ namespace intern_track_back.Controllers
         }
 
         /// <summary>
+        /// Получить список всех вакансий (отсортированы по названию компании)
+        /// </summary>
+        [HttpGet]
+        [Route("index")]
+        public VacanciesResponseModel Index()
+            => new VacanciesResponseModel().Init(UnitOfWork);
+        
+        /// <summary>
         /// Получить список вакансий для конкретной компании
         /// </summary>
         /// <param name="companyId"></param>
         [HttpGet]
         [Route("VacanciesByCompanyId")]
-        public VacancyListResponseModel GetForCompany(int companyId)
-            => new VacancyListResponseModel().Init(companyId, UnitOfWork);
+        public VacanciesResponseModel GetForCompany(int companyId)
+            => new VacanciesResponseModel().InitForCompany(companyId, UnitOfWork);
         
         /// <summary>
         /// Получить модель для создания вакансии

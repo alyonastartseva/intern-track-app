@@ -1,4 +1,6 @@
-﻿namespace intern_track_back.ViewModels.Api.Vacancy.ResponseModels
+﻿using intern_track_back.Models;
+
+namespace intern_track_back.ViewModels.Api.Vacancy.ResponseModels
 {
     public class VacancyResponseModel
     {
@@ -21,5 +23,10 @@
         /// Количество оставшихся свободных мест
         /// </summary>
         public int FreeNumber { get; set; }
+        
+        /// <summary>
+        /// Компания, опубликовавшая вакансию
+        /// </summary>
+        public Company Company { get; set; }
     }
 }
