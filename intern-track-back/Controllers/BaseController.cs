@@ -11,14 +11,14 @@ namespace intern_track_back.Controllers
     /// Базовый контроллер, от него должны быть отнаследованы все Api контроллеры
     /// Предоставляет доступ к редактировунию данных и текущему пользователю
     /// </summary>
-    public class BaseApiController : Controller
+    public class BaseController : Controller
     {
         protected readonly UnitOfWork UnitOfWork;
         protected readonly ICurrentUserService CurrentUserService;
         
         protected User Current { get; set; }
         
-        protected BaseApiController(IServiceProvider serviceProvider)
+        protected BaseController(IServiceProvider serviceProvider)
         {
             CurrentUserService = serviceProvider.GetRequiredService<ICurrentUserService>();
             UnitOfWork = serviceProvider.GetRequiredService<UnitOfWork>();

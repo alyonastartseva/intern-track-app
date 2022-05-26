@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using intern_track_back.Enumerations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using intern_track_back.Models;
@@ -13,7 +11,7 @@ namespace intern_track_back.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AccountController : BaseApiController
+    public class AccountController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;

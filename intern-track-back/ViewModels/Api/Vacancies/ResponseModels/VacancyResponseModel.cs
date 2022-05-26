@@ -1,6 +1,6 @@
 ﻿using intern_track_back.Models;
 
-namespace intern_track_back.ViewModels.Api.Vacancy.ResponseModels
+namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
 {
     public class VacancyResponseModel
     {

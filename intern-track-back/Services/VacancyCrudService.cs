@@ -2,7 +2,7 @@
 using intern_track_back.Data;
 using intern_track_back.Enumerations;
 using intern_track_back.Models;
-using intern_track_back.ViewModels.Api.Vacancy.RequestModels;
+using intern_track_back.ViewModels.Api.Vacancies.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace intern_track_back.Services

@@ -1,16 +1,16 @@
 ﻿using System;
 using intern_track_back.Services;
-using intern_track_back.ViewModels.Api.StudentPlanForInterview.RequestModels;
-using intern_track_back.ViewModels.Api.StudentPlanForInterview.ResponseModels;
+using intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModels;
+using intern_track_back.ViewModels.Api.StudentPlanForInterviews.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace intern_track_back.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class StudentPlanForInterviewApiController : BaseApiController
+    public class StudentPlanForInterviewController : BaseController
     {
-        public StudentPlanForInterviewApiController(IServiceProvider serviceProvider) : base(serviceProvider)
+        public StudentPlanForInterviewController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
         

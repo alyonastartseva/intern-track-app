@@ -1,16 +1,16 @@
 ﻿using System;
 using intern_track_back.Services;
-using intern_track_back.ViewModels.Api.Vacancy.RequestModels;
-using intern_track_back.ViewModels.Api.Vacancy.ResponseModels;
+using intern_track_back.ViewModels.Api.Vacancies.RequestModels;
+using intern_track_back.ViewModels.Api.Vacancies.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace intern_track_back.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VacancyApiController : BaseApiController
+    public class VacancyController : BaseController
     {
-        public VacancyApiController(IServiceProvider serviceProvider) : base(serviceProvider)
+        public VacancyController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 

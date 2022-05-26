@@ -1,4 +1,4 @@
-﻿namespace intern_track_back.ViewModels.Api.StudentPlanForInterview.ResponseModels
+﻿namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.ResponseModels
 {
     public class StudentPlanForInterviewResponseModel
     {
