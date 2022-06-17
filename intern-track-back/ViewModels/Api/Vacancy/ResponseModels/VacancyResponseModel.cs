@@ -25,8 +25,13 @@ namespace intern_track_back.ViewModels.Api.Vacancy.ResponseModels
         public int FreeNumber { get; set; }
         
         /// <summary>
-        /// Компания, опубликовавшая вакансию
+        /// Компания, опубликовавшая вакансию Id
         /// </summary>
-        public Company Company { get; set; }
+        public int CompanyId { get; set; }
+        
+        /// <summary>
+        /// Название компаним, опубликовавшей вакансию
+        /// </summary>
+        public string CompanyName { get; set; }
     }
 }
