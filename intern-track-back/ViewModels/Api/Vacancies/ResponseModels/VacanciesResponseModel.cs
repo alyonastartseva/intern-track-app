@@ -18,9 +18,10 @@ namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
                     Stack = v.Stack.GetDisplayName(),
                     TotalNumber = v.TotalNumber,
                     FreeNumber = v.TotalNumber - v.Students.Count,
-                    Company = v.Company
+                    CompanyId = v.CompanyId,
+                    CompanyName = v.Company.Name
                 })
-                .OrderBy(v => v.Company.Name)
+                .OrderBy(v => v.CompanyName)
                 .ToList();
 
             return this;
@@ -39,7 +40,8 @@ namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
                     Stack = v.Stack.GetDisplayName(),
                     TotalNumber = v.TotalNumber,
                     FreeNumber = v.TotalNumber - v.Students.Count,
-                    Company = v.Company
+                    CompanyId = v.CompanyId,
+                    CompanyName = v.Company.Name
                 })
                 .ToList();
 

@@ -40,7 +40,7 @@ namespace intern_track_back.Controllers
             => new VacancyRequestModel();
         
         /// <summary>
-        /// Получить модель для редавтирования вакансии
+        /// Получить модель для редактирования вакансии
         /// </summary>
         [HttpGet]
         [Route("update")]
