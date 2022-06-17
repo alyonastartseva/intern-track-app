@@ -15,7 +15,7 @@ namespace intern_track_back.Controllers
         }
         
         /// <summary>
-        /// Получить список вакансий для конкретной компании
+        /// Получить список собеседований для конкретной компании
         /// </summary>
         /// <param name="companyId">Идентификатор компании</param>
         [HttpGet]
@@ -24,7 +24,7 @@ namespace intern_track_back.Controllers
             => new InterviewsResponseModel().InitForCompany(companyId, Current, UnitOfWork);
         
         /// <summary>
-        /// Получить список всех вакансий (отсортированы по названию компании)
+        /// Получить список всех собеседований (отсортированы по названию компании)
         /// </summary>
         /// <param name="studentId">Идентификатор студента</param>
         [HttpGet]
@@ -36,12 +36,12 @@ namespace intern_track_back.Controllers
         /// Получить собеседование по id
         /// </summary>
         [HttpGet]
-        [Route("interviewsByStudentId")]
+        [Route("interviewById")]
         public ActionResult<InterviewResponseModel> GetById(int id)
             => new InterviewResponseModel().Init(id, Current, UnitOfWork);
         
         /// <summary>
-        /// Получить модель для создания вакансии
+        /// Получить модель для создания собеседования
         /// </summary>
         [HttpGet]
         [Route("create")]
@@ -49,7 +49,7 @@ namespace intern_track_back.Controllers
             => new InterviewRequestModel();
         
         /// <summary>
-        /// Получить модель для редавтирования вакансии
+        /// Получить модель для редактирования собеседования
         /// </summary>
         [HttpGet]
         [Route("update")]

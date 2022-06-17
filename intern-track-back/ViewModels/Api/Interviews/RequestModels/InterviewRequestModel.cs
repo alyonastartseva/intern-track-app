@@ -37,7 +37,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.RequestModels
         /// <summary>
         /// Студент, проходящий собеседование
         /// </summary>
-        public Student Student { get; set; }
+        public int StudentId { get; set; }
 
         public ActionResult<InterviewRequestModel> Init(int id, User current, UnitOfWork unitOfWork)
         {
@@ -59,7 +59,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.RequestModels
             Format = interview.Format;
             Stack = interview.Stack;
             Place = interview.Place;
-            Student = interview.Student;
+            StudentId = interview.StudentId;
 
             return new ActionResult<InterviewRequestModel>(this);
         }

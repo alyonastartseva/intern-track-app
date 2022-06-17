@@ -30,8 +30,10 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                     Format = i.Format.GetDisplayName(),
                     Stack = i.Stack.GetDisplayName(),
                     Place = i.Place,
-                    Company = i.Company,
-                    Student = i.Student
+                    CompanyId = i.CompanyId,
+                    CompanyName = i.Company.Name,
+                    StudentId = i.StudentId,
+                    StudentName = i.Student.LastName + " " + i.Student.FirstName
                 })
                 .ToList();
 
@@ -57,8 +59,10 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                     Format = i.Format.GetDisplayName(),
                     Stack = i.Stack.GetDisplayName(),
                     Place = i.Place,
-                    Company = i.Company,
-                    Student = i.Student
+                    CompanyId = i.CompanyId,
+                    CompanyName = i.Company.Name,
+                    StudentId = i.StudentId,
+                    StudentName = i.Student.LastName + " " + i.Student.FirstName
                 })
                 .ToList();
 

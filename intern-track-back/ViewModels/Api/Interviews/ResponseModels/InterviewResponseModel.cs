@@ -4,6 +4,7 @@ using intern_track_back.Data;
 using intern_track_back.Enumerations;
 using intern_track_back.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Extensions;
 
 namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
@@ -33,16 +34,20 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
         /// <summary>
         /// Компания, проводящая собеседование
         /// </summary>
-        public Company Company { get; set; }
+        public int CompanyId { get; set; }
+        public string CompanyName { get; set; }
         
         /// <summary>
         /// Студент, проходящий собеседование
         /// </summary>
-        public Student Student { get; set; }
+        public int StudentId { get; set; }
+        public string StudentName { get; set; }
 
         public ActionResult<InterviewResponseModel> Init(int id, User current, UnitOfWork unitOfWork)
         {
             var interview = unitOfWork.InterviewRepository
+                .Include(i => i.Company)
+                .Include(i => i.Student)
                 .FirstOrDefault(i => i.Id == id);
 
             if (interview == null)
@@ -60,8 +65,10 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
             Format = interview.Format.GetDisplayName();
             Stack = interview.Stack.GetDisplayName();
             Place = interview.Place;
-            Company = interview.Company;
-            Student = interview.Student;
+            CompanyId = interview.CompanyId;
+            CompanyName = interview.Company.Name;
+            StudentId = interview.StudentId;
+            StudentName = interview.Student.LastName + " " + interview.Student.FirstName;
 
             return new ActionResult<InterviewResponseModel>(this);
         }
