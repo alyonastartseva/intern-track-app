@@ -3,7 +3,7 @@ using intern_track_back.Data;
 using intern_track_back.Enumerations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace intern_track_back.ViewModels.Api.Vacancy.RequestModels
+namespace intern_track_back.ViewModels.Api.Vacancies.RequestModels
 {
     public class VacancyRequestModel
     {

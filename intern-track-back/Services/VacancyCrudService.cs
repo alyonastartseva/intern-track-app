@@ -2,7 +2,7 @@
 using intern_track_back.Data;
 using intern_track_back.Enumerations;
 using intern_track_back.Models;
-using intern_track_back.ViewModels.Api.Vacancy.RequestModels;
+using intern_track_back.ViewModels.Api.Vacancies.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace intern_track_back.Services
@@ -40,6 +40,7 @@ namespace intern_track_back.Services
             vacancy.Company = _unitOfWork.CompanyRepository.First(c => c.Id == current.Id);
             
             _unitOfWork.Save();
+            
             return new ActionResult<int>(vacancy.Id);
         }
 
@@ -64,6 +65,7 @@ namespace intern_track_back.Services
             vacancy.TotalNumber = model.TotalNumber;
             
             _unitOfWork.Save();
+            
             return new ActionResult<int>(vacancy.Id);
         }
 

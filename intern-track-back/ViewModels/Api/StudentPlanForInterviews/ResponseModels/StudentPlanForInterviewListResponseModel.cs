@@ -5,7 +5,7 @@ using intern_track_back.Enumerations;
 using intern_track_back.Models;
 using Microsoft.OpenApi.Extensions;
 
-namespace intern_track_back.ViewModels.Api.StudentPlanForInterview.ResponseModels
+namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.ResponseModels
 {
     public class StudentPlanForInterviewListResponseModel
     {

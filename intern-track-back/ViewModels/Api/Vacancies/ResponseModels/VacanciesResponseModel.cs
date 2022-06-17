@@ -3,7 +3,7 @@ using System.Linq;
 using intern_track_back.Data;
 using Microsoft.OpenApi.Extensions;
 
-namespace intern_track_back.ViewModels.Api.Vacancy.ResponseModels
+namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
 {
     public class VacanciesResponseModel
     {

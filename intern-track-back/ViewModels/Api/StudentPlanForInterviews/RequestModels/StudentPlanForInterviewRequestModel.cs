@@ -5,7 +5,7 @@ using intern_track_back.Enumerations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace intern_track_back.ViewModels.Api.StudentPlanForInterview.RequestModels
+namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModels
 {
     public class StudentPlanForInterviewRequestModel
     {
