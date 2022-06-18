@@ -1,110 +1,142 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import { Button, Form, Input, InputNumber } from 'antd';
+import { LockOutlined } from '@ant-design/icons';
+
+import './Signup.css';
 
 export const SignUp = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      userName: data.get('userName'),
-      course: data.get('course'),
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      email: data.get('email'),
-      password: data.get('password'),
-      confirmPassword: data.get('confirmPassword'),
-      about: data.get('about')
-    });
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log('Received values of form: ', values);
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Регистрация
-        </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField name="userName" required fullWidth id="userName" label="Имя пользователя" autoFocus />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                name="course"
-                required
-                fullWidth
-                id="course"
-                label="Курс"
-                type="number"
-                inputProps={{ min: 1, max: 4 }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField autoComplete="given-name" name="firstName" required fullWidth id="firstName" label="Имя" />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField required fullWidth id="lastName" label="Фамилия" name="lastName" autoComplete="family-name" />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField required fullWidth id="email" label="Email" name="email" autoComplete="email" />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="password"
-                label="Пароль"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="confirmPassword"
-                label="Подтвердить пароль"
-                type="password"
-                id="confirmPassword"
-                autoComplete="new-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField fullWidth id="about" label="О себе" name="about" multiline={true} />
-            </Grid>
-          </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Зарегистрироваться
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Уже есть аккаунт? Войти
-              </Link>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-    </Container>
+    <div className="page">
+      <div className="form">
+        <span className="icon">
+          <LockOutlined />
+        </span>
+        <h1>Регистрация</h1>
+        <Form form={form} name="register" onFinish={onFinish}>
+          <div className="userInfo">
+            <Form.Item
+              name="userName"
+              rules={[
+                {
+                  required: true,
+                  message: 'Обязательное поле!'
+                }
+              ]}
+            >
+              <Input placeholder="Имя пользователя" />
+            </Form.Item>
+
+            <Form.Item
+              name="course"
+              rules={[
+                {
+                  required: true,
+                  message: 'Обязательное поле!'
+                }
+              ]}
+            >
+              <InputNumber placeholder="Курс" min={1} max={4} />
+            </Form.Item>
+          </div>
+
+          <Form.Item
+            name="email"
+            rules={[
+              {
+                type: 'email',
+                message: 'Введён неверный адрес электронной почты!'
+              },
+              {
+                required: true,
+                message: 'Обязательное поле!'
+              }
+            ]}
+          >
+            <Input placeholder="Email" />
+          </Form.Item>
+
+          <div className="userInfo">
+            <Form.Item
+              name="firstName"
+              rules={[
+                {
+                  required: true,
+                  message: 'Обязательное поле!'
+                }
+              ]}
+            >
+              <Input placeholder="Имя" />
+            </Form.Item>
+
+            <Form.Item
+              name="lastName"
+              rules={[
+                {
+                  required: true,
+                  message: 'Обязательное поле!'
+                }
+              ]}
+            >
+              <Input placeholder="Фамилия" />
+            </Form.Item>
+          </div>
+
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'Обязательное поле!'
+              }
+            ]}
+          >
+            <Input.Password placeholder="Пароль" />
+          </Form.Item>
+
+          <Form.Item
+            name="confirmPassword"
+            dependencies={['password']}
+            rules={[
+              {
+                required: true,
+                message: 'Обязательное поле!'
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+
+                  return Promise.reject(new Error('Два введённых вами пароля не совпадают!'));
+                }
+              })
+            ]}
+          >
+            <Input.Password placeholder="Подтвердить пароль" />
+          </Form.Item>
+
+          <Form.Item name="about">
+            <Input.TextArea placeholder="О себе" />
+          </Form.Item>
+
+          <Form.Item>
+            <Button htmlType="submit" className="ita-btn submitBtn">
+              Зарегистрироваться
+            </Button>
+          </Form.Item>
+
+          <p className="hasAccount">
+            У вас уже есть аккаунт? <span className="link">Войти</span>
+          </p>
+        </Form>
+      </div>
+    </div>
   );
 };

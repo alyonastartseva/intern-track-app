@@ -1,14 +1,11 @@
 import React from 'react';
 
-import { ThemeProvider } from '@mui/material/styles';
-import { appTheme } from './app/styles/theme';
+import 'antd/dist/antd.css';
 
 import { SignUp } from './app/modules/auth/components/signup';
 
+import './App.css';
+
 export const App = () => {
-  return (
-    <ThemeProvider theme={appTheme}>
-      <SignUp />
-    </ThemeProvider>
-  );
+  return <SignUp />;
 };
