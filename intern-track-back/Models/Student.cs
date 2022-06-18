@@ -7,6 +7,16 @@ namespace intern_track_back.Models
     public class Student : User
     {
         /// <summary>
+        /// Настоящее имя студента
+        /// </summary>
+        public string FirstName { get; set; }
+        
+        /// <summary>
+        /// Фамилия
+        /// </summary>
+        public string LastName { get; set; }
+        
+        /// <summary>
         /// Номер курса обучения
         /// </summary>
         public int Course { get; set; }
@@ -15,6 +25,12 @@ namespace intern_track_back.Models
         /// Статус активности студента в игре "попади на работу", что он уже сделал
         /// </summary>
         public StatusType Status { get; set; }
+        
+        /// <summary>
+        /// Вакансия, на которую был принят студент
+        /// </summary>
+        public Vacancy? Vacancy { get; set; }
+        public int?  VacancyId { get; set; }
         
         /// <summary>
         /// Список заметок от компаний относительно их желания принять студента
@@ -32,8 +48,13 @@ namespace intern_track_back.Models
         public ICollection<Resume> Resumes { get; set; }
         
         /// <summary>
-        /// Оценки студента попредметам
+        /// Оценки студента по предметам
         /// </summary>
         public ICollection<Grade> Grades { get; set; }
+        
+        /// <summary>
+        ///  Пожелания студента прособеседоваться в разных компаниях
+        /// </summary>
+        public ICollection<StudentPlanForInterview> StudentPlanForInterviews { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using intern_track_back.Data;
 using intern_track_back.Models;
+using intern_track_back.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -17,13 +18,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-//Backend old school legacy
-//builder.Services.AddMvc();
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(); // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddScoped<UnitOfWork>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+#region Регистрация сервисов работы с сущностями
+
+builder.Services.AddScoped<AccountService>();
+builder.Services.AddScoped<AnnouncementCrudService>();
+builder.Services.AddScoped<StudentPlanForInterviewCrudService>();
+builder.Services.AddScoped<VacancyCrudService>();
+
+#endregion
 
 var app = builder.Build();
 

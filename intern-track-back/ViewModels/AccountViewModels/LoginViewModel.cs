@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace intern_track_back.Models.AccountViewModels
+namespace intern_track_back.ViewModels.AccountViewModels
 {
     public class LoginViewModel
     {

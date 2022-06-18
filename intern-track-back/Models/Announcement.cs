@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace intern_track_back.Models
+﻿namespace intern_track_back.Models
 {
     public class Announcement : BaseEntity
     {

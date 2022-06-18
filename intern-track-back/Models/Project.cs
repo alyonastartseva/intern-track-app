@@ -17,11 +17,5 @@
         /// </summary>
         public Resume? Resume { get; set; }
         public int? ResumeId { get; set; }
-        
-        /// <summary>
-        /// Вакансия
-        /// </summary>
-        public Vacancy? Vacancy { get; set; }
-        public int? VacancyId { get; set; }
     }
 }

@@ -6,6 +6,7 @@
         Student = 3,
         Company = 4,
         Deanery = 2,
-        Curator = 5
+        Curator = 5,
+        Guest = 6
     }
 }
