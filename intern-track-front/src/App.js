@@ -1,6 +1,14 @@
 import React from 'react';
-import Button from '@mui/material/Button';
+
+import { ThemeProvider } from '@mui/material/styles';
+import { appTheme } from './app/styles/theme';
+
+import { SignUp } from './app/modules/auth/components/signup';
 
 export const App = () => {
-  return <Button variant="text">Test button</Button>;
+  return (
+    <ThemeProvider theme={appTheme}>
+      <SignUp />
+    </ThemeProvider>
+  );
 };
