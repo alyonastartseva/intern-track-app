@@ -59,7 +59,9 @@
   margin: 0 auto 8px auto;
 }
 
-.link {
+.link,
+.link:hover {
+  color: var(--dark-green);
   cursor: pointer;
   text-decoration: underline;
 }
