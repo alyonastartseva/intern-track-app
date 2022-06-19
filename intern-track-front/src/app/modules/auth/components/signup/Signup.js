@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Form, Input, Select } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
@@ -117,11 +118,17 @@ export const SignUp = () => {
           </Form.Item>
 
           <p className="extraText">
-            <span className="link">Зарегистрироваться</span> как студент
+            <Link to="/signupStudent" className="link">
+              Зарегистрироваться
+            </Link>{' '}
+            как студент
           </p>
 
           <p className="extraText">
-            У вас уже есть аккаунт? <span className="link">Войти</span>
+            У вас уже есть аккаунт?{' '}
+            <Link to="/" className="link">
+              Войти
+            </Link>
           </p>
         </Form>
       </div>
