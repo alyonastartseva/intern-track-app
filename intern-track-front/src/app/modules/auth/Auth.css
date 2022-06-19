@@ -1,0 +1,65 @@
+.page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-green);
+}
+
+.icon {
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 12px;
+  border-radius: 30px;
+  background-color: var(--dark-green);
+}
+
+.icon svg {
+  fill: white;
+}
+
+.form {
+  width: 400px;
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.form h1 {
+  margin: 12px auto 24px auto;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--dark-green);
+}
+
+.form svg {
+  width: 18px;
+  height: 18px;
+}
+
+.userInfo {
+  display: flex;
+}
+
+.userInfo .ant-form-item:first-child {
+  margin-right: 12px;
+}
+
+.submitBtn {
+  margin: 12px auto 0 auto;
+}
+
+.extraText {
+  text-align: center;
+  margin: 0 auto 8px auto;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: underline;
+}
