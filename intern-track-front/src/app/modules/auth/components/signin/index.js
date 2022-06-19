@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Form, Input, Select, Checkbox } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
@@ -57,7 +58,10 @@ export const SignIn = () => {
           </Form.Item>
 
           <p className="extraText">
-            У вас нет аккаутна? <span className="link">Зарегистрироваться</span>
+            У вас нет аккаутна?{' '}
+            <Link to="/signup" className="link">
+              Зарегистрироваться
+            </Link>
           </p>
         </Form>
       </div>
