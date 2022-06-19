@@ -66,7 +66,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
             Stack = interview.Stack.GetDisplayName();
             Place = interview.Place;
             CompanyId = interview.CompanyId;
-            CompanyName = interview.Company.Name;
+            CompanyName = interview.Company.CompanyName;
             StudentId = interview.StudentId;
             StudentName = interview.Student.LastName + " " + interview.Student.FirstName;
 

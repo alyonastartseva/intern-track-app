@@ -34,7 +34,7 @@ namespace intern_track_back.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
@@ -69,7 +69,7 @@ namespace intern_track_back.Controllers
             
             if (ModelState.IsValid)
             {
-                var applicationUser = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var applicationUser = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
                 
                 if (result.Succeeded)
@@ -93,7 +93,7 @@ namespace intern_track_back.Controllers
         {
             if (ModelState.IsValid)
             {
-                var applicationUser = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var applicationUser = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
                 if (result.Succeeded)
                 {

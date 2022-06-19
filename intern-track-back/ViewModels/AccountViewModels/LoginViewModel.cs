@@ -9,7 +9,9 @@ namespace intern_track_back.ViewModels.AccountViewModels
     public class LoginViewModel
     {
         [Required]
-        public string Username { get; set; }
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

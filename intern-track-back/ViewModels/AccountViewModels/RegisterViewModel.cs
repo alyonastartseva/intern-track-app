@@ -9,10 +9,6 @@ namespace intern_track_back.ViewModels.AccountViewModels
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Login")]
-        public string UserName { get; set; }
-
-        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -34,6 +30,15 @@ namespace intern_track_back.ViewModels.AccountViewModels
         [Required]
         [Display(Name = "Role")]
         public string Role { get; set; }
+
+        [Display(Name = "Реальное имя")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Реальная фамилия")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Наименование компании")]
+        public string? CompanyName { get; set; }
         
         [Display(Name = "Информация, которую пользователь хочет предоставить о себе")]
         public string About { get; set; }

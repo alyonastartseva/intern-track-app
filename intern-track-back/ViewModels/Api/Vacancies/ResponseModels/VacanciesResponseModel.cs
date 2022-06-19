@@ -7,7 +7,7 @@ namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
 {
     public class VacanciesResponseModel
     {
-        public List<VacancyResponseModel> Vacancies { get; set; }
+        public List<VacancyResponseModel>? Vacancies { get; set; }
 
         public VacanciesResponseModel Init(UnitOfWork unitOfWork)
         {
@@ -19,7 +19,7 @@ namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
                     TotalNumber = v.TotalNumber,
                     FreeNumber = v.TotalNumber - v.Students.Count,
                     CompanyId = v.CompanyId,
-                    CompanyName = v.Company.Name
+                    CompanyName = v.Company.CompanyName
                 })
                 .OrderBy(v => v.CompanyName)
                 .ToList();
@@ -41,7 +41,7 @@ namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
                     TotalNumber = v.TotalNumber,
                     FreeNumber = v.TotalNumber - v.Students.Count,
                     CompanyId = v.CompanyId,
-                    CompanyName = v.Company.Name
+                    CompanyName = v.Company.CompanyName
                 })
                 .ToList();
 
