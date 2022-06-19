@@ -1,6 +1,11 @@
 import React from 'react';
-import Button from '@mui/material/Button';
+
+import 'antd/dist/antd.css';
+
+import { SignIn } from './app/modules/auth/components/signin';
+
+import './App.css';
 
 export const App = () => {
-  return <Button variant="text">Test button</Button>;
+  return <SignIn />;
 };
