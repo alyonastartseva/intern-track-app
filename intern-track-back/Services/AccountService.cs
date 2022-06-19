@@ -20,7 +20,7 @@ namespace intern_track_back.Services
 
             user.ApplicationUserId = applicationUser.Id;
             user.ApplicationUser = applicationUser;
-            user.Name = model.UserName;
+            user.Name = model.Email;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Course = model.Course;
@@ -56,7 +56,7 @@ namespace intern_track_back.Services
             
             user.ApplicationUserId = applicationUser.Id;
             user.ApplicationUser = applicationUser;
-            user.Name = model.UserName;
+            user.Name = model.Email;
             user.About = model.About;
             
             _unitOfWork.Save();
