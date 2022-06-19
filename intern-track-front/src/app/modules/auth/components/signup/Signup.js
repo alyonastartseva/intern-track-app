@@ -5,7 +5,7 @@ import { LockOutlined } from '@ant-design/icons';
 
 import { Roles } from 'src/app/shared/consts';
 
-import './Signup.css';
+import '../../Auth.css';
 
 const { Option } = Select;
 

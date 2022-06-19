@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, Form, Input, InputNumber } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 
-import './Signup.css';
+import '../../Auth.css';
 
 export const SignUpStudent = () => {
   const [form] = Form.useForm();
