@@ -1,0 +1,31 @@
+.ita-btn {
+  min-height: 36px;
+  padding: 6px 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  color: white;
+  border: none;
+  border-radius: 26px;
+  background: var(--green);
+
+  transition: color .25s ease, background-color .25s;
+}
+
+.ita-btn:hover,
+.ita-btn:focus {
+  color: white;
+  background: var(--dark-green);
+}
+
+.ant-form-item {
+  margin-bottom: 12px;
+}
