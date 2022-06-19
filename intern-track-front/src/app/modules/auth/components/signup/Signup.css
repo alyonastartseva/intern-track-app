@@ -54,9 +54,9 @@
   margin: 12px auto 0 auto;
 }
 
-.hasAccount {
+.extraText {
   text-align: center;
-  margin: 0 auto;
+  margin: 0 auto 8px auto;
 }
 
 .link {

@@ -5,7 +5,7 @@ import { LockOutlined } from '@ant-design/icons';
 
 import './Signup.css';
 
-export const SignUp = () => {
+export const SignUpStudent = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
