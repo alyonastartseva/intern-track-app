@@ -9,10 +9,20 @@ namespace intern_track_back.Models
         public string ApplicationUserId { get; set; }
         
         /// <summary>
-        /// Имя пользователя
+        /// Email пользователя
         /// </summary>
-        public string Name { get; set; }
-        
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Имя 
+        /// </summary>
+        public string? FirstName { get; set; }
+
+        /// <summary>
+        /// Фамилия
+        /// </summary>
+        public string? LastName { get; set; }
+
         /// <summary>
         /// Текстовая информация о пользователе, которую он предоставил
         /// </summary>

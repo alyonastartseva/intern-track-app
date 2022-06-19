@@ -20,7 +20,7 @@ namespace intern_track_back.Services
 
             user.ApplicationUserId = applicationUser.Id;
             user.ApplicationUser = applicationUser;
-            user.Name = model.Email;
+            user.Email = model.Email;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Course = model.Course;
@@ -36,28 +36,41 @@ namespace intern_track_back.Services
             switch (model.Role.ToLower())
             {
                 case "company":
-                    user = _unitOfWork.CompanyRepository.CreateNew();
-                    user.Role = RoleType.Company;
+                    var company = _unitOfWork.CompanyRepository.CreateNew();
+                    company.Role = RoleType.Company;
+                    company.ApplicationUserId = applicationUser.Id;
+                    company.ApplicationUser = applicationUser;
+                    company.Email = model.Email;
+                    company.About = model.About;
+                    company.CompanyName = model.CompanyName;
                     break;
                 case "curator":
                     user = _unitOfWork.CuratorRepository.CreateNew();
                     user.Role = RoleType.Curator;
+                    user.ApplicationUserId = applicationUser.Id;
+                    user.ApplicationUser = applicationUser;
+                    user.Email = model.Email;
+                    user.About = model.About;
                     break;
                 case "deanery":
                     user = _unitOfWork.DeaneryRepository.CreateNew();
                     user.Role = RoleType.Deanery;
+                    user.ApplicationUserId = applicationUser.Id;
+                    user.ApplicationUser = applicationUser;
+                    user.Email = model.Email;
+                    user.About = model.About;
                     break;
                 //admin по дефолту
                 default:
                     user = _unitOfWork.UserRepository.CreateNew();
                     user.Role = RoleType.Admin;
+                    user.ApplicationUserId = applicationUser.Id;
+                    user.ApplicationUser = applicationUser;
+                    user.Email = model.Email;
+                    user.About = model.About;
                     break;
             }
             
-            user.ApplicationUserId = applicationUser.Id;
-            user.ApplicationUser = applicationUser;
-            user.Name = model.Email;
-            user.About = model.About;
             
             _unitOfWork.Save();
         }

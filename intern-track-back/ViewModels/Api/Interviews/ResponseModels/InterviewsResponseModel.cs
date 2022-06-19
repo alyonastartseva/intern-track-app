@@ -31,7 +31,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                     Stack = i.Stack.GetDisplayName(),
                     Place = i.Place,
                     CompanyId = i.CompanyId,
-                    CompanyName = i.Company.Name,
+                    CompanyName = i.Company.CompanyName,
                     StudentId = i.StudentId,
                     StudentName = i.Student.LastName + " " + i.Student.FirstName
                 })
@@ -60,7 +60,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                     Stack = i.Stack.GetDisplayName(),
                     Place = i.Place,
                     CompanyId = i.CompanyId,
-                    CompanyName = i.Company.Name,
+                    CompanyName = i.Company.CompanyName,
                     StudentId = i.StudentId,
                     StudentName = i.Student.LastName + " " + i.Student.FirstName
                 })

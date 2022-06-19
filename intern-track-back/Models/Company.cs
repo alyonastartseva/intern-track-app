@@ -9,6 +9,11 @@ namespace intern_track_back.Models
         /// Географический адрес компании
         /// </summary>
         public string? Address { get; set; }
+
+        /// <summary>
+        /// Наименование компании
+        /// </summary>
+        public string CompanyName { get; set; }
         
         /// <summary>
         /// Список вакансий

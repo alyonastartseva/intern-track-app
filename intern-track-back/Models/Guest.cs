@@ -11,7 +11,7 @@ namespace intern_track_back.Models
     {
         public Guest()
         {
-            Name = "Гость";
+            FirstName = "Гость";
             Role = RoleType.Guest;
         }
     }
