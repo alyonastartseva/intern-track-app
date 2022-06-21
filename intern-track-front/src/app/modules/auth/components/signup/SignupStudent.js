@@ -4,13 +4,17 @@ import { Link } from 'react-router-dom';
 import { Button, Form, Input, InputNumber } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 
+import { useRegisterAsStudentMutation } from 'src/app/store/api/auth';
+
 import '../../Auth.css';
 
 export const SignUpStudent = () => {
   const [form] = Form.useForm();
 
+  const [registerAsStudent, result] = useRegisterAsStudentMutation();
+
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    registerAsStudent(values);
   };
 
   return (
@@ -22,18 +26,6 @@ export const SignUpStudent = () => {
         <h1>Регистрация</h1>
         <Form form={form} name="register" onFinish={onFinish}>
           <div className="userInfo">
-            <Form.Item
-              name="userName"
-              rules={[
-                {
-                  required: true,
-                  message: 'Обязательное поле!'
-                }
-              ]}
-            >
-              <Input placeholder="Имя пользователя" />
-            </Form.Item>
-
             <Form.Item
               name="course"
               rules={[
