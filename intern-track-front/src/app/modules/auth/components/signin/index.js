@@ -1,8 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Button, Form, Input, Select, Checkbox } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
+
+import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
 
 import '../../Auth.css';
 
@@ -11,9 +13,16 @@ const { Option } = Select;
 export const SignIn = () => {
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
+  const navigate = useNavigate();
+
+  const onFinish = useCallback(
+    (values) => {
+      console.log('Received values of form: ', values);
+      LocalStorageHelper.setData('username', 'test');
+      navigate('/');
+    },
+    [navigate]
+  );
 
   return (
     <div className="page">
