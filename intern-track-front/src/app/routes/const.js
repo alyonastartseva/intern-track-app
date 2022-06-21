@@ -3,6 +3,9 @@ import React from 'react';
 import { SignIn } from '../modules/auth/components/signin';
 import { SignUpStudent } from '../modules/auth/components/signup/SignupStudent';
 import { SignUp } from '../modules/auth/components/signup/Signup';
+import { RecordingForInterview } from '../modules/recording-for-interview';
+import { MyProfile } from '../modules/profile';
+import { MyInterviews } from '../modules/my-interviews';
 
 export const publicRoutes = [
   {
@@ -19,4 +22,17 @@ export const publicRoutes = [
   }
 ];
 
-export const privateRoutes = [];
+export const privateRoutes = [
+  {
+    path: '/',
+    component: <RecordingForInterview />
+  },
+  {
+    path: '/profile',
+    component: <MyProfile />
+  },
+  {
+    path: '/my-interviews',
+    component: <MyInterviews />
+  }
+];
