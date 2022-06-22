@@ -27,7 +27,10 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 builder.Services.AddCors(options =>
 { 
-        options.AddDefaultPolicy(builder => builder.WithOrigins("https://localhost:3000"));
+        options.AddDefaultPolicy(builder => builder.WithOrigins("https://localhost:3000")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials());
 });
 
 #region Регистрация сервисов работы с сущностями
