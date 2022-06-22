@@ -25,6 +25,7 @@ builder.Services.AddSwaggerGen(); // Learn more about configuring Swagger/OpenAP
 builder.Services.AddScoped<UnitOfWork>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+builder.Services.AddCors();
 #region Регистрация сервисов работы с сущностями
 
 builder.Services.AddScoped<AccountService>();
@@ -42,6 +43,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(x => x.AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithOrigins("http://localhost:3000"));
 
 app.UseHttpsRedirection();
 
