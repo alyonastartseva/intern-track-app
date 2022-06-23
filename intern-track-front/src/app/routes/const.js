@@ -6,6 +6,7 @@ import { SignUp } from '../modules/auth/components/signup/Signup';
 import { RecordingForInterview } from '../modules/recording-for-interview';
 import { MyProfile } from '../modules/profile';
 import { MyInterviews } from '../modules/my-interviews';
+import { VacanciesAndRecording } from '../modules/recording-for-interview/components/vacancies-and-recording';
 
 export const publicRoutes = [
   {
@@ -34,5 +35,9 @@ export const privateRoutes = [
   {
     path: '/my-interviews',
     component: <MyInterviews />
+  },
+  {
+    path: '/vacancies-and-recording',
+    component: <VacanciesAndRecording />
   }
 ];
