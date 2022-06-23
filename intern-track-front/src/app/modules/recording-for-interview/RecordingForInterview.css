@@ -6,9 +6,21 @@
 
   font-size: 24px;
   line-height: 36px;
-  font-weight: 700;
+  font-weight: lighter;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 
+  color: var(--blue);
+}
+
+.showVacancies {
+  color: var(--blue);
+}
+
+.showVacancies:hover {
+  color: var(--dark-blue);
+}
+
+.recordingPage .ant-card-head-title {
   color: var(--dark-blue);
 }

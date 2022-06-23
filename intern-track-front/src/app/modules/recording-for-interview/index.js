@@ -12,7 +12,7 @@ export const RecordingForInterview = () => {
 
   return (
     <div className="recordingPage">
-      <h1>Компании-партнёры</h1>
+      <h1>Выбери компанию, в которой хочешь пройти стажировку</h1>
       {isLoading ? (
         <Spin className="loader" />
       ) : error ? (
@@ -23,7 +23,11 @@ export const RecordingForInterview = () => {
             <Col key={company.companyId} span={8}>
               <Card
                 title={company.name}
-                extra={<Link to={`/vacancies-and-recording/${company.companyId}`}>Посмотреть вакансии</Link>}
+                extra={
+                  <Link className="showVacancies" to={`/vacancies-and-recording/${company.companyId}`}>
+                    Подробнее
+                  </Link>
+                }
               >
                 <p>{company.about}</p>
               </Card>
