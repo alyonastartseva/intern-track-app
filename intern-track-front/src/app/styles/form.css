@@ -26,6 +26,21 @@
   background: var(--dark-green);
 }
 
+.ita-btn._text {
+  background: transparent;
+  color: var(--blue);
+  outline: none;
+  box-shadow: none;
+}
+
+.ita-btn._text::after {
+  display: none;
+}
+
+.ita-btn._back svg {
+  margin-right: 12px;
+}
+
 .ant-form-item {
   margin-bottom: 12px;
 }
