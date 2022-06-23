@@ -37,7 +37,7 @@ export const privateRoutes = [
     component: <MyInterviews />
   },
   {
-    path: '/vacancies-and-recording',
+    path: '/vacancies-and-recording/:companyId',
     component: <VacanciesAndRecording />
   }
 ];
