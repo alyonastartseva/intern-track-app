@@ -1,12 +1,11 @@
 .ita-btn {
   min-height: 36px;
-  padding: 6px 36px;
+  padding: 6px 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-weight: bold;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.06em;
@@ -33,8 +32,25 @@
   box-shadow: none;
 }
 
+.ita-btn._text svg {
+  fill: var(--blue);
+  transition: fill .25s ease;
+}
+
+.ita-btn._text:hover {
+  color: var(--dark-blue);
+}
+
+.ita-btn._text:hover svg {
+  fill: var(--dark-blue);
+}
+
 .ita-btn._text::after {
   display: none;
+}
+
+.ita-btn._back {
+  font-size: 12px;
 }
 
 .ita-btn._back svg {
