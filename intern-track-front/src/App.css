@@ -18,3 +18,10 @@
 .ant-layout-sider-collapsed .ant-layout-sider-trigger {
   width: 78px !important;
 }
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
