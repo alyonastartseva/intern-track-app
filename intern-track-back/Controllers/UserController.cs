@@ -23,7 +23,7 @@ namespace intern_track_back.Controllers
         public CompaniesResponseModel GetAllCompanies()
             => new CompaniesResponseModel().Init(UnitOfWork);
 
-        [HttpPost]
+        [HttpGet]
         [Route("getuserinfo")]
         public UserResponseModel GetUserInfo()
         {

@@ -55,11 +55,11 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                 return this;
             }
             
-            if (current.Role == RoleType.Student &&
+            /*if (current.Role == RoleType.Student &&
                 current.Id != interview.StudentId)
             {
                 return new ActionResult<InterviewResponseModel>(new ForbidResult());
-            }
+            }*/
 
             Date = interview.Date;
             Format = interview.Format.GetDisplayName();

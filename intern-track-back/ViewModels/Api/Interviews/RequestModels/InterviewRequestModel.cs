@@ -22,7 +22,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.RequestModels
         /// <summary>
         /// Формат собеседования
         /// </summary>
-        public FormatType Format { get; set; }
+        public int Format { get; set; }
 
         /// <summary>
         /// Стэк, на который студент будет собеседоваться
@@ -56,7 +56,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.RequestModels
             }
 
             Date = interview.Date;
-            Format = interview.Format;
+            Format = interview.Format.GetHashCode();
             Stack = interview.Stack;
             Place = interview.Place;
             StudentId = interview.StudentId;

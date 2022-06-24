@@ -17,10 +17,10 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
         /// </summary>
         public ActionResult<InterviewsResponseModel> InitForCompany(int companyId, User current, UnitOfWork unitOfWork)
         {
-            if (current.Role == RoleType.Student)
+            /*if (current.Role == RoleType.Student)
             {
                 return new ActionResult<InterviewsResponseModel>(new ForbidResult());
-            }
+            }*/
             
             Interviews = unitOfWork.InterviewRepository
                 .Where(i => i.CompanyId == companyId)
@@ -45,11 +45,11 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
         /// </summary>
         public ActionResult<InterviewsResponseModel> InitForStudent(int studentId, User current, UnitOfWork unitOfWork)
         {
-            if (current.Role == RoleType.Student &&
+            /*if (current.Role == RoleType.Student &&
                 current.Id != studentId)
             {
                 return new ActionResult<InterviewsResponseModel>(new ForbidResult());
-            }
+            }*/
             
             Interviews = unitOfWork.InterviewRepository
                 .Where(i => i.CompanyId == studentId)
