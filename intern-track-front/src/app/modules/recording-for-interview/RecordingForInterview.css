@@ -24,3 +24,7 @@
 .recordingPage .ant-card-head-title {
   color: var(--dark-blue);
 }
+
+.recordingPage .ant-card.ant-card-bordered {
+  height: 100%;
+}
