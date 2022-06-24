@@ -6,8 +6,11 @@ export const companiesApi = createApi({
   endpoints: (builder) => ({
     getAllCompanies: builder.query({
       query: () => 'User/getallcompanies'
+    }),
+    getVacanciesById: builder.query({
+      query: (companyId) => `VacancyApi/VacanciesByCompanyId?companyId=${companyId}`
     })
   })
 });
 
-export const { useGetAllCompaniesQuery } = companiesApi;
+export const { useGetAllCompaniesQuery, useGetVacanciesByIdQuery } = companiesApi;
