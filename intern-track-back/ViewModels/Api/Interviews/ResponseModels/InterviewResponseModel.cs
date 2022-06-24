@@ -63,7 +63,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
 
             Date = interview.Date;
             Format = interview.Format.GetDisplayName();
-            Stack = interview.Stack.GetDisplayName();
+            Stack = interview.Stack;
             Place = interview.Place;
             CompanyId = interview.CompanyId;
             CompanyName = interview.Company.CompanyName;

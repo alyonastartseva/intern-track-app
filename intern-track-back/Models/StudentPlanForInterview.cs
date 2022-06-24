@@ -30,6 +30,11 @@ namespace intern_track_back.Models
         public ICollection<StackForInterviewPlan> StackTypes { get; set; }
         
         /// <summary>
+        /// Внешняя ссылка на резюме
+        /// </summary>
+        public string? ResumeLink { get; set; }
+        
+        /// <summary>
         /// Приоритет этой компании в глазах студента
         /// </summary>
         public int? Priority { get; set; }

@@ -71,10 +71,7 @@ namespace intern_track_back.Data
         
         public GenericRepository<Company> CompanyRepository =>
             GetRepository<GenericRepository<Company>, Company>();
-        
-        public GenericRepository<Contact> ContactRepository =>
-            GetRepository<GenericRepository<Contact>, Contact>();
-        
+
         public GenericRepository<Curator> CuratorRepository =>
             GetRepository<GenericRepository<Curator>, Curator>();
         

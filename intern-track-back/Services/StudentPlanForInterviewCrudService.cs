@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Extensions;
 using Newtonsoft.Json;
 
+
 namespace intern_track_back.Services
 {
     public class StudentPlanForInterviewCrudService
@@ -145,7 +146,7 @@ namespace intern_track_back.Services
             {
                 var keyAndValue = new Dictionary<string, string>();
                 keyAndValue.Add("key", stack.GetHashCode().ToString());
-                keyAndValue.Add("value", stack.GetDisplayName());
+                keyAndValue.Add("value", stack);
                 list.Add(keyAndValue);
             }
 			
