@@ -53,5 +53,12 @@ namespace intern_track_back.Controllers
             return studentPlanForInterviewService.Remove(id, Current);
         }
             
+        [HttpGet]
+        [Route("getstacksforcompany")]
+        public string GetStacksForCompany(int companyId,
+            [FromServices] StudentPlanForInterviewCrudService studentPlanForInterviewService)
+        {
+            return studentPlanForInterviewService.GetStacksForCompany(companyId, Current);
+        }
     }
 }

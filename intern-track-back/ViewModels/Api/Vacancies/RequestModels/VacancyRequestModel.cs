@@ -10,7 +10,12 @@ namespace intern_track_back.ViewModels.Api.Vacancies.RequestModels
         /// <summary>
         /// Идентификатор вакансии
         /// </summary>
-        public int Id { get; set; }
+        public int VacancyId { get; set; }
+        
+        /// <summary>
+        /// Идентификатор компании
+        /// </summary>
+        public int CompanyId { get; set; }
         
         /// <summary>
         /// Описание вакансии
@@ -37,6 +42,7 @@ namespace intern_track_back.ViewModels.Api.Vacancies.RequestModels
                 return new ActionResult<VacancyRequestModel>(new NotFoundResult());
             }
 
+            CompanyId = vacancy.CompanyId;
             Description = vacancy.Description;
             Stack = vacancy.Stack;
             TotalNumber = vacancy.TotalNumber;

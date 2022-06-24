@@ -18,7 +18,7 @@ namespace intern_track_back.Services
         
         public ActionResult<int> CreateOrUpdate(VacancyRequestModel model, User current)
         {
-            var result = model.Id > 0
+            var result = model.VacancyId > 0
                 ? Update(model, current)
                 : Create(model, current);
 
@@ -27,17 +27,17 @@ namespace intern_track_back.Services
 
         private ActionResult<int> Create(VacancyRequestModel model, User current)
         {
-            if (current.Role != RoleType.Company)
+            /*if (current.Role != RoleType.Company)
             {
                 return new ActionResult<int>(new ForbidResult());
-            }
+            }*/
 
             var vacancy = _unitOfWork.VacancyRepository.CreateNew();
 
             vacancy.Description = model.Description;
             vacancy.Stack = model.Stack;
             vacancy.TotalNumber = model.TotalNumber;
-            vacancy.Company = _unitOfWork.CompanyRepository.First(c => c.Id == current.Id);
+            vacancy.CompanyId = model.CompanyId; //можно еще повставлять проверки, точно ли это id компании...
             
             _unitOfWork.Save();
             
@@ -47,18 +47,18 @@ namespace intern_track_back.Services
         private ActionResult<int> Update(VacancyRequestModel model, User current)
         {
             var vacancy = _unitOfWork.VacancyRepository
-                .FirstOrDefault(v => v.Id == model.Id);
+                .FirstOrDefault(v => v.Id == model.VacancyId);
 
             if (vacancy == null)
             {
                 return new ActionResult<int>(new NotFoundResult());
             }
 
-            if (current.Role != RoleType.Admin && 
+            /*if (current.Role != RoleType.Admin && 
                 vacancy.CompanyId != current.Id)
             {
                 return new ActionResult<int>(new ForbidResult());
-            }
+            }*/
             
             vacancy.Description = model.Description;
             vacancy.Stack = model.Stack;
@@ -79,11 +79,11 @@ namespace intern_track_back.Services
                 return new NotFoundResult();
             }
 
-            if (current.Role != RoleType.Admin && 
+            /*if (current.Role != RoleType.Admin && 
                 vacancy.CompanyId != current.Id)
             {
                 return new ForbidResult();
-            }
+            }*/
             
             _unitOfWork.VacancyRepository.Remove(vacancy);
             _unitOfWork.Save();
