@@ -7,7 +7,7 @@ namespace intern_track_back.ViewModels.Api.Users.ResponseModels
         /// <summary>
         /// Id
         /// </summary>
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         /// <summary>
         /// Email пользователя

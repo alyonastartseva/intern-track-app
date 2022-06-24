@@ -1,7 +1,7 @@
-﻿using intern_track_back.ViewModels.Api.Companies;
+﻿using System;
+using System.Linq;
+using intern_track_back.ViewModels.Api.Companies;
 using intern_track_back.ViewModels.Api.Users.ResponseModels;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace intern_track_back.Controllers
@@ -36,7 +36,7 @@ namespace intern_track_back.Controllers
 
             var model = new UserResponseModel
             {
-                UserId = user.Id.ToString(),
+                UserId = user.Id,
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
