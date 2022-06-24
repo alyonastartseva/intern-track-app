@@ -15,7 +15,7 @@ namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
                 .Select(v => new VacancyResponseModel
                 {
                     Description = v.Description,
-                    Stack = v.Stack.GetDisplayName(),
+                    Stack = v.Stack,
                     TotalNumber = v.TotalNumber,
                     FreeNumber = v.TotalNumber - v.Students.Count,
                     CompanyId = v.CompanyId,
@@ -37,7 +37,7 @@ namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
                 .Select(v => new VacancyResponseModel
                 {
                     Description = v.Description,
-                    Stack = v.Stack.GetDisplayName(),
+                    Stack = v.Stack,
                     TotalNumber = v.TotalNumber,
                     FreeNumber = v.TotalNumber - v.Students.Count,
                     CompanyId = v.CompanyId,

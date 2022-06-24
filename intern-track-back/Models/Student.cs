@@ -14,7 +14,7 @@ namespace intern_track_back.Models
         /// <summary>
         /// Статус активности студента в игре "попади на работу", что он уже сделал
         /// </summary>
-        public StatusType Status { get; set; }
+        public GeneralStudentStatusType GeneralStudentStatus { get; set; }
         
         /// <summary>
         /// Вакансия, на которую был принят студент

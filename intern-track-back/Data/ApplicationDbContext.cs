@@ -19,7 +19,6 @@ namespace intern_track_back.Data
         
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Chat> Chats { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Interview> Interviews { get; set; }
         public DbSet<Message> Messages { get; set; }
