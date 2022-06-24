@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as BackIcon } from 'src/assets/svg/backIcon.svg';
+import { useGetVacanciesByIdQuery } from 'src/app/store/api/companies';
 
 import { Button, Col, Card, Divider } from 'antd';
 
@@ -9,6 +10,10 @@ import './VacanciesAndRecording.css';
 
 export const VacanciesAndRecording = () => {
   const { companyId } = useParams();
+
+  const { data, error, isLoading } = useGetVacanciesByIdQuery(companyId || '');
+
+  console.log(data);
 
   const navigate = useNavigate();
 
