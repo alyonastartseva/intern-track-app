@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using intern_track_back.ViewModels.Api.Companies;
+using intern_track_back.ViewModels.Api.Students;
 using intern_track_back.ViewModels.Api.Users.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -64,5 +65,12 @@ namespace intern_track_back.Controllers
             return model;
         }
 
+        /// <summary>
+        /// Получить список всех студентов (отсортированы по фамилии)
+        /// </summary>
+        [HttpGet]
+        [Route("getallstudents")]
+        public StudentsResponseModel GetAllStudents()
+            => new StudentsResponseModel().Init(UnitOfWork);
     }
 }
