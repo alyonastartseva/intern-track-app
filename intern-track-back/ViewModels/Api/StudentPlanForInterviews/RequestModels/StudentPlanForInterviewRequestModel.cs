@@ -40,7 +40,10 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
         /// </summary>
         public int? Priority { get; set; }
         
-        
+        /// <summary>
+        /// Внешняя ссылка на резюме
+        /// </summary>
+        public string? ResumeLink { get; set; }
         
         /// <summary>
         /// Может быть изменен текущим пользователем
@@ -68,6 +71,7 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
                 .Select(t => t.StackType.GetHashCode())
                 .ToList();
             CanBeModified = current.Role == RoleType.Admin || current.Id == studentPlanForInterview.StudentId;
+            ResumeLink = studentPlanForInterview.ResumeLink;
 
             return new ActionResult<StudentPlanForInterviewRequestModel>(this);
         }

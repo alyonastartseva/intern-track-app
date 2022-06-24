@@ -32,7 +32,7 @@ namespace intern_track_back.ViewModels.Api.Users.ResponseModels
         /// <summary>
         /// Роль
         /// </summary>
-        public RoleType Role { get; set; }
+        public string Role { get; set; }
 
         /// <summary>
         /// Номер курса обучения

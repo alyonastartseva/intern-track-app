@@ -24,6 +24,7 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.ResponseMode
                     PreferableTime = p.PreferableTime,
                     Priority = p.Priority,
                     StackTypes = GetStackTypesString(p.StackTypes),
+                    ResumeLink = p.ResumeLink,
                     CanBeModified = current.Role == RoleType.Admin || current.Id == p.StudentId
                 })
                 .ToList();

@@ -23,6 +23,11 @@
         public int? Priority { get; set; }
         
         /// <summary>
+        /// Внешняя ссылка на резюме
+        /// </summary>
+        public string? ResumeLink { get; set; }
+        
+        /// <summary>
         /// Может быть изменен текущим пользователем
         /// </summary>
         public bool CanBeModified { get; set; }
