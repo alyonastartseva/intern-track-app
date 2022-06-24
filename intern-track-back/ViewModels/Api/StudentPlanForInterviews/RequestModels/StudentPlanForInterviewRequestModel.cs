@@ -2,6 +2,7 @@
 using System.Linq;
 using intern_track_back.Data;
 using intern_track_back.Enumerations;
+using intern_track_back.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,8 +39,15 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
         /// Приоритет этой компании в глазах студента
         /// </summary>
         public int? Priority { get; set; }
+        
+        
+        
+        /// <summary>
+        /// Может быть изменен текущим пользователем
+        /// </summary>
+        public bool CanBeModified { get; set; }
 
-        public ActionResult<StudentPlanForInterviewRequestModel> Init(int id, UnitOfWork unitOfWork)
+        public ActionResult<StudentPlanForInterviewRequestModel> Init(int id, UnitOfWork unitOfWork, User current)
         {
             var studentPlanForInterview = unitOfWork.StudentPlanForInterviewRepository
                 .Where(p => p.Id == id)
@@ -59,6 +67,7 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
             StackTypes = studentPlanForInterview.StackTypes
                 .Select(t => t.StackType.GetHashCode())
                 .ToList();
+            CanBeModified = current.Role == RoleType.Admin || current.Id == studentPlanForInterview.StudentId;
 
             return new ActionResult<StudentPlanForInterviewRequestModel>(this);
         }

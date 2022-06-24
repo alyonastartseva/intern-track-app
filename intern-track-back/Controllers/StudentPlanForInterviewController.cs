@@ -22,7 +22,7 @@ namespace intern_track_back.Controllers
         [HttpGet]
         [Route("StudentPlanForInterviewByCompanyId")]
         public StudentPlanForInterviewListResponseModel GetForCompany(int companyId) 
-            => new StudentPlanForInterviewListResponseModel().Init(companyId, UnitOfWork);
+            => new StudentPlanForInterviewListResponseModel().Init(companyId, UnitOfWork, Current);
 
         [HttpPost]
         [Route("createUpdate")]

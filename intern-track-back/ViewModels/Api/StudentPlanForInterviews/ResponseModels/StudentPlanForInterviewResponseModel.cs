@@ -21,5 +21,10 @@
         /// Приоритет этой компании в глазах студента
         /// </summary>
         public int? Priority { get; set; }
+        
+        /// <summary>
+        /// Может быть изменен текущим пользователем
+        /// </summary>
+        public bool CanBeModified { get; set; }
     }
 }
