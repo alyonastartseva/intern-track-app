@@ -52,7 +52,7 @@ export const VacanciesAndRecording = () => {
           </p>
         </Card>
       </Col>
-      <Divider orientation="left">
+      <Divider orientation="center">
         <h2 className="recordingTitle">Записаться на собеседование</h2>
       </Divider>
       <Button className="ita-btn add-record" onClick={handleOnClickAddRecord}>
