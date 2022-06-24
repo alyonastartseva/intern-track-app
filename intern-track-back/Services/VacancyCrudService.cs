@@ -27,10 +27,10 @@ namespace intern_track_back.Services
 
         private ActionResult<int> Create(VacancyRequestModel model, User current)
         {
-            if (current.Role != RoleType.Company)
+            /*if (current.Role != RoleType.Company)
             {
                 return new ActionResult<int>(new ForbidResult());
-            }
+            }*/
 
             var vacancy = _unitOfWork.VacancyRepository.CreateNew();
 
@@ -54,11 +54,11 @@ namespace intern_track_back.Services
                 return new ActionResult<int>(new NotFoundResult());
             }
 
-            if (current.Role != RoleType.Admin && 
+            /*if (current.Role != RoleType.Admin && 
                 vacancy.CompanyId != current.Id)
             {
                 return new ActionResult<int>(new ForbidResult());
-            }
+            }*/
             
             vacancy.Description = model.Description;
             vacancy.Stack = model.Stack;
@@ -79,11 +79,11 @@ namespace intern_track_back.Services
                 return new NotFoundResult();
             }
 
-            if (current.Role != RoleType.Admin && 
+            /*if (current.Role != RoleType.Admin && 
                 vacancy.CompanyId != current.Id)
             {
                 return new ForbidResult();
-            }
+            }*/
             
             _unitOfWork.VacancyRepository.Remove(vacancy);
             _unitOfWork.Save();

@@ -18,6 +18,11 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
         /// Компанию, в которую студент хочет попробовать пройти
         /// </summary>
         public int CompanyId { get; set; }
+        
+        /// <summary>
+        /// Студент, для которого создана запись
+        /// </summary>
+        public int StudentId { get; set; }
 
         /// <summary>
         /// Предпочтительное время для собеседования
@@ -27,7 +32,7 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
         /// <summary>
         /// Позиции, на которые хочет прособеседоваться студент
         /// </summary>
-        public ICollection<StackType> StackTypes { get; set; }
+        public ICollection<int> StackTypes { get; set; }
         
         /// <summary>
         /// Приоритет этой компании в глазах студента
@@ -47,11 +52,12 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
             }
 
             Id = studentPlanForInterview.Id;
+            StudentId = studentPlanForInterview.StudentId;
             CompanyId = studentPlanForInterview.CompanyId;
             PreferableTime = studentPlanForInterview.PreferableTime;
             Priority = studentPlanForInterview.Priority;
             StackTypes = studentPlanForInterview.StackTypes
-                .Select(t => t.StackType)
+                .Select(t => t.StackType.GetHashCode())
                 .ToList();
 
             return new ActionResult<StudentPlanForInterviewRequestModel>(this);
