@@ -1,6 +1,6 @@
 .ita-btn {
   min-height: 36px;
-  padding: 6px 0;
+  padding: 6px 36px;
 
   display: flex;
   align-items: center;
@@ -26,6 +26,7 @@
 }
 
 .ita-btn._text {
+  padding: 6px 0px;
   background: transparent;
   color: var(--blue);
   outline: none;
