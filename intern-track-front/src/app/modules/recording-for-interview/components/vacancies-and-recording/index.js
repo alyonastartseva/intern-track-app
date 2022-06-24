@@ -5,6 +5,7 @@ import { ReactComponent as BackIcon } from 'src/assets/svg/backIcon.svg';
 import { useGetVacanciesByIdQuery } from 'src/app/store/api/companies';
 import { columnsRecording } from './const';
 import { CreateRecordModal } from './component/createRecordModal';
+import { useGetPlanInterviewByCompanyIdQuery, useCreateUpdateRecordMutation } from 'src/app/store/api/record';
 
 import { Button, Col, Card, Divider, Table } from 'antd';
 
@@ -15,7 +16,19 @@ export const VacanciesAndRecording = () => {
 
   const { companyId } = useParams();
 
-  const { data, error, isLoading } = useGetVacanciesByIdQuery(companyId || '');
+  const {
+    data: vacancies,
+    error: errorVacancies,
+    isLoading: loadingVacancies
+  } = useGetVacanciesByIdQuery(companyId || '');
+
+  const {
+    data: recordInterviws,
+    error: errorRecord,
+    isLoading: loadingRecord
+  } = useGetPlanInterviewByCompanyIdQuery(companyId || '');
+
+  const [createUpdateRecord] = useCreateUpdateRecordMutation();
 
   const navigate = useNavigate();
 
@@ -23,13 +36,21 @@ export const VacanciesAndRecording = () => {
     setCreateRecordModalVisible((prev) => !prev);
   }, []);
 
-  const handleOnOkRecordCreate = useCallback((formData) => {
-    console.log(formData);
-    setCreateRecordModalVisible((prev) => !prev);
-  }, []);
+  const handleOnOkRecordCreate = useCallback(
+    (formData) => {
+      const preparedData = {
+        ...formData,
+        id: 0,
+        companyId
+      };
+      console.log(preparedData);
+      createUpdateRecord(preparedData);
+      setCreateRecordModalVisible((prev) => !prev);
+    },
+    [companyId, createUpdateRecord]
+  );
 
-  const handleOnCancelRecordCreate = useCallback((formData) => {
-    console.log(formData);
+  const handleOnCancelRecordCreate = useCallback(() => {
     setCreateRecordModalVisible((prev) => !prev);
   }, []);
 
@@ -58,7 +79,7 @@ export const VacanciesAndRecording = () => {
       <Button className="ita-btn add-record" onClick={handleOnClickAddRecord}>
         Добавить запись
       </Button>
-      <Table dataSource={[]} columns={columnsRecording} />
+      <Table dataSource={recordInterviws?.interviewPlansList} columns={columnsRecording} />
 
       <CreateRecordModal
         isVisible={createRecordModalVisible}
