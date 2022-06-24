@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using intern_track_back.Data;
+using Microsoft.OpenApi.Extensions;
 
 namespace intern_track_back.ViewModels.Api.Students
 {
@@ -17,7 +18,8 @@ namespace intern_track_back.ViewModels.Api.Students
                     FirstName = s.FirstName,
                     LastName = s.LastName,
                     About = s.About,
-                    Course = s.Course
+                    Course = s.Course,
+                    GeneralStudentStatus = s.GeneralStudentStatus.GetDisplayName()
                 })
                 .OrderBy(v => v.LastName)
                 .ToList();

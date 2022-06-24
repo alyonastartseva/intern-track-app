@@ -4,6 +4,7 @@ using intern_track_back.ViewModels.Api.Companies;
 using intern_track_back.ViewModels.Api.Students;
 using intern_track_back.ViewModels.Api.Users.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Extensions;
 
 namespace intern_track_back.Controllers
 {
@@ -23,7 +24,7 @@ namespace intern_track_back.Controllers
         public CompaniesResponseModel GetAllCompanies()
             => new CompaniesResponseModel().Init(UnitOfWork);
 
-        [HttpPost]
+        [HttpGet]
         [Route("getuserinfo")]
         public UserResponseModel GetUserInfo()
         {
@@ -42,7 +43,7 @@ namespace intern_track_back.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 About = user.About,
-                Role = user.Role
+                Role = user.Role.GetDisplayName()
             };
 
             if (user.Role == Enumerations.RoleType.Student)

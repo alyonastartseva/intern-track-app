@@ -42,6 +42,11 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
         /// </summary>
         public int StudentId { get; set; }
         public string StudentName { get; set; }
+        
+        /// <summary>
+        /// Статус интервью студента. Менять его может компания
+        /// </summary>
+        public int StudentInterviewStatusType { get; set; }
 
         public ActionResult<InterviewResponseModel> Init(int id, User current, UnitOfWork unitOfWork)
         {
@@ -55,20 +60,21 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                 return this;
             }
             
-            if (current.Role == RoleType.Student &&
+            /*if (current.Role == RoleType.Student &&
                 current.Id != interview.StudentId)
             {
                 return new ActionResult<InterviewResponseModel>(new ForbidResult());
-            }
+            }*/
 
             Date = interview.Date;
             Format = interview.Format.GetDisplayName();
-            Stack = interview.Stack.GetDisplayName();
+            Stack = interview.Stack;
             Place = interview.Place;
             CompanyId = interview.CompanyId;
             CompanyName = interview.Company.CompanyName;
             StudentId = interview.StudentId;
             StudentName = interview.Student.LastName + " " + interview.Student.FirstName;
+            StudentInterviewStatusType = interview.StudentInterviewStatusType.GetHashCode();
 
             return new ActionResult<InterviewResponseModel>(this);
         }

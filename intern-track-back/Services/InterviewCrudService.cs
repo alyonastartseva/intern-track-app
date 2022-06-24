@@ -27,19 +27,20 @@ namespace intern_track_back.Services
 
         private ActionResult<int> Create(InterviewRequestModel model, User current)
         {
-            if (current.Role != RoleType.Company)
+            /*if (current.Role != RoleType.Company)
             {
                 return new ActionResult<int>(new ForbidResult());
-            }
+            }*/
 
             var interview = _unitOfWork.InterviewRepository.CreateNew();
 
             interview.Date = model.Date;
-            interview.Format = model.Format;
+            interview.Format = (FormatType)model.Format; //todo добавить проверку! возможна ошибка
             interview.Stack = model.Stack;
             interview.Place = model.Place;
             interview.StudentId = model.StudentId;
-            interview.CompanyId = current.Id;
+            interview.CompanyId = model.CompanyId;
+            interview.StudentInterviewStatusType = (StudentInterviewStatusType)model.StudentInterviewStatusType;
             
             _unitOfWork.Save();
             
@@ -56,17 +57,19 @@ namespace intern_track_back.Services
                 return new ActionResult<int>(new NotFoundResult());
             }
 
-            if (interview.CompanyId != current.Id &&
+            /*if (interview.CompanyId != current.Id &&
                 current.Role != RoleType.Admin)
             {
                 return new ActionResult<int>(new ForbidResult());
-            }
+            }*/
             
             interview.Date = model.Date;
-            interview.Format = model.Format;
+            interview.Format = (FormatType)model.Format;
             interview.Stack = model.Stack;
             interview.Place = model.Place;
             interview.StudentId = model.StudentId;
+            interview.CompanyId = model.CompanyId;
+            interview.StudentInterviewStatusType = (StudentInterviewStatusType)model.StudentInterviewStatusType;
             
             _unitOfWork.Save();
             
@@ -83,11 +86,11 @@ namespace intern_track_back.Services
                 return new NotFoundResult();
             }
 
-            if (interview.CompanyId != current.Id &&
+            /*if (interview.CompanyId != current.Id &&
                 current.Role != RoleType.Admin)
             {
                 return new ForbidResult();
-            }
+            }*/
             
             _unitOfWork.InterviewRepository.Remove(interview);
             _unitOfWork.Save();

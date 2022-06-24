@@ -18,12 +18,17 @@ namespace intern_track_back.Models
         /// <summary>
         /// Стэк, на который студент будет собеседоваться
         /// </summary>
-        public StackType Stack { get; set; }
-        
+        public string Stack { get; set; }
+
         /// <summary>
         /// Место для собеседования
         /// </summary>
         public string Place { get; set; }
+
+        /// <summary>
+        /// Статус интервью студента. Менять его может компания
+        /// </summary>
+        public StudentInterviewStatusType StudentInterviewStatusType { get; set; } = StudentInterviewStatusType.Waiting;
 
         /// <summary>
         /// Компания, проводящая собеседование

@@ -30,23 +30,7 @@ namespace intern_track_back.Controllers
         [Route("vacanciesByCompanyId")]
         public VacanciesResponseModel GetForCompany(int companyId)
             => new VacanciesResponseModel().InitForCompany(companyId, UnitOfWork);
-        
-        /// <summary>
-        /// Получить модель для создания вакансии
-        /// </summary>
-        [HttpGet]
-        [Route("create")]
-        public VacancyRequestModel Create()
-            => new VacancyRequestModel();
-        
-        /// <summary>
-        /// Получить модель для редактирования вакансии
-        /// </summary>
-        [HttpGet]
-        [Route("update")]
-        public ActionResult<VacancyRequestModel> Update(int id)
-            => new VacancyRequestModel().Init(id, UnitOfWork);
-        
+
         [HttpPost]
         [Route("createUpdate")]
         public ActionResult<int> CreateUpdate(

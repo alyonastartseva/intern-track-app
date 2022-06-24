@@ -23,5 +23,10 @@
         /// Номер курса обучения
         /// </summary>
         public int Course { get; set; }
+        
+        /// <summary>
+        /// Статус активности студента в игре "попади на работу", что он уже сделал
+        /// </summary>
+        public string GeneralStudentStatus { get; set; }
     }
 }
