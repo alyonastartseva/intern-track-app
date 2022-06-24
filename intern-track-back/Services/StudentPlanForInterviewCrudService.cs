@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using intern_track_back.Data;
 using intern_track_back.Enumerations;
@@ -30,21 +31,21 @@ namespace intern_track_back.Services
 
         private ActionResult<int> Create(StudentPlanForInterviewRequestModel model, User current)
         {
-            if (current.Role != RoleType.Student)
+            /*if (current.Role != RoleType.Student)
             {
                 return new ActionResult<int>(new ForbidResult());
-            }
+            }*/
             
             var studentPlanForInterview = _unitOfWork.StudentPlanForInterviewRepository.CreateNew();
             
             studentPlanForInterview.PreferableTime = model.PreferableTime;
             studentPlanForInterview.Priority = model.Priority;
             studentPlanForInterview.CompanyId = model.CompanyId;
-            studentPlanForInterview.StudentId = current.Id;
+            studentPlanForInterview.StudentId = model.StudentId;
 
             foreach (var type in model.StackTypes)
             {
-                CreateStackForInterviewPlan(type, studentPlanForInterview);
+                CreateStackForInterviewPlan((StackType)type, studentPlanForInterview);
             }
             
             _unitOfWork.Save();
@@ -61,11 +62,17 @@ namespace intern_track_back.Services
                 return new ActionResult<int>(new NotFoundResult());
             }
 
-            //Изменить запись может только тот же студент или админ
+            /*//Изменить запись может только тот же студент или админ
             if (current.Role != RoleType.Admin &&
                 studentPlanForInterview.StudentId != current.Id)
             {
                 return new ActionResult<int>(new ForbidResult());
+            }*/
+
+            List<StackType> stacksModel = new();
+            foreach (var stackType in model.StackTypes)
+            {
+                stacksModel.Add((StackType)stackType);
             }
 
             studentPlanForInterview.PreferableTime = model.PreferableTime;
@@ -73,7 +80,7 @@ namespace intern_track_back.Services
 
             // Удаляем стеки, удаленные пользователем
             var stackForInterviewPlanToRemove = _unitOfWork.StackForInterviewPlanRepository
-                .Where(s => !model.StackTypes.Contains(s.StackType))
+                .Where(s => !stacksModel.Contains(s.StackType))
                 .ToList();
 
             RemoveStackForInterviewPlan(stackForInterviewPlanToRemove);
@@ -84,7 +91,7 @@ namespace intern_track_back.Services
                 .Select(s => s.StackType)
                 .ToList();
 
-            foreach (var type in model.StackTypes)
+            foreach (var type in stacksModel)
             {
                 if (!stackTypes.Contains(type))
                 {
@@ -120,11 +127,11 @@ namespace intern_track_back.Services
                 return new NotFoundResult();
             }
             
-            if (current.Role != RoleType.Admin &&
+            /*if (current.Role != RoleType.Admin &&
                 studentPlanForInterview.StudentId != current.Id)
             {
                 return new ForbidResult();
-            }
+            }*/
             
             _unitOfWork.StudentPlanForInterviewRepository.Remove(studentPlanForInterview);
             _unitOfWork.Save();

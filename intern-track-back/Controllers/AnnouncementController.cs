@@ -31,22 +31,6 @@ namespace intern_track_back.Controllers
             => new AnnouncementResponseModel().Init(id, UnitOfWork);
 
         /// <summary>
-        /// Получить модель для создания объявления
-        /// </summary>
-        [HttpGet]
-        [Route("create")]
-        public AnnouncementRequestModel Create()
-            => new AnnouncementRequestModel();
-
-        /// <summary>
-        /// Получить модель для редактирования объявления
-        /// </summary>
-        [HttpGet]
-        [Route("edit")]
-        public AnnouncementRequestModel Edit(int id)
-            => new AnnouncementRequestModel().Init(id, UnitOfWork);
-
-        /// <summary>
         /// Отредактировать существующее объявление или создать новое
         /// </summary>
         [HttpPost]
