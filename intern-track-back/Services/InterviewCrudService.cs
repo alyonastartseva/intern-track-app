@@ -39,7 +39,8 @@ namespace intern_track_back.Services
             interview.Stack = model.Stack;
             interview.Place = model.Place;
             interview.StudentId = model.StudentId;
-            interview.CompanyId = current.Id;
+            interview.CompanyId = model.CompanyId;
+            interview.StudentInterviewStatusType = (StudentInterviewStatusType)model.StudentInterviewStatusType;
             
             _unitOfWork.Save();
             
@@ -67,6 +68,8 @@ namespace intern_track_back.Services
             interview.Stack = model.Stack;
             interview.Place = model.Place;
             interview.StudentId = model.StudentId;
+            interview.CompanyId = model.CompanyId;
+            interview.StudentInterviewStatusType = (StudentInterviewStatusType)model.StudentInterviewStatusType;
             
             _unitOfWork.Save();
             
