@@ -5,6 +5,8 @@ using intern_track_back.Enumerations;
 using intern_track_back.Models;
 using intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Extensions;
+using Newtonsoft.Json;
 
 namespace intern_track_back.Services
 {
@@ -128,6 +130,26 @@ namespace intern_track_back.Services
             _unitOfWork.Save();
             
             return new OkResult();
+        }
+
+        public string GetStacksForCompany(int companyId, User current)
+        {
+            var stacks = _unitOfWork.CompanyRepository
+                .Where(c => c.Id == companyId)
+                .SelectMany(c => c.Vacancies.Select(v => v.Stack))
+                .Distinct()
+                .ToList();
+
+            List<Dictionary<string, string>> list = new ();
+            foreach (var stack in stacks)
+            {
+                var keyAndValue = new Dictionary<string, string>();
+                keyAndValue.Add("key", stack.GetHashCode().ToString());
+                keyAndValue.Add("value", stack.GetDisplayName());
+                list.Add(keyAndValue);
+            }
+			
+            return JsonConvert.SerializeObject(list);
         }
     }
 }
