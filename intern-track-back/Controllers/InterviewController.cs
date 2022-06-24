@@ -39,23 +39,7 @@ namespace intern_track_back.Controllers
         [Route("interviewById")]
         public ActionResult<InterviewResponseModel> GetById(int id)
             => new InterviewResponseModel().Init(id, Current, UnitOfWork);
-        
-        /// <summary>
-        /// Получить модель для создания собеседования
-        /// </summary>
-        [HttpGet]
-        [Route("create")]
-        public InterviewRequestModel Create()
-            => new InterviewRequestModel();
-        
-        /// <summary>
-        /// Получить модель для редактирования собеседования
-        /// </summary>
-        [HttpGet]
-        [Route("update")]
-        public ActionResult<InterviewRequestModel> Update(int id)
-            => new InterviewRequestModel().Init(id, Current, UnitOfWork);
-        
+
         [HttpPost]
         [Route("createUpdate")]
         public ActionResult<int> CreateUpdate(

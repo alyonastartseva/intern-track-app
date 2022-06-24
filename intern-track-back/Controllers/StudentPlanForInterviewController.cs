@@ -23,18 +23,6 @@ namespace intern_track_back.Controllers
         [Route("StudentPlanForInterviewByCompanyId")]
         public StudentPlanForInterviewListResponseModel GetForCompany(int companyId) 
             => new StudentPlanForInterviewListResponseModel().Init(companyId, UnitOfWork);
-        
-        //todo: только студенты могут добавлять данные в таблицу
-        [HttpGet]
-        [Route("create")]
-        public StudentPlanForInterviewRequestModel Create()
-            => new StudentPlanForInterviewRequestModel();
-        
-        //todo: изменять и удалять данные могут только тот, кто написал строку и суперадмин
-        [HttpGet]
-        [Route("update")]
-        public ActionResult<StudentPlanForInterviewRequestModel> Update(int id)
-            => new StudentPlanForInterviewRequestModel().Init(id, UnitOfWork);
 
         [HttpPost]
         [Route("createUpdate")]
