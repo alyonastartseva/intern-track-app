@@ -1,4 +1,6 @@
-﻿using intern_track_back.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using intern_track_back.Data;
 
 namespace intern_track_back.ViewModels.Api.Companies
 {
@@ -11,7 +13,7 @@ namespace intern_track_back.ViewModels.Api.Companies
             Companies = unitOfWork.CompanyRepository
                 .Select(c => new CompanyResponseModel
                 {
-                    CompanyId = c.ApplicationUserId,
+                    CompanyId = c.Id,
                     Name = c.CompanyName,
                     About = c.About,
                     Address = c.Address

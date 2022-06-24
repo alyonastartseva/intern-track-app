@@ -5,7 +5,7 @@
         /// <summary>
         /// Идентификатор компании
         /// </summary>
-        public string? CompanyId { get; set; }
+        public int CompanyId { get; set; }
 
         /// <summary>
         /// Наименование компании
