@@ -13,7 +13,7 @@ namespace intern_track_back.Models
         /// <summary>
         /// Стэк
         /// </summary>
-        public StackType Stack { get; set; }
+        public string Stack { get; set; }
         
         /// <summary>
         /// Общее количество мест, которое выделила компания

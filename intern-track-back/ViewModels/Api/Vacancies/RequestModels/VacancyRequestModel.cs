@@ -25,7 +25,7 @@ namespace intern_track_back.ViewModels.Api.Vacancies.RequestModels
         /// <summary>
         /// Стэк
         /// </summary>
-        public StackType Stack { get; set; }
+        public string Stack { get; set; }
         
         /// <summary>
         /// Общее количество мест, которое выделила компания

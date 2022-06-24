@@ -27,7 +27,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.RequestModels
         /// <summary>
         /// Стэк, на который студент будет собеседоваться
         /// </summary>
-        public StackType Stack { get; set; }
+        public string Stack { get; set; }
         
         /// <summary>
         /// Место для собеседования
