@@ -19,7 +19,7 @@ export const CreateRecordModal = ({ isVisible, onCancel, onOk }) => {
       centered
       visible={isVisible}
       onOk={() => onOk(form.getFieldsValue())}
-      onCancel={() => onCancel(null)}
+      onCancel={onCancel}
       afterClose={handleAfterClose}
       cancelText="Отменить"
       okText="Сохранить"
