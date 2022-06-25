@@ -38,7 +38,7 @@ namespace intern_track_back.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return Ok();
+                    return Json(model);
                 }
 
                 if (result.IsLockedOut)
@@ -78,7 +78,7 @@ namespace intern_track_back.Controllers
                     
                     await _signInManager.SignInAsync(applicationUser, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
-                    return StatusCode(201, new { message = "Account created" });
+                    return Json(model);
                 }
 
                 AddErrors(result);
@@ -100,7 +100,7 @@ namespace intern_track_back.Controllers
                     accountService.RegisterAsStudent(model, applicationUser);   
                     await _signInManager.SignInAsync(applicationUser, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
-                    return StatusCode(201, new { message = "Account created" });
+                    return Json(model);
                 }
 
                 AddErrors(result);
