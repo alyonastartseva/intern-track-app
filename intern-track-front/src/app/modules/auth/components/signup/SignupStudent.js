@@ -13,8 +13,12 @@ export const SignUpStudent = () => {
 
   const [registerAsStudent, result] = useRegisterAsStudentMutation();
 
-  const onFinish = (values) => {
-    registerAsStudent(values);
+  const onFinish = async (values) => {
+    registerAsStudent({
+      ...values,
+      role: 'student'
+    });
+    const res = await result;
   };
 
   return (
