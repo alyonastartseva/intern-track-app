@@ -3,11 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as BackIcon } from 'src/assets/svg/backIcon.svg';
 import { useGetVacanciesByIdQuery } from 'src/app/store/api/companies';
-import { columnsRecording } from './const';
+import { columnsRecording, stackTypesDict } from './const';
 import { CreateRecordModal } from './component/createRecordModal';
 import { useGetPlanInterviewByCompanyIdQuery, useCreateUpdateRecordMutation } from 'src/app/store/api/record';
 
-import { Button, Col, Card, Table, Tabs } from 'antd';
+import { Button, Col, Card, Table, Tabs, Spin, Result, Row } from 'antd';
 
 import './VacanciesAndRecording.css';
 
@@ -67,16 +67,30 @@ export const VacanciesAndRecording = () => {
 
       <Tabs defaultActiveKey="1">
         <TabPane tab="Вакансии" key="1">
-          <Col className="vacancies" span={8}>
-            <Card title="Фронтенд разработчик">
-              <p>
-                <span className="descTitle">Описание:</span> Нужен хороший фронт
-              </p>
-              <p>
-                <span className="descTitle">Количество мест:</span> 2
-              </p>
-            </Card>
-          </Col>
+          {loadingVacancies ? (
+            <Spin className="loader" />
+          ) : errorVacancies ? (
+            <Result status="500" title="Что-то пошло не так" subTitle="Не удалось загрузить список вакансий" />
+          ) : vacancies.vacancies.length ? (
+            <Row gutter={[16, 16]}>
+              {vacancies.vacancies.map((vac, index) => (
+                <Col key={vac.id || index} span={8}>
+                  <Card title={stackTypesDict.find((el) => el.key === vac.stack).value}>
+                    <p>
+                      <span className="descTitle">Описание:</span>
+                      {vac.description}
+                    </p>
+                    <p>
+                      <span className="descTitle">Количество занятых мест / Общее количество мест:</span>
+                      {vac.totalNumber - vac.freeNumber} / {vac.totalNumber}
+                    </p>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          ) : (
+            <Result title="К сожалению, в данный момент у компании нет открытых вакансий" />
+          )}
         </TabPane>
         <TabPane tab="Запись на собеседование" key="2">
           <Button className="ita-btn add-record" onClick={handleOnClickAddRecord} type="primary">
