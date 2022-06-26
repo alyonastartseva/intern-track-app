@@ -30,5 +30,15 @@ namespace intern_track_back.Models
         /// Студенты, принятые в компанию на данную вакансию
         /// </summary>
         public ICollection<Student> Students { get; set; }
+        
+        /// <summary>
+        /// Собеседования на данную вакансию
+        /// </summary>
+        public ICollection<Interview> Interviews { get; set; }
+        
+        /// <summary>
+        /// Вакансии, на которые хочет прособеседоваться студент
+        /// </summary>
+        public ICollection<StudentPlanIntVacancyLink> StudentPlanIntVacancyLinks { get; set; }
     }
 }

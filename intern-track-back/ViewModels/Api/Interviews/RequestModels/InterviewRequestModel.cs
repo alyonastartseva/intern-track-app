@@ -24,10 +24,8 @@ namespace intern_track_back.ViewModels.Api.Interviews.RequestModels
         /// </summary>
         public int Format { get; set; }
 
-        /// <summary>
-        /// Стэк, на который студент будет собеседоваться
-        /// </summary>
-        public string Stack { get; set; }
+        // Id вакансии
+        public int VacancyId { get; set; }
         
         /// <summary>
         /// Место для собеседования
@@ -67,7 +65,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.RequestModels
 
             Date = interview.Date;
             Format = interview.Format.GetHashCode();
-            Stack = interview.Stack;
+            VacancyId = interview.VacancyId;
             Place = interview.Place;
             StudentId = interview.StudentId;
             StudentInterviewStatusType = interview.StudentInterviewStatusType.GetHashCode();
