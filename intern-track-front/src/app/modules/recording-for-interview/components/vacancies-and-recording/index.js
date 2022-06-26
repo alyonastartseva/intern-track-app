@@ -7,9 +7,11 @@ import { columnsRecording } from './const';
 import { CreateRecordModal } from './component/createRecordModal';
 import { useGetPlanInterviewByCompanyIdQuery, useCreateUpdateRecordMutation } from 'src/app/store/api/record';
 
-import { Button, Col, Card, Divider, Table } from 'antd';
+import { Button, Col, Card, Table, Tabs } from 'antd';
 
 import './VacanciesAndRecording.css';
+
+const { TabPane } = Tabs;
 
 export const VacanciesAndRecording = () => {
   const [createRecordModalVisible, setCreateRecordModalVisible] = useState(false);
@@ -61,25 +63,28 @@ export const VacanciesAndRecording = () => {
           <BackIcon />
           Назад к компаниям
         </Button>
-        <h2>Доступные вакансии</h2>
       </header>
-      <Col className="vacancies" span={8}>
-        <Card title="Фронтенд разработчик">
-          <p>
-            <span className="descTitle">Описание:</span> Нужен хороший фронт
-          </p>
-          <p>
-            <span className="descTitle">Количество мест:</span> 2
-          </p>
-        </Card>
-      </Col>
-      <Divider orientation="center">
-        <h2 className="recordingTitle">Записаться на собеседование</h2>
-      </Divider>
-      <Button className="ita-btn add-record" onClick={handleOnClickAddRecord}>
-        Добавить запись
-      </Button>
-      <Table dataSource={recordInterviws?.interviewPlansList} columns={columnsRecording} />
+
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="Вакансии" key="1">
+          <Col className="vacancies" span={8}>
+            <Card title="Фронтенд разработчик">
+              <p>
+                <span className="descTitle">Описание:</span> Нужен хороший фронт
+              </p>
+              <p>
+                <span className="descTitle">Количество мест:</span> 2
+              </p>
+            </Card>
+          </Col>
+        </TabPane>
+        <TabPane tab="Запись на собеседование" key="2">
+          <Button className="ita-btn add-record" onClick={handleOnClickAddRecord} type="primary">
+            Добавить запись
+          </Button>
+          <Table dataSource={recordInterviws?.interviewPlansList} columns={columnsRecording} />
+        </TabPane>
+      </Tabs>
 
       <CreateRecordModal
         isVisible={createRecordModalVisible}
