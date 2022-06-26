@@ -12,7 +12,7 @@ export const AppRoutes = () => {
   const location = useLocation();
 
   useEffect(() => {
-    setIsAuth(!!LocalStorageHelper.getData('username'));
+    setIsAuth(!!LocalStorageHelper.getData('email'));
   }, [location]);
 
   return !isAuth ? (
