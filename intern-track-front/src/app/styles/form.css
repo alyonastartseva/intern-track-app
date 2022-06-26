@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
 
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.06em;
@@ -13,8 +14,8 @@
 
   color: white;
   border: none;
-  border-radius: 26px;
-  background: var(--green);
+  border-radius: 8px;
+  background: var(--primary);
 
   transition: color .25s ease, background-color .25s;
 }
@@ -22,7 +23,7 @@
 .ita-btn:hover,
 .ita-btn:focus {
   color: white;
-  background: var(--dark-green);
+  background: var(--dark-blue);
 }
 
 .ita-btn._text {

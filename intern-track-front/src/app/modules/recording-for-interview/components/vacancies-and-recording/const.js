@@ -39,10 +39,18 @@ export const priorityDict = [
 export const stackTypesDict = [
   {
     value: 'Frontend',
-    key: 'frontend'
+    key: '1'
   },
   {
     value: 'Backend',
-    key: 'backend'
+    key: '2'
+  },
+  {
+    value: 'ML',
+    key: '3'
+  },
+  {
+    value: 'Analytic',
+    key: '4'
   }
 ];

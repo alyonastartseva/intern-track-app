@@ -1,21 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Button, Form, Input, InputNumber } from 'antd';
+import { Button, Form, Input, InputNumber, message } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 
 import { useRegisterAsStudentMutation } from 'src/app/store/api/auth';
+import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
 
 import '../../Auth.css';
 
 export const SignUpStudent = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  const [registerAsStudent, result] = useRegisterAsStudentMutation();
+  const [registerAsStudent] = useRegisterAsStudentMutation();
 
-  const onFinish = (values) => {
-    registerAsStudent(values);
-  };
+  const onFinish = useCallback(
+    (values) => {
+      registerAsStudent({
+        ...values,
+        role: 'student'
+      })
+        .unwrap()
+        .then((payload) => {
+          LocalStorageHelper.setData('role', payload.role);
+          navigate('/');
+        })
+        .catch((error) => {
+          message.error(error.data.message);
+        });
+    },
+    [navigate, registerAsStudent]
+  );
 
   return (
     <div className="page">
