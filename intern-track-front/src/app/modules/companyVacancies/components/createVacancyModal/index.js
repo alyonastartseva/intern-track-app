@@ -1,20 +1,41 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { Modal, Form, Input, InputNumber } from 'antd';
 
-export const CreateVacancyModal = ({ isVisible, onCancel, onOk }) => {
+export const CreateVacancyModal = ({ isVisible, onCancel, onOkCreate, onOkEdit, vacancy }) => {
   const [form] = Form.useForm();
 
+  useEffect(() => {
+    if (vacancy) {
+      form.setFields([
+        {
+          name: 'stack',
+          value: vacancy.stack
+        },
+        {
+          name: 'totalNumber',
+          value: vacancy.totalNumber
+        },
+        {
+          name: 'description',
+          value: vacancy.description
+        }
+      ]);
+    }
+  }, [form, vacancy]);
+
   const handleAfterClose = useCallback(() => {
-    form.resetFields();
-  }, [form]);
+    if (!vacancy) {
+      form.resetFields();
+    }
+  }, [form, vacancy]);
 
   return (
     <Modal
       title="Создать вакансию"
       centered
       visible={isVisible}
-      onOk={() => onOk(form.getFieldsValue())}
+      onOk={!vacancy ? () => onOkCreate(form.getFieldsValue()) : () => onOkEdit(form.getFieldsValue())}
       onCancel={onCancel}
       afterClose={handleAfterClose}
       cancelText="Отменить"

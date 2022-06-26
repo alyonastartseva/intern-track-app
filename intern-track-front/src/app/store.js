@@ -5,6 +5,7 @@ import { companiesApi } from './store/api/companies';
 import { recordsApi } from './store/api/record';
 import { userApi } from './store/api/user';
 import { interviewsApi } from './store/api/interviews';
+import { vacanciesApi } from './store/api/vacancy';
 
 export const store = configureStore({
   reducer: {
@@ -12,7 +13,8 @@ export const store = configureStore({
     [companiesApi.reducerPath]: companiesApi.reducer,
     [recordsApi.reducerPath]: recordsApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
-    [interviewsApi.reducerPath]: interviewsApi.reducer
+    [interviewsApi.reducerPath]: interviewsApi.reducer,
+    [vacanciesApi.reducerPath]: vacanciesApi.reducer
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -21,6 +23,7 @@ export const store = configureStore({
       companiesApi.middleware,
       recordsApi.middleware,
       userApi.middleware,
-      interviewsApi.middleware
+      interviewsApi.middleware,
+      vacanciesApi.middleware
     )
 });
