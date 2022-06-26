@@ -43,11 +43,11 @@ export const CreateRecordModal = ({ isVisible, onCancel, onOk }) => {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item name="stackTypes" label="Желаемые направления стажировки" rules={[{ required: true }]}>
+        <Form.Item name="vacancyIds" label="Желаемые направления стажировки" rules={[{ required: true }]}>
           <Select mode="multiple">
             {stackTypes?.map((item) => (
               <Option key={item.key} value={item.key}>
-                {stackTypesDict.find((el) => el.key === item.value)?.value}
+                {item.value}
               </Option>
             ))}
           </Select>

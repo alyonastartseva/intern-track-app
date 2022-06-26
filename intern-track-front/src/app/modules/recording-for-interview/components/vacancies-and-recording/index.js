@@ -40,8 +40,13 @@ export const VacanciesAndRecording = () => {
 
   const handleOnOkRecordCreate = useCallback(
     (formData) => {
+      console.log(formData);
+      const ids = formData?.vacancyIds.map((item) => Number(item));
       const preparedData = {
-        ...formData,
+        vacancyIds: ids,
+        preferableTime: formData.preferableTime,
+        priority: formData.priority,
+        resumeLink: formData.resumeLink,
         id: 0,
         companyId
       };
@@ -76,7 +81,7 @@ export const VacanciesAndRecording = () => {
               <Row gutter={[16, 16]}>
                 {vacancies.vacancies.map((vac, index) => (
                   <Col key={vac.id || index} span={8}>
-                    <Card title={stackTypesDict.find((el) => el.key === vac.stack).value}>
+                    <Card title={vac.stack}>
                       <p>
                         <span className="descTitle">Описание:</span>
                         {vac.description}
