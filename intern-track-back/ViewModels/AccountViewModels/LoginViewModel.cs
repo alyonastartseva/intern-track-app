@@ -19,5 +19,7 @@ namespace intern_track_back.ViewModels.AccountViewModels
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public string? Role { get; set; }
     }
 }

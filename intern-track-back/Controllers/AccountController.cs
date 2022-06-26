@@ -6,6 +6,7 @@ using intern_track_back.Models;
 using intern_track_back.Services;
 using intern_track_back.ViewModels.AccountViewModels;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Extensions;
 
 namespace intern_track_back.Controllers
 {
@@ -38,6 +39,7 @@ namespace intern_track_back.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
+                    model.Role = Current.Role.GetDisplayName();
                     return Json(model);
                 }
 
