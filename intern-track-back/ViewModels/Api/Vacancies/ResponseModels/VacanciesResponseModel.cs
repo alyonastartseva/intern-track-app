@@ -36,6 +36,7 @@ namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
                 .Where(v => v.CompanyId == companyId)
                 .Select(v => new VacancyResponseModel
                 {
+                    Id = v.Id,
                     Description = v.Description,
                     Stack = v.Stack,
                     TotalNumber = v.TotalNumber,
