@@ -41,6 +41,6 @@ namespace intern_track_back.ViewModels.AccountViewModels
         public string? CompanyName { get; set; }
         
         [Display(Name = "Информация, которую пользователь хочет предоставить о себе")]
-        public string About { get; set; }
+        public string? About { get; set; }
     }
 }

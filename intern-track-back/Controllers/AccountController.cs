@@ -109,7 +109,7 @@ namespace intern_track_back.Controllers
             return StatusCode(409, new { message = "Conflict" });
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("logout")]
         public async Task<IActionResult> Logout()
         {

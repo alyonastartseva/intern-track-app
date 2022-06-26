@@ -5,6 +5,11 @@ namespace intern_track_back.ViewModels.Api.Vacancies.ResponseModels
     public class VacancyResponseModel
     {
         /// <summary>
+        /// Id
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Описание вакансии
         /// </summary>
         public string? Description { get; set; }
