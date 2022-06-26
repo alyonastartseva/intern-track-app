@@ -8,7 +8,7 @@ export const companiesApi = createApi({
       query: () => 'User/getallcompanies'
     }),
     getVacanciesById: builder.query({
-      query: (companyId) => `VacancyApi/vacanciesByCompanyId?companyId=${companyId}`
+      query: (companyId) => `Vacancy/vacanciesByCompanyId?companyId=${companyId}`
     })
   })
 });
