@@ -32,10 +32,10 @@ namespace intern_track_back.ViewModels.AccountViewModels
         public string Role { get; set; }
 
         [Display(Name = "Реальное имя")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         [Display(Name = "Реальная фамилия")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         [Display(Name = "Наименование компании")]
         public string? CompanyName { get; set; }
