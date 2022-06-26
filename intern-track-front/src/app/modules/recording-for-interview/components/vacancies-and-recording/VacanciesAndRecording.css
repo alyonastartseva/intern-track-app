@@ -1,5 +1,6 @@
 .vacanciesPage header {
   display: flex;
+  margin-bottom: 24px;
 }
 
 .vacanciesPage h2 {
@@ -40,5 +41,5 @@
 }
 
 .add-record {
-  margin-bottom: 24px;
+  margin: 24px 0;
 }

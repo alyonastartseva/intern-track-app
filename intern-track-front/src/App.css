@@ -25,3 +25,70 @@
   left: calc(50% + 100px);
   transform: translate(-50%, -50%);
 }
+
+.ant-tabs>.ant-tabs-nav:before {
+  border: none;
+}
+
+.ant-tabs-nav-list {
+  justify-content: flex-end;
+}
+
+.ant-tabs {
+  width: 100%;
+}
+
+.ant-tabs-ink-bar {
+  background: var(--dark-blue);
+}
+
+.ant-tabs-tab,
+.ant-tabs-tab:hover {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--green);
+  padding: 6px 36px;
+  border-radius: 4px 4px 0px 0px;
+  letter-spacing: 0.06em;
+}
+
+.ant-tabs-tab:hover {
+  color: var(--dark-blue);
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--dark-blue);
+}
+
+.ant-tabs-tab.ant-tabs-tab-active {
+  background: #fff;
+}
+
+.ant-tabs-content-holder {
+  position: relative;
+}
+
+.ant-tabs-top>.ant-tabs-nav .ant-tabs-ink-bar {
+  height: 4px;
+}
+
+.ant-tabs {
+  width: 100%;
+}
+
+.rc-virtual-list-scrollbar-thumb {
+  background: var(--pagination-disabled) !important;
+}
+
+.rc-virtual-list-scrollbar {
+  width: 4px !important;
+}

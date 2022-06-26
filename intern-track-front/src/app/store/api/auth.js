@@ -10,8 +10,28 @@ export const authApi = createApi({
         method: 'POST',
         body: formData
       })
+    }),
+    register: builder.mutation({
+      query: (formData) => ({
+        url: `register`,
+        method: 'POST',
+        body: formData
+      })
+    }),
+    login: builder.mutation({
+      query: (formData) => ({
+        url: `login`,
+        method: 'POST',
+        body: formData
+      })
+    }),
+    logout: builder.mutation({
+      query: () => ({
+        url: 'logout',
+        method: 'GET'
+      })
     })
   })
 });
 
-export const { useRegisterAsStudentMutation } = authApi;
+export const { useRegisterAsStudentMutation, useRegisterMutation, useLoginMutation, useLogoutMutation } = authApi;
