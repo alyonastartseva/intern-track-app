@@ -25,6 +25,6 @@
   color: var(--dark-blue);
 }
 
-.recordingPage .ant-card.ant-card-bordered {
+.ant-card.ant-card-bordered {
   height: 100%;
 }
