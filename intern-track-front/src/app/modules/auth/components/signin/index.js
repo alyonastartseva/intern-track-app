@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { Button, Form, Input, Select, Checkbox } from 'antd';
+import { Button, Form, Input, Select, Checkbox, message } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 
+import { useLoginMutation } from 'src/app/store/api/auth';
 import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
 
 import '../../Auth.css';
@@ -15,13 +16,21 @@ export const SignIn = () => {
 
   const navigate = useNavigate();
 
+  const [login] = useLoginMutation();
+
   const onFinish = useCallback(
     (values) => {
-      console.log('Received values of form: ', values);
-      LocalStorageHelper.setData('username', 'test');
-      navigate('/');
+      login(values)
+        .unwrap()
+        .then((payload) => {
+          LocalStorageHelper.setData('role', payload.role);
+          navigate('/');
+        })
+        .catch((error) => {
+          message.error(error.data.message);
+        });
     },
-    [navigate]
+    [login, navigate]
   );
 
   return (
@@ -33,7 +42,7 @@ export const SignIn = () => {
         <h1>Вход</h1>
         <Form form={form} name="register" onFinish={onFinish}>
           <Form.Item
-            name="userName"
+            name="email"
             rules={[
               {
                 required: true,
@@ -41,7 +50,7 @@ export const SignIn = () => {
               }
             ]}
           >
-            <Input placeholder="Имя пользователя" />
+            <Input placeholder="Email" />
           </Form.Item>
 
           <Form.Item

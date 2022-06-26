@@ -1,10 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Select, message } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 
 import { Roles } from 'src/app/shared/consts';
+import { useRegisterMutation } from 'src/app/store/api/auth';
+import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
 
 import '../../Auth.css';
 
@@ -12,10 +14,34 @@ const { Option } = Select;
 
 export const SignUp = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
+  const [register] = useRegisterMutation();
+
+  const [isCompany, setIsCompany] = useState(false);
+
+  const onFinish = useCallback(
+    (values) => {
+      register(values)
+        .unwrap()
+        .then((payload) => {
+          LocalStorageHelper.setData('role', payload.role);
+          navigate('/');
+        })
+        .catch((error) => {
+          message.error(error.data.message);
+        });
+    },
+    [navigate, register]
+  );
+
+  const handleOnFieldsChange = useCallback(() => {
+    if (form.getFieldValue('role') === 'company') {
+      setIsCompany(true);
+    } else {
+      setIsCompany(false);
+    }
+  }, [form]);
 
   return (
     <div className="page">
@@ -24,20 +50,8 @@ export const SignUp = () => {
           <LockOutlined />
         </span>
         <h1>Регистрация</h1>
-        <Form form={form} name="register" onFinish={onFinish}>
+        <Form form={form} name="register" onFinish={onFinish} onFieldsChange={handleOnFieldsChange}>
           <div className="userInfo">
-            <Form.Item
-              name="userName"
-              rules={[
-                {
-                  required: true,
-                  message: 'Обязательное поле!'
-                }
-              ]}
-            >
-              <Input placeholder="Имя пользователя" />
-            </Form.Item>
-
             <Form.Item
               name="role"
               rules={[
@@ -56,6 +70,29 @@ export const SignUp = () => {
               </Select>
             </Form.Item>
           </div>
+
+          {isCompany ? (
+            <Form.Item
+              name="companyName"
+              rules={[
+                {
+                  required: true,
+                  message: 'Обязательное поле!'
+                }
+              ]}
+            >
+              <Input placeholder="Название компании" />
+            </Form.Item>
+          ) : (
+            <div className="userInfo">
+              <Form.Item name="firstName">
+                <Input placeholder="Имя" />
+              </Form.Item>
+              <Form.Item name="lastName">
+                <Input placeholder="Фамилия" />
+              </Form.Item>
+            </div>
+          )}
 
           <Form.Item
             name="email"
