@@ -1,3 +1,11 @@
 .create-vacancy {
   margin-bottom: 24px;
 }
+
+.descTitle {
+  margin-right: 6px;
+
+  font-weight: 500;
+
+  color: var(--pink);
+}
