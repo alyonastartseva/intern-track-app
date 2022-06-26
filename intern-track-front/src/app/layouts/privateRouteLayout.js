@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Layout, Menu } from 'antd';
-import { HomeOutlined, FormOutlined, UsergroupDeleteOutlined } from '@ant-design/icons';
+import { HomeOutlined, FormOutlined, UsergroupDeleteOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -36,6 +36,13 @@ const items = [
     </Link>,
     '3',
     <HomeOutlined />
+  ),
+  getItem(
+    <Link to="/vacancies" className="nav-text">
+      Управление вакансиями
+    </Link>,
+    '4',
+    <SettingOutlined />
   )
 ];
 
