@@ -16,9 +16,10 @@ namespace intern_track_back.Models
         public FormatType Format { get; set; }
 
         /// <summary>
-        /// Стэк, на который студент будет собеседоваться
+        /// Вакансия, на которую студент будет собеседоваться
         /// </summary>
-        public string Stack { get; set; }
+        public Vacancy Vacancy { get; set; }
+        public int  VacancyId { get; set; }
 
         /// <summary>
         /// Место для собеседования

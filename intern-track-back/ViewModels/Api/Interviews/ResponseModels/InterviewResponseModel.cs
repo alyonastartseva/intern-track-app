@@ -24,8 +24,8 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
         /// <summary>
         /// Стэк, на который студент будет собеседоваться
         /// </summary>
-        public string Stack { get; set; }
-        
+        public string VacancyStack { get; set; }
+
         /// <summary>
         /// Место для собеседования
         /// </summary>
@@ -53,6 +53,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
             var interview = unitOfWork.InterviewRepository
                 .Include(i => i.Company)
                 .Include(i => i.Student)
+                .Include(i => i.Vacancy)
                 .FirstOrDefault(i => i.Id == id);
 
             if (interview == null)
@@ -68,7 +69,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
 
             Date = interview.Date;
             Format = interview.Format.GetDisplayName();
-            Stack = interview.Stack;
+            VacancyStack = interview.Vacancy.Stack;
             Place = interview.Place;
             CompanyId = interview.CompanyId;
             CompanyName = interview.Company.CompanyName;

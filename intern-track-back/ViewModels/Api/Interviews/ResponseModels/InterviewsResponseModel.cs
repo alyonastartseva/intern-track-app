@@ -28,7 +28,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                 {
                     Date = i.Date,
                     Format = i.Format.GetDisplayName(),
-                    Stack = i.Stack,
+                    VacancyStack = i.Vacancy.Stack,
                     Place = i.Place,
                     CompanyId = i.CompanyId,
                     CompanyName = i.Company.CompanyName,
@@ -57,7 +57,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                 {
                     Date = i.Date,
                     Format = i.Format.GetDisplayName(),
-                    Stack = i.Stack,
+                    VacancyStack = i.Vacancy.Stack,
                     Place = i.Place,
                     CompanyId = i.CompanyId,
                     CompanyName = i.Company.CompanyName,

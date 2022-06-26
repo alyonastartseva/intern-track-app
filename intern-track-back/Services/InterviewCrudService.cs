@@ -36,7 +36,7 @@ namespace intern_track_back.Services
 
             interview.Date = model.Date;
             interview.Format = (FormatType)model.Format; //todo добавить проверку! возможна ошибка
-            interview.Stack = model.Stack;
+            interview.VacancyId = model.VacancyId;
             interview.Place = model.Place;
             interview.StudentId = model.StudentId;
             interview.CompanyId = model.CompanyId;
@@ -65,7 +65,7 @@ namespace intern_track_back.Services
             
             interview.Date = model.Date;
             interview.Format = (FormatType)model.Format;
-            interview.Stack = model.Stack;
+            interview.VacancyId = model.VacancyId;
             interview.Place = model.Place;
             interview.StudentId = model.StudentId;
             interview.CompanyId = model.CompanyId;

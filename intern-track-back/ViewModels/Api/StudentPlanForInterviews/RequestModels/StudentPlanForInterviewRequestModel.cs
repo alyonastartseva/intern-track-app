@@ -31,9 +31,9 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
         public string PreferableTime { get; set; }
 
         /// <summary>
-        /// Позиции, на которые хочет прособеседоваться студент
+        /// Id вакансий, на которые хочет прособеседоваться студент
         /// </summary>
-        public ICollection<int> StackTypes { get; set; }
+        public ICollection<int> VacancyIds { get; set; }
         
         /// <summary>
         /// Приоритет этой компании в глазах студента
@@ -54,7 +54,7 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
         {
             var studentPlanForInterview = unitOfWork.StudentPlanForInterviewRepository
                 .Where(p => p.Id == id)
-                .Include(p => p.StackTypes)
+                .Include(p => p.StudentPlanIntVacancyLinks)
                 .FirstOrDefault();
 
             if (studentPlanForInterview == null)
@@ -67,8 +67,8 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.RequestModel
             CompanyId = studentPlanForInterview.CompanyId;
             PreferableTime = studentPlanForInterview.PreferableTime;
             Priority = studentPlanForInterview.Priority;
-            StackTypes = studentPlanForInterview.StackTypes
-                .Select(t => t.StackType.GetHashCode())
+            VacancyIds = studentPlanForInterview.StudentPlanIntVacancyLinks
+                .Select(pv => pv.VacancyId)
                 .ToList();
             CanBeModified = current.Role == RoleType.Admin || current.Id == studentPlanForInterview.StudentId;
             ResumeLink = studentPlanForInterview.ResumeLink;

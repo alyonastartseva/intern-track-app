@@ -25,10 +25,10 @@ namespace intern_track_back.Data
         public DbSet<Note> Notes { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Resume> Resumes { get; set; }
-        public DbSet<StackForInterviewPlan> StackForInterviewPlans { get; set; }
         public DbSet<StudentPlanForInterview> StudentPlanForInterviews { get; set; }
         public DbSet<UserChat> UserChats { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
+        public DbSet<StudentPlanIntVacancyLink> StudentPlanIntVacancyLinks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -157,11 +157,19 @@ namespace intern_track_back.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             #endregion
-            
+
+            #region мн-ко-мн
+
             //мн-ко-мн User-Chat
             builder.Entity<UserChat>()
                 .HasKey(x => new { x.UserId, x.ChatId });
+            
+            //мн-ко-мн запись студента на собес - вакансия
+            builder.Entity<StudentPlanIntVacancyLink>()
+                .HasKey(x => new { x.StudentPlanForInterviewId, x.VacancyId });
 
+            #endregion
+            
             base.OnModelCreating(builder);
         }
     }

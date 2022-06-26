@@ -25,11 +25,6 @@ namespace intern_track_back.Models
         public string PreferableTime { get; set; }
 
         /// <summary>
-        /// Позиции, на которые хочет прособеседоваться студент
-        /// </summary>
-        public ICollection<StackForInterviewPlan> StackTypes { get; set; }
-        
-        /// <summary>
         /// Внешняя ссылка на резюме
         /// </summary>
         public string? ResumeLink { get; set; }
@@ -38,6 +33,11 @@ namespace intern_track_back.Models
         /// Приоритет этой компании в глазах студента
         /// </summary>
         public int? Priority { get; set; }
+        
+        /// <summary>
+        /// Вакансии, на которые хочет прособеседоваться студент
+        /// </summary>
+        public ICollection<StudentPlanIntVacancyLink> StudentPlanIntVacancyLinks { get; set; }
     }
     
 }

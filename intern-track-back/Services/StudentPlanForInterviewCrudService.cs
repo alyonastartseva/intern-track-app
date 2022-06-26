@@ -43,9 +43,9 @@ namespace intern_track_back.Services
             studentPlanForInterview.CompanyId = model.CompanyId;
             studentPlanForInterview.StudentId = model.StudentId;
 
-            foreach (var type in model.StackTypes)
+            foreach (var vacancyId in model.VacancyIds)
             {
-                CreateStackForInterviewPlan((StackType)type, studentPlanForInterview);
+                ConnectInterviewPlanWithVacancy(vacancyId, studentPlanForInterview);
             }
             
             _unitOfWork.Save();
@@ -69,33 +69,28 @@ namespace intern_track_back.Services
                 return new ActionResult<int>(new ForbidResult());
             }*/
 
-            List<StackType> stacksModel = new();
-            foreach (var stackType in model.StackTypes)
-            {
-                stacksModel.Add((StackType)stackType);
-            }
-
             studentPlanForInterview.PreferableTime = model.PreferableTime;
             studentPlanForInterview.Priority = model.Priority;
 
             // Удаляем стеки, удаленные пользователем
-            var stackForInterviewPlanToRemove = _unitOfWork.StackForInterviewPlanRepository
-                .Where(s => !stacksModel.Contains(s.StackType))
+            var vacancyForInterviewPlanLinkToRemove = _unitOfWork.StudentPlanIntVacancyLinks
+                .Where(l => l.StudentPlanForInterviewId == studentPlanForInterview.Id)
+                .Where(l => !model.VacancyIds.Contains(l.VacancyId))
                 .ToList();
-
-            RemoveStackForInterviewPlan(stackForInterviewPlanToRemove);
             
+            _unitOfWork.StudentPlanIntVacancyLinks.RemoveRange(vacancyForInterviewPlanLinkToRemove);
+
             // Добавляем стеки, добавленные пользователем
-            var stackTypes = _unitOfWork.StackForInterviewPlanRepository
-                .Where(s => s.StudentPlanForInterviewId == studentPlanForInterview.Id)
-                .Select(s => s.StackType)
+            var vacancyForInterviewPlanLinkToCreateIds = _unitOfWork.StudentPlanIntVacancyLinks
+                .Where(l => l.StudentPlanForInterviewId == studentPlanForInterview.Id)
+                .Select(s => s.VacancyId)
                 .ToList();
 
-            foreach (var type in stacksModel)
+            foreach (var vacancyId in model.VacancyIds)
             {
-                if (!stackTypes.Contains(type))
+                if (!vacancyForInterviewPlanLinkToCreateIds.Contains(vacancyId))
                 {
-                    CreateStackForInterviewPlan(type, studentPlanForInterview);
+                    ConnectInterviewPlanWithVacancy(vacancyId, studentPlanForInterview);
                 }
             }
 
@@ -103,18 +98,12 @@ namespace intern_track_back.Services
             return new ActionResult<int>(studentPlanForInterview.Id);
         }
         
-        private void CreateStackForInterviewPlan(StackType type, StudentPlanForInterview studentPlanForInterview)
+        private void ConnectInterviewPlanWithVacancy(int vacancyId, StudentPlanForInterview studentPlanForInterview)
         {
-            var stackForInterviewPlan = _unitOfWork.StackForInterviewPlanRepository.CreateNew();
-            
-            stackForInterviewPlan.StackType = type;
-            stackForInterviewPlan.StudentPlanForInterviewId = studentPlanForInterview.Id;
-            stackForInterviewPlan.StudentPlanForInterview = studentPlanForInterview;
-        }
-        
-        private void RemoveStackForInterviewPlan(List<StackForInterviewPlan> stackForInterviewPlanList)
-        {
-            _unitOfWork.StackForInterviewPlanRepository.RemoveRange(stackForInterviewPlanList);
+            var interviewPlanVacancyLink = _unitOfWork.StudentPlanIntVacancyLinks.CreateNew();
+            interviewPlanVacancyLink.VacancyId = vacancyId;
+            interviewPlanVacancyLink.StudentPlanForInterviewId = studentPlanForInterview.Id;
+            interviewPlanVacancyLink.StudentPlanForInterview = studentPlanForInterview;
         }
 
         public IActionResult Remove(int id, User current)
@@ -127,11 +116,11 @@ namespace intern_track_back.Services
                 return new NotFoundResult();
             }
             
-            if (current.Role != RoleType.Admin &&
+            /*if (current.Role != RoleType.Admin &&
                 studentPlanForInterview.StudentId != current.Id)
             {
                 return new ForbidResult();
-            }
+            }*/
             
             _unitOfWork.StudentPlanForInterviewRepository.Remove(studentPlanForInterview);
             _unitOfWork.Save();
@@ -141,18 +130,16 @@ namespace intern_track_back.Services
 
         public string GetStacksForCompany(int companyId, User current)
         {
-            var stacks = _unitOfWork.CompanyRepository
-                .Where(c => c.Id == companyId)
-                .SelectMany(c => c.Vacancies.Select(v => v.Stack))
-                .Distinct()
+            var vacancies = _unitOfWork.VacancyRepository
+                .Where(v => v.CompanyId == companyId)
                 .ToList();
 
             List<Dictionary<string, string>> list = new ();
-            foreach (var stack in stacks)
+            foreach (var vacancy in vacancies)
             {
                 var keyAndValue = new Dictionary<string, string>();
-                keyAndValue.Add("key", stack.GetHashCode().ToString());
-                keyAndValue.Add("value", stack);
+                keyAndValue.Add("key", vacancy.Id.ToString());
+                keyAndValue.Add("value", vacancy.Stack);
                 list.Add(keyAndValue);
             }
 			
