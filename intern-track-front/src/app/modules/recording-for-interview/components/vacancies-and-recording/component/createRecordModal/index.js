@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { Modal, Form, Input, Select } from 'antd';
 
-import { priorityDict } from '../../const';
+import { priorityDict, stackTypesDict } from '../../const';
 import { useGetStackTypesByCompanyIdQuery } from 'src/app/store/api/record';
 
 const { Option } = Select;
@@ -47,10 +47,13 @@ export const CreateRecordModal = ({ isVisible, onCancel, onOk }) => {
           <Select mode="multiple">
             {stackTypes?.map((item) => (
               <Option key={item.key} value={item.key}>
-                {item.value}
+                {stackTypesDict.find((el) => el.key === item.value)?.value}
               </Option>
             ))}
           </Select>
+        </Form.Item>
+        <Form.Item name="resumeLink" label="Ссылка на резюме">
+          <Input />
         </Form.Item>
       </Form>
     </Modal>
