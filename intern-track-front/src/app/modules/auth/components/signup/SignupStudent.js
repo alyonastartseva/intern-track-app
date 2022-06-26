@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { Button, Form, Input, InputNumber } from 'antd';
+import { Button, Form, Input, InputNumber, message } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 
 import { useRegisterAsStudentMutation } from 'src/app/store/api/auth';
@@ -23,7 +23,7 @@ export const SignUpStudent = () => {
       })
         .unwrap()
         .then((payload) => {
-          LocalStorageHelper.setData('email', payload.email);
+          LocalStorageHelper.setData('role', payload.role);
           navigate('/');
         })
         .catch((error) => {

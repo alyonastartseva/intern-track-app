@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Select, message } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 
 import { Roles } from 'src/app/shared/consts';
 import { useRegisterMutation } from 'src/app/store/api/auth';
+import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
 
 import '../../Auth.css';
 
@@ -13,16 +14,26 @@ const { Option } = Select;
 
 export const SignUp = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  const [register, result] = useRegisterMutation();
+  const [register] = useRegisterMutation();
 
   const [isCompany, setIsCompany] = useState(false);
 
-  const onFinish = async (values) => {
-    register(values);
-    const res = await result;
-    console.log(res);
-  };
+  const onFinish = useCallback(
+    (values) => {
+      register(values)
+        .unwrap()
+        .then((payload) => {
+          LocalStorageHelper.setData('role', payload.role);
+          navigate('/');
+        })
+        .catch((error) => {
+          message.error(error.data.message);
+        });
+    },
+    [navigate, register]
+  );
 
   const handleOnFieldsChange = useCallback(() => {
     if (form.getFieldValue('role') === 'company') {

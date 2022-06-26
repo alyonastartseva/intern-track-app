@@ -23,7 +23,7 @@ export const SignIn = () => {
       login(values)
         .unwrap()
         .then((payload) => {
-          LocalStorageHelper.setData('email', payload.email);
+          LocalStorageHelper.setData('role', payload.role);
           navigate('/');
         })
         .catch((error) => {
