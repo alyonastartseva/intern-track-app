@@ -38,8 +38,14 @@ namespace intern_track_back.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = CurrentUserService.GetUserByEmail(model.Email);
+                    if (user != null)
+                    {
+                        model.UserId = user.Id;
+                        model.Role = user.Role.GetDisplayName();
+                    }
+                     
                     _logger.LogInformation(1, "User logged in.");
-                    model.Role = Current.Role.GetDisplayName();
                     return Json(model);
                 }
 
@@ -79,6 +85,13 @@ namespace intern_track_back.Controllers
                     accountService.Register(model, applicationUser);
                     
                     await _signInManager.SignInAsync(applicationUser, isPersistent: false);
+                    
+                    var user = CurrentUserService.GetUserByEmail(model.Email);
+                    if (user != null)
+                    {
+                        model.UserId = user.Id;
+                        model.Role = user.Role.GetDisplayName();
+                    }
                     _logger.LogInformation(3, "User created a new account with password.");
                     return Json(model);
                 }

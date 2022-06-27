@@ -42,5 +42,7 @@ namespace intern_track_back.ViewModels.AccountViewModels
         
         [Display(Name = "Информация, которую пользователь хочет предоставить о себе")]
         public string? About { get; set; }
+        
+        public int? UserId { get; set; }
     }
 }

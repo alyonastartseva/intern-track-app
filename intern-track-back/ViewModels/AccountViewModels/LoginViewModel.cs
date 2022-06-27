@@ -21,5 +21,7 @@ namespace intern_track_back.ViewModels.AccountViewModels
         public bool RememberMe { get; set; }
 
         public string? Role { get; set; }
+        
+        public int? UserId { get; set; }
     }
 }
