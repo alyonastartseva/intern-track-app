@@ -6,6 +6,7 @@ import { useGetVacanciesByIdQuery } from 'src/app/store/api/companies';
 import { columnsRecording, stackTypesDict } from './const';
 import { CreateRecordModal } from './component/createRecordModal';
 import { useGetPlanInterviewByCompanyIdQuery, useCreateUpdateRecordMutation } from 'src/app/store/api/record';
+import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
 
 import { Button, Col, Card, Table, Tabs, Spin, Result, Row } from 'antd';
 
@@ -40,7 +41,6 @@ export const VacanciesAndRecording = () => {
 
   const handleOnOkRecordCreate = useCallback(
     (formData) => {
-      console.log(formData);
       const ids = formData?.vacancyIds.map((item) => Number(item));
       const preparedData = {
         vacancyIds: ids,
@@ -48,9 +48,9 @@ export const VacanciesAndRecording = () => {
         priority: formData.priority,
         resumeLink: formData.resumeLink,
         id: 0,
-        companyId
+        companyId,
+        studentId: LocalStorageHelper.getData('userId')
       };
-      console.log(preparedData);
       createUpdateRecord(preparedData);
       setCreateRecordModalVisible((prev) => !prev);
     },
