@@ -43,6 +43,8 @@ namespace intern_track_back.Services
                     company.Email = model.Email;
                     company.About = model.About;
                     company.CompanyName = model.CompanyName;
+                    company.FirstName = model.FirstName;
+                    company.LastName = model.LastName;
                     break;
                 case "curator":
                     user = _unitOfWork.CuratorRepository.CreateNew();
@@ -51,6 +53,8 @@ namespace intern_track_back.Services
                     user.ApplicationUser = applicationUser;
                     user.Email = model.Email;
                     user.About = model.About;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
                     break;
                 case "deanery":
                     user = _unitOfWork.DeaneryRepository.CreateNew();
@@ -59,6 +63,8 @@ namespace intern_track_back.Services
                     user.ApplicationUser = applicationUser;
                     user.Email = model.Email;
                     user.About = model.About;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
                     break;
                 //admin по дефолту
                 default:
@@ -68,6 +74,8 @@ namespace intern_track_back.Services
                     user.ApplicationUser = applicationUser;
                     user.Email = model.Email;
                     user.About = model.About;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
                     break;
             }
             
