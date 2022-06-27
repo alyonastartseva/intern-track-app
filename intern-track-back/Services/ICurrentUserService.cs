@@ -11,5 +11,7 @@ namespace intern_track_back.Services
         /// Получить сущность текущего пользователя
         /// </summary>
         User GetCurrent();
+
+        User? GetUserByEmail(string email);
     }
 }

@@ -68,5 +68,11 @@ namespace intern_track_back.Services
             _unitOfWork.GetContext().Attach(current);
             return current;
         }
+
+        public User? GetUserByEmail(string email)
+        {
+            return _unitOfWork.UserRepository
+                .FirstOrDefault(u => u.ApplicationUser.Email == email);
+        }
     }
 }

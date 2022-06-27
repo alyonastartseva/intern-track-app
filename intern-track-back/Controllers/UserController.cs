@@ -26,11 +26,9 @@ namespace intern_track_back.Controllers
 
         [HttpGet]
         [Route("getuserinfo")]
-        public UserResponseModel GetUserInfo()
+        public UserResponseModel GetUserInfo(int id)
         {
-            var currentUser = Current;
-
-            var user = UnitOfWork.UserRepository.FirstOrDefault(x => x.Id == currentUser.Id);
+            var user = UnitOfWork.UserRepository.FirstOrDefault(x => x.Id == id);
             if (user == null)
             {
                 return new UserResponseModel();
@@ -48,18 +46,18 @@ namespace intern_track_back.Controllers
 
             if (user.Role == Enumerations.RoleType.Student)
             {
-                var student = UnitOfWork.StudentRepository.FirstOrDefault(x => x.Id == currentUser.Id);
+                var student = UnitOfWork.StudentRepository.First(x => x.Id == id);
                 model.Course = student.Course;
             }
             else if (user.Role == Enumerations.RoleType.Company)
             {
-                var company = UnitOfWork.CompanyRepository.FirstOrDefault(x => x.Id == currentUser.Id);
+                var company = UnitOfWork.CompanyRepository.First(x => x.Id == id);
                 model.CompanyAddress = company.Address;
                 model.CompanyName = company.CompanyName;
             }
             else if (user.Role == Enumerations.RoleType.Deanery)
             {
-                var deanery = UnitOfWork.DeaneryRepository.FirstOrDefault(x => x.Id == currentUser.Id);
+                var deanery = UnitOfWork.DeaneryRepository.First(x => x.Id == id);
                 model.DeaneryAddress = deanery.Address;
             }
 
