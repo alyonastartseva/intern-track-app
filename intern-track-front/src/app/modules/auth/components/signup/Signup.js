@@ -26,6 +26,7 @@ export const SignUp = () => {
         .unwrap()
         .then((payload) => {
           LocalStorageHelper.setData('role', payload.role);
+          LocalStorageHelper.setData('userId', payload.userId);
           navigate('/');
         })
         .catch((error) => {
