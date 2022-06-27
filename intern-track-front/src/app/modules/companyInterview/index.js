@@ -12,7 +12,11 @@ export const CompanyInterviews = () => {
   const [visibleCreateModal, setVisibleCreateModal] = useState(false);
 
   const handleOnOkCreateInterview = useCallback((formData) => {
-    console.log(formData);
+    const preparedData = {
+      ...formData,
+      date: moment(formData.date).toISOString()
+    };
+    console.log(preparedData);
     setVisibleCreateModal((prev) => !prev);
   }, []);
 

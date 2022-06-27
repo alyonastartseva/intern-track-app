@@ -16,6 +16,9 @@ const { TabPane } = Tabs;
 
 export const VacanciesAndRecording = () => {
   const [createRecordModalVisible, setCreateRecordModalVisible] = useState(false);
+  const currentUserId = LocalStorageHelper.getData('userId');
+
+  console.log(currentUserId);
 
   const { companyId } = useParams();
 
@@ -29,7 +32,7 @@ export const VacanciesAndRecording = () => {
     data: recordInterviws,
     error: errorRecord,
     isLoading: loadingRecord
-  } = useGetPlanInterviewByCompanyIdQuery(companyId || '');
+  } = useGetPlanInterviewByCompanyIdQuery({ companyId, currentUserId });
 
   const [createUpdateRecord] = useCreateUpdateRecordMutation();
 

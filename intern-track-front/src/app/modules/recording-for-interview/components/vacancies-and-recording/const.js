@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const columnsRecording = [
   {
     title: 'Студент',
@@ -18,6 +20,12 @@ export const columnsRecording = [
     title: 'Приоритет',
     dataIndex: 'priority',
     key: 'priority'
+  },
+  {
+    title: 'Ссылка на резюме',
+    dataIndex: 'resumeLink',
+    key: 'resumeLink',
+    render: (text) => (text ? <a href={text}>Резюме</a> : '')
   }
 ];
 

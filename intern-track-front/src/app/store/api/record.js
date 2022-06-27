@@ -6,7 +6,8 @@ export const recordsApi = createApi({
   tagTypes: ['Records', 'Stack'],
   endpoints: (builder) => ({
     getPlanInterviewByCompanyId: builder.query({
-      query: (companyId) => `StudentPlanForInterviewByCompanyId?companyId=${companyId}`,
+      query: ({ companyId, currentUserId }) =>
+        `StudentPlanForInterviewByCompanyId?companyId=${companyId}&currentUserId=${currentUserId}`,
       providesTags: ['Records']
     }),
     getStackTypesByCompanyId: builder.query({
