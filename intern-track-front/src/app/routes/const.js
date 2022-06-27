@@ -35,16 +35,16 @@ export const privateRoutes = [
     component: <MyProfile />
   },
   {
+    path: '/vacancies',
+    component: <CompanyVacancies />
+  },
+  {
     path: '/my-interviews',
     component: <MyInterviews />
   },
   {
     path: '/vacancies-and-recording/:companyId',
     component: <VacanciesAndRecording />
-  },
-  {
-    path: '/vacancies',
-    component: <CompanyVacancies />
   },
   {
     path: '/admin-interviews',
