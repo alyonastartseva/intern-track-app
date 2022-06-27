@@ -10,9 +10,5 @@ export const Roles = [
   {
     key: 'deanery',
     value: 'Деканат'
-  },
-  {
-    key: 'admin',
-    value: 'Администратор'
   }
 ];
