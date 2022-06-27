@@ -39,6 +39,7 @@ builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<AnnouncementCrudService>();
 builder.Services.AddScoped<StudentPlanForInterviewCrudService>();
 builder.Services.AddScoped<VacancyCrudService>();
+builder.Services.AddScoped<InterviewCrudService>();
 
 #endregion
 
