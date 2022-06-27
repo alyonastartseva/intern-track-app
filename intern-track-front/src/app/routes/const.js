@@ -8,6 +8,7 @@ import { MyProfile } from '../modules/profile';
 import { MyInterviews } from '../modules/my-interviews';
 import { VacanciesAndRecording } from '../modules/recording-for-interview/components/vacancies-and-recording';
 import { CompanyVacancies } from '../modules/companyVacancies';
+import { CompanyInterviews } from '../modules/companyInterview';
 
 export const publicRoutes = [
   {
@@ -44,5 +45,9 @@ export const privateRoutes = [
   {
     path: '/vacancies',
     component: <CompanyVacancies />
+  },
+  {
+    path: '/admin-interviews',
+    component: <CompanyInterviews />
   }
 ];

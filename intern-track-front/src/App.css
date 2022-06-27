@@ -2,8 +2,8 @@
 @import url(./app/styles/form.css);
 
 .ant-layout-sider-dark {
-  min-width: 250px !important;
-  width: 250px !important;
+  min-width: 300px !important;
+  width: 300px !important;
 }
 
 .ant-layout-sider-collapsed {
@@ -12,7 +12,7 @@
 }
 
 .ant-layout-sider-trigger {
-  width: 250px !important;
+  width: 300px !important;
 }
 
 .ant-layout-sider-collapsed .ant-layout-sider-trigger {

@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Layout, Menu } from 'antd';
-import { HomeOutlined, FormOutlined, UsergroupDeleteOutlined, SettingOutlined } from '@ant-design/icons';
+import {
+  HomeOutlined,
+  FormOutlined,
+  UsergroupDeleteOutlined,
+  SettingOutlined,
+  FileDoneOutlined
+} from '@ant-design/icons';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -43,6 +49,13 @@ const items = [
     </Link>,
     '4',
     <SettingOutlined />
+  ),
+  getItem(
+    <Link to="/admin-interviews" className="nav-text">
+      Управление собеседованиями
+    </Link>,
+    '5',
+    <FileDoneOutlined />
   )
 ];
 
