@@ -18,8 +18,6 @@ export const VacanciesAndRecording = () => {
   const [createRecordModalVisible, setCreateRecordModalVisible] = useState(false);
   const currentUserId = LocalStorageHelper.getData('userId');
 
-  console.log(currentUserId);
-
   const { companyId } = useParams();
 
   const {
