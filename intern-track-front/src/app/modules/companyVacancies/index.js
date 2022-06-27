@@ -9,6 +9,7 @@ import {
   useGetVacanciesQuery,
   useDeleteVacancyMutation
 } from 'src/app/store/api/vacancy';
+import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
 
 import './CompanyVacancies.css';
 
@@ -16,7 +17,11 @@ export const CompanyVacancies = () => {
   const [visibleCreateModal, setVisibleCreateModal] = useState(false);
   const [currentVacancy, setCurrentVacancy] = useState(null);
 
-  const { data: vacancies, error: errorVacancies, isLoading: loadingVacancies } = useGetVacanciesQuery();
+  const {
+    data: vacancies,
+    error: errorVacancies,
+    isLoading: loadingVacancies
+  } = useGetVacanciesQuery(LocalStorageHelper.getData('userId'));
   const [createUpdateVacancy] = useCreateUpdateVacancyMutation();
   const [deleteVacancy] = useDeleteVacancyMutation();
 
