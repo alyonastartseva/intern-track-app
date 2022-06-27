@@ -19,7 +19,7 @@ namespace intern_track_back.ViewModels.Api.Students
                     LastName = s.LastName,
                     About = s.About,
                     Course = s.Course,
-                    GeneralStudentStatus = s.GeneralStudentStatus != null ? s.GeneralStudentStatus.GetDisplayName() : ""
+                    GeneralStudentStatus = s.GeneralStudentStatus != 0 ? s.GeneralStudentStatus.GetDisplayName() : ""
                 })
                 .OrderBy(v => v.LastName)
                 .ToList();
