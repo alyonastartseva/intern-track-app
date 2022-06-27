@@ -21,8 +21,8 @@ namespace intern_track_back.Controllers
         /// <param name="companyId">Идентификатор компании</param>
         [HttpGet]
         [Route("StudentPlanForInterviewByCompanyId")]
-        public StudentPlanForInterviewListResponseModel GetForCompany(int companyId) 
-            => new StudentPlanForInterviewListResponseModel().Init(companyId, UnitOfWork, Current);
+        public StudentPlanForInterviewListResponseModel GetForCompany(int companyId, int currentUserId) 
+            => new StudentPlanForInterviewListResponseModel().Init(companyId, UnitOfWork, currentUserId);
 
         [HttpPost]
         [Route("createUpdate")]
