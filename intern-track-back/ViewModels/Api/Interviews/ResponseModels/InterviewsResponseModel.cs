@@ -26,16 +26,20 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                 .Where(i => i.CompanyId == companyId)
                 .Select(i => new InterviewResponseModel
                 {
+                    InterviewId = i.Id,
                     Date = i.Date,
-                    Format = i.Format.GetDisplayName(),
+                    Format = i.Format != 0 ? i.Format.GetDisplayName() : "",
                     VacancyStack = i.Vacancy.Stack,
                     Place = i.Place,
                     CompanyId = i.CompanyId,
-                    CompanyName = i.Company.CompanyName,
+                    CompanyName = i.Company.CompanyName != null ? i.Company.CompanyName : "",
                     StudentId = i.StudentId,
-                    StudentName = i.Student.LastName + " " + i.Student.FirstName
+                    StudentName = i.Student.LastName + " " + i.Student.FirstName,
+                    StudentInterviewStatusType = i.StudentInterviewStatusType != 0 ? i.StudentInterviewStatusType.GetHashCode() : 0,
+                    StudentInterviewStatusTypeName = i.StudentInterviewStatusType != 0 ? i.StudentInterviewStatusType.GetDisplayName() : "no status"
                 })
                 .ToList();
+           
 
             return this;
         }
@@ -55,6 +59,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                 .Where(i => i.CompanyId == studentId)
                 .Select(i => new InterviewResponseModel
                 {
+                    InterviewId = i.Id,
                     Date = i.Date,
                     Format = i.Format.GetDisplayName(),
                     VacancyStack = i.Vacancy.Stack,
@@ -62,7 +67,9 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                     CompanyId = i.CompanyId,
                     CompanyName = i.Company.CompanyName,
                     StudentId = i.StudentId,
-                    StudentName = i.Student.LastName + " " + i.Student.FirstName
+                    StudentName = i.Student.LastName + " " + i.Student.FirstName,
+                    StudentInterviewStatusType = i.StudentInterviewStatusType != 0 ? i.StudentInterviewStatusType.GetHashCode() : 0,
+                    StudentInterviewStatusTypeName = i.StudentInterviewStatusType != 0 ? i.StudentInterviewStatusType.GetDisplayName() : "no status"
                 })
                 .ToList();
 

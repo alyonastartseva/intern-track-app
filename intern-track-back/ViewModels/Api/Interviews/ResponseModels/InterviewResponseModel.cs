@@ -11,6 +11,8 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
 {
     public class InterviewResponseModel
     {
+        public int InterviewId { get; set; }
+
         /// <summary>
         /// Дата и время, на которое назначено собеседование
         /// </summary>
@@ -48,6 +50,8 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
         /// </summary>
         public int StudentInterviewStatusType { get; set; }
 
+        public string StudentInterviewStatusTypeName { get; set; }
+
         public ActionResult<InterviewResponseModel> Init(int id, User current, UnitOfWork unitOfWork)
         {
             var interview = unitOfWork.InterviewRepository
@@ -76,6 +80,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
             StudentId = interview.StudentId;
             StudentName = interview.Student.LastName + " " + interview.Student.FirstName;
             StudentInterviewStatusType = interview.StudentInterviewStatusType.GetHashCode();
+            StudentInterviewStatusTypeName = interview.StudentInterviewStatusType.GetDisplayName();
 
             return new ActionResult<InterviewResponseModel>(this);
         }
