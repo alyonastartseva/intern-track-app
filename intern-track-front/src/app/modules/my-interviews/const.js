@@ -1,3 +1,7 @@
+import moment from 'moment';
+
+import { studentInterviewsStatusType } from '../companyInterview/const';
+
 export const formatDict = [
   {
     key: '1',
@@ -17,13 +21,14 @@ export const columnsMyInterviews = [
   },
   {
     title: 'Позиция',
-    dataIndex: 'stack',
-    key: 'stack'
+    dataIndex: 'vacancyStack',
+    key: 'vacancyStack'
   },
   {
     title: 'Дата',
     dataIndex: 'date',
-    key: 'date'
+    key: 'date',
+    render: (text) => moment(text).format('DD.MM.YYYY')
   },
   {
     title: 'Формат',
@@ -34,5 +39,11 @@ export const columnsMyInterviews = [
     title: 'Место',
     dataIndex: 'place',
     key: 'place'
+  },
+  {
+    title: 'Статус',
+    dataIndex: 'studentInterviewStatusType',
+    key: 'studentInterviewStatusType',
+    render: (text) => studentInterviewsStatusType.find((el) => el.key === text)?.value
   }
 ];
