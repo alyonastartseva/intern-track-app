@@ -1,0 +1,17 @@
+.profile-page {
+  position: relative;
+}
+
+.descTitle {
+  margin-right: 6px;
+
+  font-weight: 500;
+
+  color: var(--pink);
+}
+
+.logout-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

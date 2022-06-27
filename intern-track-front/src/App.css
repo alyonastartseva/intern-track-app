@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+@import url('./app/styles/variables.css');
+@import url(./app/styles/form.css);
+
+.ant-layout-sider-dark {
+  min-width: 300px !important;
+  width: 300px !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ant-layout-sider-collapsed {
+  min-width: 50px !important;
+  width: 50px !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ant-layout-sider-trigger {
+  width: 300px !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ant-layout-sider-collapsed .ant-layout-sider-trigger {
+  width: 78px !important;
 }
 
-.App-link {
-  color: #61dafb;
+.loader {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 100px);
+  transform: translate(-50%, -50%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ant-tabs>.ant-tabs-nav:before {
+  border: none;
+}
+
+.ant-tabs-nav-list {
+  justify-content: flex-end;
+}
+
+.ant-tabs {
+  width: 100%;
+}
+
+.ant-tabs-ink-bar {
+  background: var(--dark-blue);
+}
+
+.ant-tabs-tab,
+.ant-tabs-tab:hover {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--green);
+  padding: 6px 36px;
+  border-radius: 4px 4px 0px 0px;
+  letter-spacing: 0.06em;
+}
+
+.ant-tabs-tab:hover {
+  color: var(--dark-blue);
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--dark-blue);
+}
+
+.ant-tabs-tab.ant-tabs-tab-active {
+  background: #fff;
+}
+
+.ant-tabs-content-holder {
+  position: relative;
+}
+
+.ant-tabs-top>.ant-tabs-nav .ant-tabs-ink-bar {
+  height: 4px;
+}
+
+.ant-tabs {
+  width: 100%;
+}
+
+.rc-virtual-list-scrollbar-thumb {
+  background: var(--pagination-disabled) !important;
+}
+
+.rc-virtual-list-scrollbar {
+  width: 4px !important;
 }
