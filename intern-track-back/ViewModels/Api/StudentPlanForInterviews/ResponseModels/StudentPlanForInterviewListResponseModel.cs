@@ -15,8 +15,14 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.ResponseMode
         /// </summary>
         public ICollection<StudentPlanForInterviewResponseModel> InterviewPlansList { get; set; }
 
-        public StudentPlanForInterviewListResponseModel Init(int companyId, UnitOfWork unitOfWork, User current)
+        public StudentPlanForInterviewListResponseModel Init(int companyId, UnitOfWork unitOfWork, int currentUserId)
         {
+            var currentUser = unitOfWork.UserRepository.FirstOrDefault(u => u.Id == currentUserId);
+            if (currentUser == null)
+            {
+                return null;
+            }
+
             InterviewPlansList = unitOfWork.StudentPlanForInterviewRepository
                 .Where(p => p.CompanyId == companyId)
                 .Include(p => p.StudentPlanIntVacancyLinks)
@@ -28,7 +34,7 @@ namespace intern_track_back.ViewModels.Api.StudentPlanForInterviews.ResponseMode
                     Priority = p.Priority,
                     StackTypes = GetStackTypesString(p.StudentPlanIntVacancyLinks),
                     ResumeLink = p.ResumeLink,
-                    CanBeModified = current.Role == RoleType.Admin || current.Id == p.StudentId
+                    CanBeModified = currentUser.Role == RoleType.Admin || currentUserId == p.StudentId
                 })
                 .ToList();
 
