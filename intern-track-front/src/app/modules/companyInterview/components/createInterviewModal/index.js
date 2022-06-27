@@ -3,14 +3,17 @@ import React, { useCallback } from 'react';
 import { Modal, Form, Input, Select, DatePicker } from 'antd';
 
 import { useGetVacanciesByIdQuery } from 'src/app/store/api/companies';
+import { useGetAllStudentsQuery } from 'src/app/store/api/user';
 import { studentInterviewsStatusType } from '../../const';
+import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
 
 const { Option } = Select;
 
 export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate }) => {
   const [form] = Form.useForm();
 
-  const { data: vacancies } = useGetVacanciesByIdQuery(6);
+  const { data: vacancies } = useGetVacanciesByIdQuery(LocalStorageHelper.getData('userId'));
+  const { data: students } = useGetAllStudentsQuery();
 
   const handleAfterClose = useCallback(() => {
     form.resetFields();
@@ -39,7 +42,11 @@ export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate }) => {
         </Form.Item>
         <Form.Item name="studentId" label="Студент" rules={[{ required: true }]}>
           <Select>
-            <Option value={1}>Алёна</Option>
+            {students?.students?.map((s) => (
+              <Option key={s.studentId} value={s.studentId}>
+                {s.firstName}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
         <Form.Item name="date">
