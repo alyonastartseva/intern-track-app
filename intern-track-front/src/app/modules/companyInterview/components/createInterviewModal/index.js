@@ -6,6 +6,7 @@ import { useGetVacanciesByIdQuery } from 'src/app/store/api/companies';
 import { useGetAllStudentsQuery } from 'src/app/store/api/user';
 import { studentInterviewsStatusType } from '../../const';
 import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
+import moment from 'moment';
 
 const { Option } = Select;
 
@@ -21,6 +22,26 @@ export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate, onOkEdit
         {
           name: 'vacancyId',
           value: interview.vacancyStack
+        },
+        {
+          name: 'studentId',
+          value: interview.studentId
+        },
+        {
+          name: 'date',
+          value: moment(interview.date)
+        },
+        {
+          name: 'format',
+          value: interview.format
+        },
+        {
+          name: 'place',
+          value: interview.place
+        },
+        {
+          name: 'studentInterviewStatusType',
+          value: interview.studentInterviewStatusType
         }
       ]);
     }

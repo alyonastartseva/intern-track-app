@@ -46,13 +46,13 @@ export const CompanyInterviews = () => {
     (formData) => {
       createUpdateInterview({
         ...formData,
-        id: currentInterview?.id,
+        id: currentInterview?.interviewId,
         companyId: LocalStorageHelper.getData('userId'),
         date: moment(formData.date).toISOString()
       });
       setVisibleCreateModal((prev) => !prev);
     },
-    [createUpdateInterview, currentInterview?.id]
+    [createUpdateInterview, currentInterview?.interviewId]
   );
 
   const handleOnCancelCreateInterview = useCallback(() => {
