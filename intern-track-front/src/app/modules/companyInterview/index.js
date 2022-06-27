@@ -17,6 +17,7 @@ import './CompanyInterview.css';
 
 export const CompanyInterviews = () => {
   const [visibleCreateModal, setVisibleCreateModal] = useState(false);
+  const [currentInterview, setCurrentInterview] = useState(null);
 
   const [createUpdateInterview] = useCreateUpdateInterviewMutation();
   const {
@@ -41,8 +42,22 @@ export const CompanyInterviews = () => {
     [createUpdateInterview]
   );
 
+  const handleOnOkEditInterview = useCallback(
+    (formData) => {
+      createUpdateInterview({
+        ...formData,
+        id: currentInterview?.id,
+        companyId: LocalStorageHelper.getData('userId'),
+        date: moment(formData.date).toISOString()
+      });
+      setVisibleCreateModal((prev) => !prev);
+    },
+    [createUpdateInterview, currentInterview?.id]
+  );
+
   const handleOnCancelCreateInterview = useCallback(() => {
     setVisibleCreateModal((prev) => !prev);
+    setCurrentInterview(null);
   }, []);
 
   const handleOnDeleteVacancy = useCallback(

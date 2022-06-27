@@ -7,7 +7,8 @@ import {
   FormOutlined,
   UsergroupDeleteOutlined,
   SettingOutlined,
-  FileDoneOutlined
+  FileDoneOutlined,
+  OrderedListOutlined
 } from '@ant-design/icons';
 import { LocalStorageHelper } from '../shared/helpers/localstore';
 
@@ -67,6 +68,13 @@ const companyItems = [
     </Link>,
     '3',
     <HomeOutlined />
+  ),
+  getItem(
+    <Link to="/company-records" className="nav-text">
+      Список заявок
+    </Link>,
+    '4',
+    <OrderedListOutlined />
   )
 ];
 
