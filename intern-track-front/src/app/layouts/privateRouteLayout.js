@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Layout, Menu } from 'antd';
@@ -9,6 +9,8 @@ import {
   SettingOutlined,
   FileDoneOutlined
 } from '@ant-design/icons';
+
+import { LocalStorageHelper } from '../shared/helpers/localstore';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -61,6 +63,14 @@ const items = [
 
 export const PrivateRouteLayout = ({ component }) => {
   const [collapsed, setCollapsed] = useState(false);
+
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    setRole(LocalStorageHelper.getData('userRole'));
+  }, []);
+
+  console.log(role);
 
   return (
     <Layout
