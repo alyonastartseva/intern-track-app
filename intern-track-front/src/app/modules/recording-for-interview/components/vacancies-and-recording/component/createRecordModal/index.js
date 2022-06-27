@@ -47,7 +47,7 @@ export const CreateRecordModal = ({ isVisible, onCancel, onOk }) => {
           <Select mode="multiple">
             {stackTypes?.map((item) => (
               <Option key={item.key} value={item.key}>
-                {stackTypesDict.find((el) => el.key === item.value)?.value}
+                {item.value}
               </Option>
             ))}
           </Select>
