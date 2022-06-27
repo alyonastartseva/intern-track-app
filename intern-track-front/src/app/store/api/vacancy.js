@@ -14,7 +14,7 @@ export const vacanciesApi = createApi({
       invalidatesTags: ['Vacancies']
     }),
     getVacancies: builder.query({
-      query: (id) => `vacanciesByCompanyId?companyId=6`,
+      query: (id) => `vacanciesByCompanyId?companyId=${id}`,
       providesTags: ['Vacancies']
     }),
     deleteVacancy: builder.mutation({
