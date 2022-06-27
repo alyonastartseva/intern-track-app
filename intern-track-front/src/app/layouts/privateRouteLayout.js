@@ -87,10 +87,17 @@ const univItems = [
     <FormOutlined />
   ),
   getItem(
+    <Link to="/users" className="nav-text">
+      Статусы студентов
+    </Link>,
+    '2',
+    <HomeOutlined />
+  ),
+  getItem(
     <Link to="/profile" className="nav-text">
       Мой профиль
     </Link>,
-    '2',
+    '3',
     <HomeOutlined />
   )
 ];
