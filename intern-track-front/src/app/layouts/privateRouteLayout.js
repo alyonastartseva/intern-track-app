@@ -63,18 +63,18 @@ const companyItems = [
     <FileDoneOutlined />
   ),
   getItem(
-    <Link to="/profile" className="nav-text">
-      Мой профиль
-    </Link>,
-    '3',
-    <HomeOutlined />
-  ),
-  getItem(
     <Link to="/company-records" className="nav-text">
       Список заявок
     </Link>,
     '4',
     <OrderedListOutlined />
+  ),
+  getItem(
+    <Link to="/profile" className="nav-text">
+      Мой профиль
+    </Link>,
+    '3',
+    <HomeOutlined />
   )
 ];
 

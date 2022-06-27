@@ -60,7 +60,16 @@ export const CompanyInterviews = () => {
     setCurrentInterview(null);
   }, []);
 
-  const handleOnDeleteVacancy = useCallback(
+  const handleOnEditInterview = useCallback(
+    (id) => {
+      const int = interviews?.interviews?.find((el) => el.interviewId === id);
+      setCurrentInterview(int);
+      setVisibleCreateModal((prev) => !prev);
+    },
+    [interviews?.interviews]
+  );
+
+  const handleOnDeleteInterview = useCallback(
     (id) => {
       deleteInterview(id);
     },
@@ -84,8 +93,8 @@ export const CompanyInterviews = () => {
               <Card
                 title={item.vacancyStack}
                 actions={[
-                  <EditOutlined key="edit" />,
-                  <DeleteOutlined onClick={() => handleOnDeleteVacancy(item.id)} key="delete" />
+                  <EditOutlined onClick={() => handleOnEditInterview(item.interviewId)} key="edit" />,
+                  <DeleteOutlined onClick={() => handleOnDeleteInterview(item.interviewId)} key="delete" />
                 ]}
               >
                 <p>
@@ -119,7 +128,9 @@ export const CompanyInterviews = () => {
       <CreateInterviewModal
         isVisible={visibleCreateModal}
         onOkCreate={handleOnOkCreateInterview}
+        onOkEdit={handleOnOkEditInterview}
         onCancel={handleOnCancelCreateInterview}
+        interview={currentInterview}
       />
     </div>
   );

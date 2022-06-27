@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { Modal, Form, Input, Select, DatePicker } from 'antd';
 
@@ -9,22 +9,35 @@ import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
 
 const { Option } = Select;
 
-export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate }) => {
+export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate, onOkEdit, interview }) => {
   const [form] = Form.useForm();
 
   const { data: vacancies } = useGetVacanciesByIdQuery(LocalStorageHelper.getData('userId'));
   const { data: students } = useGetAllStudentsQuery();
 
+  useEffect(() => {
+    if (interview) {
+      form.setFields([
+        {
+          name: 'vacancyId',
+          value: interview.vacancyStack
+        }
+      ]);
+    }
+  }, [form, interview]);
+
   const handleAfterClose = useCallback(() => {
-    form.resetFields();
-  }, [form]);
+    if (!interview) {
+      form.resetFields();
+    }
+  }, [form, interview]);
 
   return (
     <Modal
       title="Создать интервью"
       centered
       visible={isVisible}
-      onOk={() => onOkCreate(form.getFieldsValue())}
+      onOk={!interview ? () => onOkCreate(form.getFieldsValue()) : () => onOkEdit(form.getFieldsValue())}
       onCancel={onCancel}
       afterClose={handleAfterClose}
       cancelText="Отменить"
