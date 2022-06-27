@@ -56,7 +56,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
             }*/
             
             Interviews = unitOfWork.InterviewRepository
-                .Where(i => i.CompanyId == studentId)
+                .Where(i => i.StudentId == studentId)
                 .Select(i => new InterviewResponseModel
                 {
                     InterviewId = i.Id,
