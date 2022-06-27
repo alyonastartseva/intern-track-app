@@ -10,7 +10,7 @@ export const interviewsApi = createApi({
       providesTags: ['Interview']
     }),
     getInterviewsByCompanyId: builder.query({
-      query: (id) => `interviewsByCompanyId?studentId=${id}`,
+      query: (id) => `interviewsByCompanyId?companyId=${id}`,
       providesTags: ['Interview']
     }),
     createUpdateInterview: builder.mutation({

@@ -44,7 +44,7 @@ export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate }) => {
           <Select>
             {students?.students?.map((s) => (
               <Option key={s.studentId} value={s.studentId}>
-                {s.firstName}
+                {s.email}
               </Option>
             ))}
           </Select>
