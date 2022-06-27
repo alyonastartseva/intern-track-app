@@ -26,7 +26,6 @@ namespace intern_track_back.Services
             user.Course = model.Course;
             user.About = model.About;
             user.Role = RoleType.Student;
-            user.GeneralStudentStatus = GeneralStudentStatusType.DidNothing;
 
             _unitOfWork.Save();
         }

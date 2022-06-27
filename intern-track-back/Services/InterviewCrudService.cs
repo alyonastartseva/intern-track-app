@@ -35,18 +35,7 @@ namespace intern_track_back.Services
             var interview = _unitOfWork.InterviewRepository.CreateNew();
 
             var student = _unitOfWork.StudentRepository.FirstOrDefault(s => s.Id == model.StudentId);
-            if (model.StudentInterviewStatusType == 1 || model.StudentInterviewStatusType == 2 || model.StudentInterviewStatusType == 3)
-            {
-                student.GeneralStudentStatus = GeneralStudentStatusType.VisitedInterview;
-            }
-            else if (model.StudentInterviewStatusType == 4)
-            {
-                student.GeneralStudentStatus = GeneralStudentStatusType.ReceivedOffer;
-            }
-            else if (model.StudentInterviewStatusType == 5)
-            {
-                student.GeneralStudentStatus = GeneralStudentStatusType.ConfirmedOffer;
-            }
+            student.GeneralStudentStatus = (GeneralStudentStatusType)model.StudentInterviewStatusType;
 
             interview.Date = model.Date;
             interview.Format = (FormatType)model.Format; //todo добавить проверку! возможна ошибка
@@ -72,18 +61,7 @@ namespace intern_track_back.Services
             }
 
             var student = _unitOfWork.StudentRepository.FirstOrDefault(s => s.Id == model.StudentId);
-            if (model.StudentInterviewStatusType == 1 || model.StudentInterviewStatusType == 2 || model.StudentInterviewStatusType == 3)
-            {
-                student.GeneralStudentStatus = GeneralStudentStatusType.VisitedInterview;
-            }
-            else if (model.StudentInterviewStatusType == 4)
-            {
-                student.GeneralStudentStatus = GeneralStudentStatusType.ReceivedOffer;
-            }
-            else if (model.StudentInterviewStatusType == 5)
-            {
-                student.GeneralStudentStatus = GeneralStudentStatusType.ConfirmedOffer;
-            }
+            student.GeneralStudentStatus = (GeneralStudentStatusType)model.StudentInterviewStatusType;
 
             /*if (interview.CompanyId != current.Id &&
                 current.Role != RoleType.Admin)

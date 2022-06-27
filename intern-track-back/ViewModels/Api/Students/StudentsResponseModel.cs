@@ -11,12 +11,6 @@ namespace intern_track_back.ViewModels.Api.Students
         
         public StudentsResponseModel Init(UnitOfWork unitOfWork)
         {
-            var temp = unitOfWork.StudentRepository.Where(s => (int)s.GeneralStudentStatus == 0).ToList();
-            foreach (var student in temp)
-            {
-                student.GeneralStudentStatus = Enumerations.GeneralStudentStatusType.DidNothing;
-            }
-            unitOfWork.Save();
 
             Students = unitOfWork.StudentRepository
                 .Select(s => new StudentResponseModel
@@ -26,7 +20,7 @@ namespace intern_track_back.ViewModels.Api.Students
                     LastName = s.LastName,
                     About = s.About,
                     Course = s.Course,
-                    GeneralStudentStatus = s.GeneralStudentStatus != 0 ? s.GeneralStudentStatus.GetDisplayName() : "",
+                    GeneralStudentStatus = s.GeneralStudentStatus == 0 ? "student haven't done anything yet" : s.GeneralStudentStatus.GetDisplayName(),
                     Email = s.Email
                 })
                 .OrderBy(v => v.LastName)
