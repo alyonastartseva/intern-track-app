@@ -29,7 +29,7 @@ export const CompanyVacancies = () => {
     (formData) => {
       createUpdateVacancy({
         ...formData,
-        companyId: 6
+        companyId: LocalStorageHelper.getData('userId')
       });
       setVisibleCreateModal((prev) => !prev);
     },
@@ -40,9 +40,10 @@ export const CompanyVacancies = () => {
     (formData) => {
       createUpdateVacancy({
         ...formData,
-        companyId: 6,
+        companyId: LocalStorageHelper.getData('userId'),
         vacancyId: currentVacancy?.id
       });
+      setCurrentVacancy(null);
       setVisibleCreateModal((prev) => !prev);
     },
     [createUpdateVacancy, currentVacancy?.id]

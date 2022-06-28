@@ -1,27 +1,64 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { Modal, Form, Input, Select, DatePicker } from 'antd';
 
 import { useGetVacanciesByIdQuery } from 'src/app/store/api/companies';
+import { useGetAllStudentsQuery } from 'src/app/store/api/user';
 import { studentInterviewsStatusType } from '../../const';
+import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';
+import moment from 'moment';
 
 const { Option } = Select;
 
-export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate }) => {
+export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate, onOkEdit, interview }) => {
   const [form] = Form.useForm();
 
-  const { data: vacancies } = useGetVacanciesByIdQuery(6);
+  const { data: vacancies } = useGetVacanciesByIdQuery(LocalStorageHelper.getData('userId'));
+  const { data: students } = useGetAllStudentsQuery();
+
+  useEffect(() => {
+    if (interview) {
+      form.setFields([
+        {
+          name: 'vacancyId',
+          value: interview.vacancyId
+        },
+        {
+          name: 'studentId',
+          value: interview.studentId
+        },
+        {
+          name: 'date',
+          value: moment(interview.date)
+        },
+        {
+          name: 'format',
+          value: interview.format === 'Online' ? 1 : 2
+        },
+        {
+          name: 'place',
+          value: interview.place
+        },
+        {
+          name: 'studentInterviewStatusType',
+          value: interview.studentInterviewStatusType
+        }
+      ]);
+    }
+  }, [form, interview]);
 
   const handleAfterClose = useCallback(() => {
-    form.resetFields();
-  }, [form]);
+    if (!interview) {
+      form.resetFields();
+    }
+  }, [form, interview]);
 
   return (
     <Modal
       title="Создать интервью"
       centered
       visible={isVisible}
-      onOk={() => onOkCreate(form.getFieldsValue())}
+      onOk={!interview ? () => onOkCreate(form.getFieldsValue()) : () => onOkEdit(form.getFieldsValue())}
       onCancel={onCancel}
       afterClose={handleAfterClose}
       cancelText="Отменить"
@@ -39,7 +76,11 @@ export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate }) => {
         </Form.Item>
         <Form.Item name="studentId" label="Студент" rules={[{ required: true }]}>
           <Select>
-            <Option value={1}>Алёна</Option>
+            {students?.students?.map((s) => (
+              <Option key={s.studentId} value={s.studentId}>
+                {s.email}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
         <Form.Item name="date">

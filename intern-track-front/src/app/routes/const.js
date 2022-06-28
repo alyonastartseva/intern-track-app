@@ -9,6 +9,9 @@ import { MyInterviews } from '../modules/my-interviews';
 import { VacanciesAndRecording } from '../modules/recording-for-interview/components/vacancies-and-recording';
 import { CompanyVacancies } from '../modules/companyVacancies';
 import { CompanyInterviews } from '../modules/companyInterview';
+import { CompanyRecords } from '../modules/companyRecords';
+import { Users } from '../modules/users';
+import { UserResults } from '../modules/users/components/result-users';
 
 export const publicRoutes = [
   {
@@ -35,6 +38,10 @@ export const privateRoutes = [
     component: <MyProfile />
   },
   {
+    path: '/vacancies',
+    component: <CompanyVacancies />
+  },
+  {
     path: '/my-interviews',
     component: <MyInterviews />
   },
@@ -43,11 +50,19 @@ export const privateRoutes = [
     component: <VacanciesAndRecording />
   },
   {
-    path: '/vacancies',
-    component: <CompanyVacancies />
-  },
-  {
     path: '/admin-interviews',
     component: <CompanyInterviews />
+  },
+  {
+    path: '/company-records',
+    component: <CompanyRecords />
+  },
+  {
+    path: '/users',
+    component: <Users />
+  },
+  {
+    path: 'user-results/:userId',
+    component: <UserResults />
   }
 ];

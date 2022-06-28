@@ -1,15 +1,31 @@
 import moment from 'moment';
-
 import { studentInterviewsStatusType } from '../companyInterview/const';
 
-export const formatDict = [
+export const columnsStudents = [
   {
-    key: '1',
-    value: 'Online'
+    title: 'Имя',
+    dataIndex: 'firstName',
+    key: 'firstName'
   },
   {
-    key: '2',
-    value: 'Offline'
+    title: 'Фамилия',
+    dataIndex: 'lastName',
+    key: 'lastName'
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email'
+  },
+  {
+    title: 'Курс',
+    dataIndex: 'course',
+    key: 'course'
+  },
+  {
+    title: 'Статус',
+    dataIndex: 'generalStudentStatus',
+    key: 'generalStudentStatus'
   }
 ];
 

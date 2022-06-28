@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Layout, Menu } from 'antd';
@@ -7,8 +7,10 @@ import {
   FormOutlined,
   UsergroupDeleteOutlined,
   SettingOutlined,
-  FileDoneOutlined
+  FileDoneOutlined,
+  OrderedListOutlined
 } from '@ant-design/icons';
+import { LocalStorageHelper } from '../shared/helpers/localstore';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -21,7 +23,7 @@ function getItem(label, key, icon, children) {
   };
 }
 
-const items = [
+const studentItems = [
   getItem(
     <Link to="/" className="nav-text">
       Запись на собеседование
@@ -42,25 +44,72 @@ const items = [
     </Link>,
     '3',
     <HomeOutlined />
-  ),
+  )
+];
+
+const companyItems = [
   getItem(
     <Link to="/vacancies" className="nav-text">
       Управление вакансиями
     </Link>,
-    '4',
+    '1',
     <SettingOutlined />
   ),
   getItem(
     <Link to="/admin-interviews" className="nav-text">
       Управление собеседованиями
     </Link>,
-    '5',
+    '2',
     <FileDoneOutlined />
+  ),
+  getItem(
+    <Link to="/company-records" className="nav-text">
+      Список заявок
+    </Link>,
+    '4',
+    <OrderedListOutlined />
+  ),
+  getItem(
+    <Link to="/profile" className="nav-text">
+      Мой профиль
+    </Link>,
+    '3',
+    <HomeOutlined />
+  )
+];
+
+const univItems = [
+  getItem(
+    <Link to="/" className="nav-text">
+      Компании-партнёры
+    </Link>,
+    '1',
+    <FormOutlined />
+  ),
+  getItem(
+    <Link to="/users" className="nav-text">
+      Статусы студентов
+    </Link>,
+    '2',
+    <HomeOutlined />
+  ),
+  getItem(
+    <Link to="/profile" className="nav-text">
+      Мой профиль
+    </Link>,
+    '3',
+    <HomeOutlined />
   )
 ];
 
 export const PrivateRouteLayout = ({ component }) => {
   const [collapsed, setCollapsed] = useState(false);
+
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    setRole(LocalStorageHelper.getData('role'));
+  }, []);
 
   return (
     <Layout
@@ -70,7 +119,12 @@ export const PrivateRouteLayout = ({ component }) => {
     >
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={['1']}
+          mode="inline"
+          items={role === 'Student' ? studentItems : role === 'Company' ? companyItems : univItems}
+        />
       </Sider>
       <Layout className="site-layout">
         <Content
