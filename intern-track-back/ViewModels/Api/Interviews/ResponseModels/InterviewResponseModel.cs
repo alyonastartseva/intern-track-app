@@ -85,9 +85,28 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
             StudentId = interview.StudentId;
             StudentName = interview.Student.LastName + " " + interview.Student.FirstName;
             StudentInterviewStatusType = interview.StudentInterviewStatusType.GetHashCode();
-            StudentInterviewStatusTypeName = interview.StudentInterviewStatusType.GetDisplayName();
+            StudentInterviewStatusTypeName = GetStudentStatusName(interview.StudentInterviewStatusType);
 
             return new ActionResult<InterviewResponseModel>(this);
+        }
+        
+        private static string GetStudentStatusName(StudentInterviewStatusType statusType)
+        {
+            switch (statusType)
+            {
+                case Enumerations.StudentInterviewStatusType.Waiting:
+                    return "Собеседование ожидается";
+                case Enumerations.StudentInterviewStatusType.Happened:
+                    return "Собеседование пройдено";
+                case Enumerations.StudentInterviewStatusType.Denied:
+                    return "Отказано";
+                case Enumerations.StudentInterviewStatusType.SendOffer:
+                    return "Предложение оффера";
+                case Enumerations.StudentInterviewStatusType.ConfirmOffer:
+                    return "Оффер подтвержден";
+            }
+
+            return "";
         }
     }
 }
