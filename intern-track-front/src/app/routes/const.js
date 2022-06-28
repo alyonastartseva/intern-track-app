@@ -11,6 +11,7 @@ import { CompanyVacancies } from '../modules/companyVacancies';
 import { CompanyInterviews } from '../modules/companyInterview';
 import { CompanyRecords } from '../modules/companyRecords';
 import { Users } from '../modules/users';
+import { UserResults } from '../modules/users/components/result-users';
 
 export const publicRoutes = [
   {
@@ -59,5 +60,9 @@ export const privateRoutes = [
   {
     path: '/users',
     component: <Users />
+  },
+  {
+    path: 'user-results/:userId',
+    component: <UserResults />
   }
 ];

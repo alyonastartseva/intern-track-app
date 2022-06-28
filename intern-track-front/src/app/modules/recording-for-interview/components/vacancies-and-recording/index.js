@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as BackIcon } from 'src/assets/svg/backIcon.svg';
 import { useGetVacanciesByIdQuery } from 'src/app/store/api/companies';
-import { columnsRecording, stackTypesDict } from './const';
+import { columnsRecording } from './const';
 import { CreateRecordModal } from './component/createRecordModal';
 import { useGetPlanInterviewByCompanyIdQuery, useCreateUpdateRecordMutation } from 'src/app/store/api/record';
 import { LocalStorageHelper } from 'src/app/shared/helpers/localstore';

@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Table, Spin, Result } from 'antd';
 
@@ -10,9 +11,14 @@ import './Users.css';
 export const Users = () => {
   const { data: students, error: errorStudents, isLoading: loadingStudents } = useGetAllStudentsQuery();
 
-  const handleOnSelectRow = useCallback((student) => {
-    console.log(student);
-  }, []);
+  const navigate = useNavigate();
+
+  const handleOnSelectRow = useCallback(
+    (student) => {
+      navigate(`/user-results/${student.studentId}`);
+    },
+    [navigate]
+  );
 
   return (
     <div>
