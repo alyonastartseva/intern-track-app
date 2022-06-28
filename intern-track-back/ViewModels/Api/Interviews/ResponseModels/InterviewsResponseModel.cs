@@ -29,6 +29,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                     InterviewId = i.Id,
                     Date = i.Date,
                     Format = i.Format != 0 ? i.Format.GetDisplayName() : "",
+                    VacancyId = i.VacancyId,
                     VacancyStack = i.Vacancy.Stack,
                     Place = i.Place,
                     CompanyId = i.CompanyId,

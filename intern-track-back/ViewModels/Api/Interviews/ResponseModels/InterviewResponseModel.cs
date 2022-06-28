@@ -22,6 +22,11 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
         /// Формат собеседования
         /// </summary>
         public string Format { get; set; }
+        
+        /// <summary>
+        /// Идентификатор вакансии
+        /// </summary>
+        public int VacancyId { get; set; }
 
         /// <summary>
         /// Стэк, на который студент будет собеседоваться
