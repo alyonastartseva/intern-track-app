@@ -62,11 +62,11 @@ export const CompanyInterviews = () => {
 
   const handleOnEditInterview = useCallback(
     (id) => {
-      const int = interviews?.interviews?.find((el) => el.interviewId === id);
-      setCurrentInterview(int);
+      const interv = interviews?.interviews?.find((el) => el.interviewId === id);
+      setCurrentInterview(interv);
       setVisibleCreateModal((prev) => !prev);
     },
-    [interviews?.interviews]
+    [interviews]
   );
 
   const handleOnDeleteInterview = useCallback(

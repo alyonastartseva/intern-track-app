@@ -21,7 +21,7 @@ export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate, onOkEdit
       form.setFields([
         {
           name: 'vacancyId',
-          value: interview.vacancyStack
+          value: interview.vacancyId
         },
         {
           name: 'studentId',
@@ -33,7 +33,7 @@ export const CreateInterviewModal = ({ isVisible, onCancel, onOkCreate, onOkEdit
         },
         {
           name: 'format',
-          value: interview.format
+          value: interview.format === 'Online' ? 1 : 2
         },
         {
           name: 'place',
