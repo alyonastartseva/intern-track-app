@@ -49,6 +49,10 @@ namespace intern_track_back.Services
             {
                 MakeStudentVacancyConnection(interview.StudentId, interview.VacancyId);
             }
+            else
+            {
+                RemoveStudentVacancyConnection(interview.StudentId, interview.VacancyId);
+            }
             
             _unitOfWork.Save();
             
@@ -86,6 +90,10 @@ namespace intern_track_back.Services
             {
                 MakeStudentVacancyConnection(interview.StudentId, interview.VacancyId);
             }
+            else
+            {
+                RemoveStudentVacancyConnection(interview.StudentId, interview.VacancyId);
+            }
             
             _unitOfWork.Save();
             
@@ -120,6 +128,14 @@ namespace intern_track_back.Services
                 .First(s => s.Id == studentId);
 
             student.VacancyId = vacancyId;
+        }
+
+        private void RemoveStudentVacancyConnection(int studentId, int vacancyId)
+        {
+            var student = _unitOfWork.StudentRepository
+                .First(s => s.Id == studentId);
+
+            student.VacancyId = null;
         }
     }
 }

@@ -37,7 +37,7 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                     StudentId = i.StudentId,
                     StudentName = i.Student.LastName + " " + i.Student.FirstName,
                     StudentInterviewStatusType = i.StudentInterviewStatusType != 0 ? i.StudentInterviewStatusType.GetHashCode() : 0,
-                    StudentInterviewStatusTypeName = i.StudentInterviewStatusType != 0 ? i.StudentInterviewStatusType.GetDisplayName() : "no status"
+                    StudentInterviewStatusTypeName = i.StudentInterviewStatusType != 0 ? GetStudentStatusName(i.StudentInterviewStatusType) : "no status"
                 })
                 .ToList();
            
@@ -70,13 +70,30 @@ namespace intern_track_back.ViewModels.Api.Interviews.ResponseModels
                     StudentId = i.StudentId,
                     StudentName = i.Student.LastName + " " + i.Student.FirstName,
                     StudentInterviewStatusType = i.StudentInterviewStatusType != 0 ? i.StudentInterviewStatusType.GetHashCode() : 0,
-                    StudentInterviewStatusTypeName = i.StudentInterviewStatusType != 0 ? i.StudentInterviewStatusType.GetDisplayName() : "no status"
+                    StudentInterviewStatusTypeName = i.StudentInterviewStatusType != 0 ? GetStudentStatusName(i.StudentInterviewStatusType) : "no status"
                 })
                 .ToList();
 
             return this;
         }
+        
+        private static string GetStudentStatusName(StudentInterviewStatusType statusType)
+        {
+            switch (statusType)
+            {
+                case StudentInterviewStatusType.Waiting:
+                    return "Собеседование ожидается";
+                case StudentInterviewStatusType.Happened:
+                    return "Собеседование пройдено";
+                case StudentInterviewStatusType.Denied:
+                    return "Отказано";
+                case StudentInterviewStatusType.SendOffer:
+                    return "Предложение оффера";
+                case StudentInterviewStatusType.ConfirmOffer:
+                    return "Оффер подтвержден";
+            }
+
+            return "";
+        }
     }
-    
-    
 }
