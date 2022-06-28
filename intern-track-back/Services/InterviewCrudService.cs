@@ -45,6 +45,11 @@ namespace intern_track_back.Services
             interview.CompanyId = model.CompanyId;
             interview.StudentInterviewStatusType = (StudentInterviewStatusType)model.StudentInterviewStatusType;
             
+            if (interview.StudentInterviewStatusType == StudentInterviewStatusType.ConfirmOffer)
+            {
+                MakeStudentVacancyConnection(interview.StudentId, interview.VacancyId);
+            }
+            
             _unitOfWork.Save();
             
             return new ActionResult<int>(interview.Id);
@@ -76,6 +81,11 @@ namespace intern_track_back.Services
             interview.StudentId = model.StudentId;
             interview.CompanyId = model.CompanyId;
             interview.StudentInterviewStatusType = (StudentInterviewStatusType)model.StudentInterviewStatusType;
+
+            if (interview.StudentInterviewStatusType == StudentInterviewStatusType.ConfirmOffer)
+            {
+                MakeStudentVacancyConnection(interview.StudentId, interview.VacancyId);
+            }
             
             _unitOfWork.Save();
             
@@ -102,6 +112,14 @@ namespace intern_track_back.Services
             _unitOfWork.Save();
             
             return new OkResult();
+        }
+
+        private void MakeStudentVacancyConnection(int studentId, int vacancyId)
+        {
+            var student = _unitOfWork.StudentRepository
+                .First(s => s.Id == studentId);
+
+            student.VacancyId = vacancyId;
         }
     }
 }
