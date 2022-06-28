@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { Table, Spin, Result } from 'antd';
 
@@ -10,6 +10,10 @@ import './Users.css';
 export const Users = () => {
   const { data: students, error: errorStudents, isLoading: loadingStudents } = useGetAllStudentsQuery();
 
+  const handleOnSelectRow = useCallback((student) => {
+    console.log(student);
+  }, []);
+
   return (
     <div>
       <h1>Список студентов</h1>
@@ -18,7 +22,17 @@ export const Users = () => {
       ) : errorStudents ? (
         <Result status="500" title="Что-то пошло не так" subTitle="Не удалось загрузить список студентов" />
       ) : (
-        <Table dataSource={students?.students} columns={columnsStudents} />
+        <Table
+          onRow={(record, rowIndex) => {
+            return {
+              onClick: (event) => {
+                if (handleOnSelectRow) handleOnSelectRow(record);
+              }
+            };
+          }}
+          dataSource={students?.students}
+          columns={columnsStudents}
+        />
       )}
     </div>
   );
